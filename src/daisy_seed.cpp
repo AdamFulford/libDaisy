@@ -343,3 +343,26 @@ DaisySeed::BoardVersion DaisySeed::CheckBoardVersion()
     else
         return BoardVersion::DAISY_SEED;
 }
+
+void DaisySeed::qspi_init()
+{
+    auto memory = System::GetProgramMemoryRegion();
+    if(memory != System::MemoryRegion::QSPI)
+        qspi.Init(qspi_config);
+}
+
+
+void DaisySeed::qspi_deinit()
+{
+    qspi.DeInit();
+}
+
+void DaisySeed::Set_QSPI_INDIRECT_POLLING()
+{
+    qspi_config.mode   = QSPIHandle::Config::Mode::INDIRECT_POLLING;
+}
+
+void DaisySeed::Set_QSPI_MAPPED_MEMORY()
+{
+    qspi_config.mode   = QSPIHandle::Config::Mode::MEMORY_MAPPED;
+}

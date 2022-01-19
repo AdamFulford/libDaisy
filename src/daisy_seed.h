@@ -160,6 +160,15 @@ class DaisySeed
     /** Returns the BoardVersion detected during intiialization */
     BoardVersion CheckBoardVersion();
 
+//qspi extra functions:
+
+void qspi_init();
+
+void qspi_deinit();
+
+void Set_QSPI_INDIRECT_POLLING();
+
+void Set_QSPI_MAPPED_MEMORY();
 
   private:
     /** Local shorthand for debug log destination
