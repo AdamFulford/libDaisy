@@ -243,7 +243,7 @@ namespace patch_sm
         if(memory != System::MemoryRegion::QSPI)
         {
             /** QUADSPI FLASH */
-            QSPIHandle::Config qspi_config;
+            //QSPIHandle::Config qspi_config;
             qspi_config.device = QSPIHandle::Config::Device::IS25LP064A;
             qspi_config.mode   = QSPIHandle::Config::Mode::MEMORY_MAPPED;
             qspi_config.pin_config.io0 = {DSY_GPIOF, 8};
@@ -282,7 +282,7 @@ namespace patch_sm
         codec.Init(i2c2);
 
         AudioHandle::Config audio_config;
-        audio_config.blocksize  = 4;
+        audio_config.blocksize  = 48;
         audio_config.samplerate = SaiHandle::Config::SampleRate::SAI_48KHZ;
         audio_config.postgain   = 1.f;
         audio.Init(audio_config, sai_1_handle);
@@ -306,19 +306,22 @@ namespace patch_sm
             PIN_ADC_CTRL_12,
         };
 
-        for(int i = 0; i < ADC_LAST; i++)
+        for(int i = 0; i < ADC_LAST - 1 ; i++)
         {
             adc_config[i].InitSingle(adc_pins[i]);
         }
+        adc_config[ADC_LAST - 1].InitMux(adc_pins[(ADC_LAST - 1)],8,D1,D2,D3);
+        //adc_config[ADC_LAST-1].InitSingle(adc_pins[ADC_LAST]);
+
         adc.Init(adc_config, ADC_LAST);
         /** Control Init */
-        for(size_t i = 0; i < ADC_LAST; i++)
-        {
-            if(i < ADC_9)
-                controls[i].InitBipolarCv(adc.GetPtr(i), callback_rate_);
-            else
-                controls[i].Init(adc.GetPtr(i), callback_rate_);
-        }
+        // for(size_t i = 0; i < ADC_LAST; i++)
+        // {
+        //     if(i < ADC_9)
+        //         controls[i].InitBipolarCv(adc.GetPtr(i), callback_rate_);
+        //     else
+        //         controls[i].Init(adc.GetPtr(i), callback_rate_);
+        // }
 
         /** Fixed-function Digital I/O */
         user_led.mode = DSY_GPIO_MODE_OUTPUT_PP;
@@ -420,18 +423,28 @@ namespace patch_sm
 
     void DaisyPatchSM::StopAdc() { adc.Stop(); }
 
-    void DaisyPatchSM::ProcessAnalogControls()
-    {
-        for(int i = 0; i < ADC_LAST; i++)
-        {
-            controls[i].Process();
-        }
-    }
+    // void DaisyPatchSM::ProcessAnalogControls()
+    // {
+    //     for(int i = 0; i < ADC_LAST; i++)
+    //     {
+    //         controls[i].Process();
+    //     }
+    // }
 
     void DaisyPatchSM::ProcessDigitalControls() {}
 
-    float DaisyPatchSM::GetAdcValue(int idx) { return controls[idx].Value(); }
+   // float DaisyPatchSM::GetAdcValue(int idx) { return controls[idx].Value(); }
 
+    float DaisyPatchSM::GetADCRawFloatValue(int idx)
+    {
+        return adc.GetFloat(idx);
+    }
+
+    float DaisyPatchSM::GetADCRawMuxFloatValue(int idx, int ch)
+    {
+        return adc.GetMuxFloat(ch,idx);
+    }
+    
     dsy_gpio_pin DaisyPatchSM::GetPin(const PinBank bank, const int idx)
     {
         if(idx <= 0 || idx > 10)
@@ -522,6 +535,30 @@ namespace patch_sm
                 fail_cnt++;
         return fail_cnt == 0;
     }
+
+void DaisyPatchSM::qspi_init()
+{
+    auto memory = System::GetProgramMemoryRegion();
+    if(memory != System::MemoryRegion::QSPI)
+        qspi.Init(qspi_config);
+}
+
+
+void DaisyPatchSM::qspi_deinit()
+{
+    qspi.DeInit();
+}
+
+void DaisyPatchSM::Set_QSPI_INDIRECT_POLLING()
+{
+    qspi_config.mode   = QSPIHandle::Config::Mode::INDIRECT_POLLING;
+}
+
+void DaisyPatchSM::Set_QSPI_MAPPED_MEMORY()
+{
+    qspi_config.mode   = QSPIHandle::Config::Mode::MEMORY_MAPPED;
+}
+
 
 } // namespace patch_sm
 

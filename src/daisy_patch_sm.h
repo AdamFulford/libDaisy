@@ -118,7 +118,7 @@ namespace patch_sm
         void StopAdc();
 
         /** Reads and filters all of the analog control inputs */
-        void ProcessAnalogControls();
+        //void ProcessAnalogControls();
 
         /** Reads and debounces any of the digital control inputs 
          *  This does nothing on this board at this time.
@@ -126,14 +126,18 @@ namespace patch_sm
         void ProcessDigitalControls();
 
         /** Does both of the above */
-        void ProcessAllControls()
-        {
-            ProcessAnalogControls();
-            ProcessDigitalControls();
-        }
+        //void ProcessAllControls()
+        //{
+        //    ProcessAnalogControls();
+        //    ProcessDigitalControls();
+       // }
 
         /** Returns the current value for one of the ADCs */
-        float GetAdcValue(int idx);
+        //float GetAdcValue(int idx);
+
+        float GetADCRawFloatValue(int idx);
+
+        float GetADCRawMuxFloatValue(int idx, int ch);
 
         /** Returns the STM32 port/pin combo for the desired pin (or an invalid pin for HW only pins)
          *
@@ -243,6 +247,7 @@ namespace patch_sm
         System      system;
         SdramHandle sdram;
         QSPIHandle  qspi;
+        QSPIHandle::Config qspi_config;
         AudioHandle audio;
         AdcHandle   adc;
         UsbHandle   usb;
@@ -251,7 +256,7 @@ namespace patch_sm
 
         /** Dedicated Function Pins */
         dsy_gpio      user_led;
-        AnalogControl controls[ADC_LAST];
+        //AnalogControl controls[ADC_LAST];
         GateIn        gate_in_1, gate_in_2;
         dsy_gpio      gate_out_1, gate_out_2;
 
@@ -267,6 +272,12 @@ namespace patch_sm
         static const dsy_gpio_pin D1, D2, D3, D4, D5;
         static const dsy_gpio_pin D6, D7, D8, D9, D10;
         class Impl;
+
+//qspi extra functions:
+void qspi_init();
+void qspi_deinit();
+void Set_QSPI_INDIRECT_POLLING();
+void Set_QSPI_MAPPED_MEMORY();
 
       private:
         using Log = Logger<LOGGER_INTERNAL>;
