@@ -288,40 +288,19 @@ namespace patch_sm
         audio.Init(audio_config, sai_1_handle);
         callback_rate_ = AudioSampleRate() / AudioBlockSize();
 
-        /** ADC Init */
-        AdcChannelConfig adc_config[ADC_LAST];
-        /** Order of pins to match enum expectations */
-        dsy_gpio_pin adc_pins[] = {
-            PIN_ADC_CTRL_1,
-            PIN_ADC_CTRL_2,
-            PIN_ADC_CTRL_3,
-            PIN_ADC_CTRL_4,
-            PIN_ADC_CTRL_8,
-            PIN_ADC_CTRL_7,
-            PIN_ADC_CTRL_5,
-            PIN_ADC_CTRL_6,
-            PIN_ADC_CTRL_9,
-            PIN_ADC_CTRL_10,
-            PIN_ADC_CTRL_11,
-            PIN_ADC_CTRL_12,
-        };
+        //ADC
+    AdcChannelConfig adcConfig[8];
 
-        for(int i = 0; i < ADC_LAST - 1 ; i++)
-        {
-            adc_config[i].InitSingle(adc_pins[i]);
-        }
-        adc_config[ADC_LAST - 1].InitMux(adc_pins[(ADC_LAST - 1)],8,D1,D2,D3);
-        //adc_config[ADC_LAST-1].InitSingle(adc_pins[ADC_LAST]);
+    adcConfig[0].InitSingle(C5);
+    adcConfig[1].InitSingle(C4);
+    adcConfig[2].InitSingle(C3);
+    adcConfig[3].InitSingle(C2);
+    adcConfig[4].InitSingle(C6);
+    adcConfig[5].InitSingle(C8);
+    adcConfig[6].InitSingle(C7);
+    adcConfig[7].InitMux(A2,8,D1,D2,B7);
 
-        adc.Init(adc_config, ADC_LAST);
-        /** Control Init */
-        // for(size_t i = 0; i < ADC_LAST; i++)
-        // {
-        //     if(i < ADC_9)
-        //         controls[i].InitBipolarCv(adc.GetPtr(i), callback_rate_);
-        //     else
-        //         controls[i].Init(adc.GetPtr(i), callback_rate_);
-        // }
+    adc.Init(adcConfig, 8,daisy::AdcHandle::OVS_128);
 
         /** Fixed-function Digital I/O */
         user_led.mode = DSY_GPIO_MODE_OUTPUT_PP;
@@ -329,18 +308,18 @@ namespace patch_sm
         user_led.pin  = PIN_USER_LED;
         dsy_gpio_init(&user_led);
         //gate_in_1.Init((dsy_gpio_pin *)&DaisyPatchSM::B10);
-        gate_in_1.Init((dsy_gpio_pin *)&B10);
-        gate_in_2.Init((dsy_gpio_pin *)&B9);
+       // gate_in_1.Init((dsy_gpio_pin *)&B10);
+       // gate_in_2.Init((dsy_gpio_pin *)&B9);
 
-        gate_out_1.mode = DSY_GPIO_MODE_OUTPUT_PP;
-        gate_out_1.pull = DSY_GPIO_NOPULL;
-        gate_out_1.pin  = B6;
-        dsy_gpio_init(&gate_out_1);
+       // gate_out_1.mode = DSY_GPIO_MODE_OUTPUT_PP;
+       // gate_out_1.pull = DSY_GPIO_NOPULL;
+       // gate_out_1.pin  = B6;
+       // dsy_gpio_init(&gate_out_1);
 
-        gate_out_2.mode = DSY_GPIO_MODE_OUTPUT_PP;
-        gate_out_2.pull = DSY_GPIO_NOPULL;
-        gate_out_2.pin  = B5;
-        dsy_gpio_init(&gate_out_2);
+        //gate_out_2.mode = DSY_GPIO_MODE_OUTPUT_PP;
+        //gate_out_2.pull = DSY_GPIO_NOPULL;
+        //gate_out_2.pin  = B5;
+        //dsy_gpio_init(&gate_out_2);
 
         /** DAC init */
         pimpl_->InitDac();
