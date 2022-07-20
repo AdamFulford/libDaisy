@@ -176,31 +176,31 @@ namespace patch_sm
 
     void DaisyPatchSM::Impl::InitDac()
     {
-        DacHandle::Config dac_config;
-        dac_config.mode     = DacHandle::Mode::DMA;
-        dac_config.bitdepth = DacHandle::BitDepth::
-            BITS_12; /**< Sets the output value to 0-4095 */
-        dac_config.chn               = DacHandle::Channel::BOTH;
-        dac_config.buff_state        = DacHandle::BufferState::ENABLED;
-        dac_config.target_samplerate = 48000;
-        dac_.Init(dac_config);
+        // DacHandle::Config dac_config;
+        // dac_config.mode     = DacHandle::Mode::DMA;
+        // dac_config.bitdepth = DacHandle::BitDepth::
+        //     BITS_12; /**< Sets the output value to 0-4095 */
+        // dac_config.chn               = DacHandle::Channel::BOTH;
+        // dac_config.buff_state        = DacHandle::BufferState::ENABLED;
+        // dac_config.target_samplerate = 48000;
+        // dac_.Init(dac_config);
     }
 
     void DaisyPatchSM::Impl::StartDac(DacHandle::DacCallback callback)
     {
-        if(dac_running_)
-            dac_.Stop();
-        dac_.Start(internal_dac_buffer_[0],
-                   internal_dac_buffer_[1],
-                   dac_buffer_size_,
-                   callback == nullptr ? InternalDacCallback : callback);
-        dac_running_ = true;
+        // if(dac_running_)
+        //     dac_.Stop();
+        // dac_.Start(internal_dac_buffer_[0],
+        //            internal_dac_buffer_[1],
+        //            dac_buffer_size_,
+        //            callback == nullptr ? InternalDacCallback : callback);
+        // dac_running_ = true;
     }
 
     void DaisyPatchSM::Impl::StopDac()
     {
-        dac_.Stop();
-        dac_running_ = false;
+        // dac_.Stop();
+        // dac_running_ = false;
     }
 
 
@@ -209,11 +209,11 @@ namespace patch_sm
         /** We could add some smoothing, interp, or something to make this a bit less waste-y */
         // std::fill(&output[0][0], &output[0][size], patch_sm_hw.dac_output_[0]);
         // std::fill(&output[1][1], &output[1][size], patch_sm_hw.dac_output_[1]);
-        for(size_t i = 0; i < size; i++)
-        {
-            output[0][i] = patch_sm_hw.dac_output_[0];
-            output[1][i] = patch_sm_hw.dac_output_[1];
-        }
+       // for(size_t i = 0; i < size; i++)
+        //{
+        //    output[0][i] = patch_sm_hw.dac_output_[0];
+        //    output[1][i] = patch_sm_hw.dac_output_[1];
+       // }
     }
 
     /** Actual DaisyPatchSM implementation 
@@ -224,7 +224,7 @@ namespace patch_sm
     void DaisyPatchSM::Init()
     {
         /** Assign pimpl pointer */
-        pimpl_ = &patch_sm_hw;
+        //pimpl_ = &patch_sm_hw;
         /** Initialize the MCU and clock tree */
         System::Config syscfg;
         syscfg.Boost();
@@ -291,14 +291,14 @@ namespace patch_sm
         //ADC
     AdcChannelConfig adcConfig[8];
 
-    adcConfig[0].InitSingle(C5);
-    adcConfig[1].InitSingle(C4);
-    adcConfig[2].InitSingle(C3);
-    adcConfig[3].InitSingle(C2);
-    adcConfig[4].InitSingle(C6);
-    adcConfig[5].InitSingle(C8);
-    adcConfig[6].InitSingle(C7);
-    adcConfig[7].InitMux(A2,8,D1,D2,B7);
+    adcConfig[0].InitSingle(C5); //time L CV
+    adcConfig[1].InitSingle(C4); //time R CV
+    adcConfig[2].InitSingle(C3); //FB_L CV
+    adcConfig[3].InitSingle(C2); //FB_R CV
+    adcConfig[4].InitSingle(PIN_ADC_CTRL_8); //Wet Dry CV
+    adcConfig[5].InitSingle(PIN_ADC_CTRL_5); //width CV
+    adcConfig[6].InitSingle(PIN_ADC_CTRL_7); //Mod CV
+    adcConfig[7].InitMux(A2,8,D1,D2,B7); //pots
 
     adc.Init(adcConfig, 8,daisy::AdcHandle::OVS_128);
 
@@ -322,11 +322,11 @@ namespace patch_sm
         //dsy_gpio_init(&gate_out_2);
 
         /** DAC init */
-        pimpl_->InitDac();
+        //pimpl_->InitDac();
 
         /** Start any background stuff */
         StartAdc();
-        StartDac();
+        //StartDac();
     }
 
     void DaisyPatchSM::StartAudio(AudioHandle::AudioCallback cb)
