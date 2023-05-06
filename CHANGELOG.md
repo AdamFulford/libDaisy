@@ -4,7 +4,45 @@
 
 ### Features
 
+* board: added official support for new Daisy Seed2 DFM hardware (built in compatibility with DaisySeed class).
+* examples: added a number of minimal examples for the Seed/Seed2DFM
+* gatein: added new Init function that is compatible with newer C++ `Pin` type.
+
+### Bug Fixes
+
+* patchsm: Corrected gate out pin assignment confusion added by (#417) as noted by [apbianco](https://forum.electro-smith.com/u/apbianco) and [tele_player](https://forum.electro-smith.com/u/tele_player)
+
+## v5.3.0
+
+### Features
+
+* driver: Software SPI transport `SSD130x4WireSoftSpiTransport` added for the OLED Display driver. (#551)
+
+### Bug Fixes
+
+* driver: Fixed a compiler error in `Max11300Driver::WriteAnalogPinVolts()`
+* driver: Fixed error reading multiple registers at once from the MPC23x17 GPIO expanders (#550)
+* seed: Fixed out of range pin definitions for extra GPIO on the Daisy Seed2 DFM (#544)
+* patchsm: Fixed issue where updating the audio callback params didn't update control samplerate (#543)
+
+## v5.2.0
+
+### Features
+
+* board: added board support for Noise Engineering legio platform
 * audio: added `output_compensation` value to config struct to allow for post-scaling of uneven audio passthru levels.
+* util: added a multiply operator to the Color class for scaling a color by a single factor.
+* device: Added ICM20948 sensor device driver
+* device: Added DPS310 device driver
+* device: Added MPR121 device driver
+* device: Added APDS9960 device driver
+* device: Added TLV493D device driver.
+* device: Added neotrellis driver
+* device: Added neopixel driver
+
+### Bug fixes
+
+* uart: fixed bug with fifo-dma-receive mode that would result in erratic reads over time. Fixes issues with UART (TRS/DIN) MIDI parsing
 
 ## v5.1.0
 
