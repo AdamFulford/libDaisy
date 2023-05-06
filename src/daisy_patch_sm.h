@@ -256,7 +256,7 @@ namespace patch_sm
 
         /** Dedicated Function Pins */
         dsy_gpio      user_led;
-        //AnalogControl controls[ADC_LAST];
+        AnalogControl controls[ADC_LAST];
         GateIn        gate_in_1, gate_in_2;
         dsy_gpio      gate_out_1, gate_out_2;
 
