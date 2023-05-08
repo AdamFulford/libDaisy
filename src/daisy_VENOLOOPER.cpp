@@ -103,6 +103,8 @@ void VenoLooper::Init(bool boost)
             pots[i].Init(seed.adc.GetMuxPtr(1,i-8),AudioCallbackRate());
      }
 
+
+
     //LEDs
     // 4x PCA9685 addresses 0x00, 0x01,  0x02 and 0x03
     uint8_t   addr[4] = {0x00, 0x01, 0x02, 0x03};
@@ -239,6 +241,8 @@ void VenoLooper::ProcessAnalogControls()
         pots[i].Process();
     for(size_t i = 0; i < LAST_CV; i++)
         cv[i].Process();
+
+
 }
 
 void VenoLooper::ProcessMCP23017()

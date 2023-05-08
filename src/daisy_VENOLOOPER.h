@@ -114,6 +114,17 @@ class VenoLooper
         LAST_POT
     };
 
+    enum speedControls
+    {
+        SPEED1_POT_CTRL,
+        SPEED2_POT_CTRL,
+
+        SPEED1_CV_CTRL,
+        SPEED2_CV_CTRL,
+
+        LAST_SPEED    
+    };
+
     enum DigitalInputs
     {
         //MCP23017 PortA
@@ -166,7 +177,7 @@ class VenoLooper
     {
         LENGTH2_CV,
         VOct1_CV,
-        Voct1_CV,
+        VOct2_CV,
         LAYER1_CV,
         LAYER2_CV,
         START1_CV,
@@ -303,6 +314,7 @@ void Init(bool boost = false);
     AnalogControl                 pots[LAST_POT];
     AnalogControl                 cv[LAST_CV];
     GateIn                        gate_in[LAST_GATE];
+
 
     private:
 
