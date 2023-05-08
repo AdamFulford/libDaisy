@@ -127,12 +127,33 @@ class LedDriverPca9685
         const auto ch = GetDriverChannelForLed(ledIndex);
         // mask away the "full on" bit
         const auto on                = draw_buffer_[d].leds[ch].on & (0x0FFF);
-        draw_buffer_[d].leds[ch].off = (on + rawBrightness) & (0x0FFF);
-        // full on condition
-        if(rawBrightness >= 0x0FFF)
-            draw_buffer_[d].leds[ch].on = 0x1000 | on; // set "full on" bit
+
+        //full off
+        if(rawBrightness == 0)
+        {
+            draw_buffer_[d].leds[ch].off = 0x1000;
+            draw_buffer_[d].leds[ch].on = 0x000;
+        }
+
+        //full on
+        else if(rawBrightness == 4095)
+        {
+            draw_buffer_[d].leds[ch].off = 0x000;
+            draw_buffer_[d].leds[ch].on = 0x1000;
+        }
+        //normal
         else
-            draw_buffer_[d].leds[ch].on = on; // clear "full on" bit
+        {
+           draw_buffer_[d].leds[ch].off = (on + rawBrightness) & (0x0FFF);
+           draw_buffer_[d].leds[ch].on = on; // clear "full on" bit
+        }
+    
+        // draw_buffer_[d].leds[ch].off = (on + rawBrightness) & (0x0FFF);
+        // // full on condition
+        // if(rawBrightness >= 0x0FFF)
+        //     draw_buffer_[d].leds[ch].on = 0x1000 | on; // set "full on" bit
+        // else
+        //     draw_buffer_[d].leds[ch].on = on; // clear "full on" bit
     }
 
     /** Swaps the current draw buffer and the current transmit buffer and

@@ -39,7 +39,7 @@
 
 using namespace daisy;
 
-static constexpr I2CHandle::Config led_i2c_config
+static constexpr I2CHandle::Config i2c_config
     = {I2CHandle::Config::Peripheral::I2C_1,
        {{DSY_GPIOB, 8}, {DSY_GPIOB, 9}},
        I2CHandle::Config::Speed::I2C_400KHZ};
@@ -66,7 +66,7 @@ void VenoLooper::Init(bool boost)
     //ADCs
     AdcChannelConfig adc_cfg[LAST_CV + 2];
 
-
+    //For some reason muxes only work on channels below 8?
     //mux1
     adc_cfg[0].InitMux(seed::PIN_MUX1_ADC, 
                              8,
@@ -106,17 +106,24 @@ void VenoLooper::Init(bool boost)
     //LEDs
     // 4x PCA9685 addresses 0x00, 0x01,  0x02 and 0x03
     uint8_t   addr[4] = {0x00, 0x01, 0x02, 0x03};
-    I2CHandle i2c;
-    i2c.Init(led_i2c_config);
-    led_driver.Init(i2c, addr, led_dma_buffer_a, led_dma_buffer_b);
+    I2CHandle i2c_led;
+    i2c_led.Init(i2c_config);
+    led_driver.Init(i2c_led, addr, led_dma_buffer_a, led_dma_buffer_b);
 
-    // Gate In
+    //MCP23017 GPIO expander
+    Mcp23017::Config mcp_config;
+    mcp_config.transport_config.i2c_address = 0x24; //trying default
+    mcp_config.transport_config.i2c_config = i2c_config;
+
+    mcp.Init(mcp_config);
+    //Port direction, including pullups, inverted:
+    mcp.PortMode(MCPPort::A,0xFF,0xFF,0xFF);
+    mcp.PortMode(MCPPort::B,0xFF,0xFF, 0xFF);
+    
+    //Gates
     dsy_gpio_pin gate_in_pin;
     gate_in_pin = seed::PIN_CLOCK;
     gate_in.Init(&gate_in_pin);
-
-    //MCP23017 GPIO expander
-    //Gates
     //Buttons
     //Encoder
     //SD Card
@@ -217,15 +224,26 @@ void VenoLooper::ProcessDigitalControls()
     gate_in_trig_ = gate_in.Trig();
 }
 
-float VenoLooper::GetKnobValue(size_t idx) const
+void VenoLooper::ProcessMCP23017()
+{
+    mcp.Read();
+}
+
+float VenoLooper::GetKnobValue(Pots idx)
 {
     return pots[idx < LAST_POT ? idx : 0].Value();
 }
 
-float VenoLooper::GetCvValue(size_t idx) const
+float VenoLooper::GetCvValue(CVs idx)
 {
     return cv[idx < LAST_CV ? idx : 0].Value();
 }
+
+bool VenoLooper::GetPinState(DigitalInputs idx)
+{
+    return (mcp.GetPin(idx) == 0xFF) ? true : false;
+}
+
 
 AnalogControl* VenoLooper::GetKnob(size_t idx)
 {

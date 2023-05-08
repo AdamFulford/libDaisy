@@ -232,22 +232,29 @@ void Init(bool boost = false);
     /** Process tactile switches and keyboard states */
     void ProcessDigitalControls();
 
+    /** Process MCP23017 expander*/
+    void ProcessMCP23017();
+
     /** Process Analog and Digital Controls */
     inline void ProcessAllControls()
     {
         ProcessAnalogControls();
         ProcessDigitalControls();
+        ProcessMCP23017();
     }
 
     /** Returns the knob's value
         \param idx The knob of interest.
     */
-    float GetKnobValue(size_t idx) const;
+    float GetKnobValue(Pots idx);
 
     /** Returns the CV input's value
         \param idx The CV input of interest.
     */
-    float GetCvValue(size_t idx) const;
+    float GetCvValue(CVs idx);
+
+    //returns state of digital input pin on MCP23017
+    bool GetPinState(DigitalInputs idx);
 
      /** Getter for knob objects
         \param idx The knob input of interest.
@@ -262,10 +269,11 @@ void Init(bool boost = false);
     DaisySeed                     seed;
     LedDriverPca9685<4, true>     led_driver;
     MidiUartHandler               midi;
+    Mcp23017                      mcp;
     AnalogControl                 pots[LAST_POT];
     AnalogControl                 cv[LAST_CV];
     GateIn                        gate_in;
-    bool                 gate_in_trig_;    // True when triggered.
+    bool                          gate_in_trig_;    // True when triggered.
 
     private:
 
