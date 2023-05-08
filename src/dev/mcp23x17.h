@@ -155,13 +155,29 @@ class Mcp23X17
         typename Transport::Config transport_config;
     };
 
+    /** Specifies the expected behavior of the switch */
+    enum Type
+    {
+        TYPE_TOGGLE,    /**< & */
+        TYPE_MOMENTARY, /**< & */
+    };
+
     void Init()
     {
         Config config;
         config.transport_config.Defaults();
         Init(config);
+
+        //default all non-inverted and momentary
+        for (size_t i=0; i>16; i++)
+        {
+            flip_[i] = false;
+            t_[i] = TYPE_MOMENTARY;
+        }
+
     };
 
+    //polarity for each pin: 1 = inverted, 0 = non-inverted
     void Init(const Config& config)
     {
         transport.Init(config.transport_config);
@@ -178,6 +194,13 @@ class Mcp23X17
         //enable all pull up resistors (will be effective for input pins only)
         transport.WriteReg(MCPRegister::GPPU_A, 0xFF, 0xFF);
     };
+
+    //Set Momentary/toggle and polarity for a specific input id
+    void SetSwitchType(uint8_t id, Type t, bool pol)
+    {
+        flip_ [id] = pol;
+        t_[id] = t;
+    }
 
     /**
 	 * Controls the pins direction on a whole port at once.
@@ -365,6 +388,71 @@ class Mcp23X17
      */
     uint8_t GetPin(uint8_t id) { return ReadBit(pin_data, id); }
 
+    //id = id of pin to debounce
+    void Debounce(uint8_t id)
+    {
+    // update no faster than 1kHz
+    uint32_t now = System::GetNow();
+    updated_[id]     = false;
+
+    if(now - last_update_[id] >= 1)
+    {
+        last_update_[id] = now;
+        updated_[id]     = true;
+
+        // shift over, and introduce new state.
+        
+        uint8_t pinRead{};
+        if (GetPin(id) == 0xff)
+            pinRead = 0x01;
+        else
+            pinRead = 0x00;    
+        
+        state_[id]
+            = (state_[id] << 1)
+              | (flip_[id] ? !pinRead : pinRead);
+        // Set time at which button was pressed
+        if(state_[id] == 0x7f)
+            {
+                rising_edge_time_[id] = System::GetNow();
+                if(t_[id] == TYPE_TOGGLE)
+                {
+                    toggleState_[id] = !toggleState_[id];
+                }
+            }
+    }
+    };
+
+    /** \return true if a button was just pressed. */
+    inline bool RisingEdge(uint8_t id) const { return updated_[id] ? state_[id] == 0x7f : false; } //01111111
+
+    /** \return true if the button was just released */
+    inline bool FallingEdge(uint8_t id) const
+    {
+        return updated_[id] ? state_[id] == 0x80 : false; //10000000
+    }
+
+    /** \return true if the button is held down (or if the toggle is on) */
+    inline bool Pressed(uint8_t id) const 
+    { 
+        bool retval;
+        if(t_[id] == TYPE_TOGGLE)
+        {
+            retval = toggleState_[id];
+        }
+        else
+        {
+            retval = (state_[id] == 0xff);
+        }
+        return retval; 
+    }
+
+    /** \return the time in milliseconds that the button has been held (or toggle has been on) */
+    inline float TimeHeldMs(uint8_t id) const
+    {
+        return Pressed(id) ? System::GetNow() - rising_edge_time_[id] : 0;
+    }
+
   private:
     uint8_t GetBit(uint8_t data, uint8_t id)
     {
@@ -395,6 +483,17 @@ class Mcp23X17
 
     uint16_t  pin_data;
     Transport transport;
+
+
+    //debounce variables
+    uint32_t last_update_[16];
+    bool     updated_[16];
+    Type     t_[16];
+    uint8_t  state_[16];
+    bool     flip_[16];
+    bool     toggleState_[16];
+    float    rising_edge_time_[16];
+
 };
 
 using Mcp23017 = Mcp23X17<Mcp23017Transport>;

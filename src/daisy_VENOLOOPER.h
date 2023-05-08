@@ -139,6 +139,29 @@ class VenoLooper
         LAST_DIN
     };
 
+    Mcp23017::Type DefaultSwType[16] = 
+    {
+        //MCP23017 PortA
+        Mcp23017::Type::TYPE_MOMENTARY,
+        Mcp23017::Type::TYPE_MOMENTARY,
+        Mcp23017::Type::TYPE_MOMENTARY,
+        Mcp23017::Type::TYPE_TOGGLE,
+        Mcp23017::Type::TYPE_TOGGLE,
+        Mcp23017::Type::TYPE_TOGGLE,
+        Mcp23017::Type::TYPE_MOMENTARY,
+        Mcp23017::Type::TYPE_MOMENTARY,
+        //MCP23017 PortB
+        Mcp23017::Type::TYPE_MOMENTARY,
+        Mcp23017::Type::TYPE_MOMENTARY,
+        Mcp23017::Type::TYPE_MOMENTARY,
+        Mcp23017::Type::TYPE_TOGGLE,
+        Mcp23017::Type::TYPE_TOGGLE,
+        Mcp23017::Type::TYPE_TOGGLE,
+        Mcp23017::Type::TYPE_MOMENTARY,
+        Mcp23017::Type::TYPE_MOMENTARY
+
+    };
+
     enum CVs
     {
         LENGTH2_CV,
@@ -158,6 +181,11 @@ class VenoLooper
         PLAY1_GATE,
         REV1_GATE,
         REC1_GATE,
+        
+        PLAY2_GATE,
+        REV2_GATE,
+        REC2_GATE,
+
         CLOCK_GATE,
 
         LAST_GATE
@@ -230,18 +258,20 @@ void Init(bool boost = false);
     void ProcessAnalogControls();
 
     /** Process tactile switches and keyboard states */
-    void ProcessDigitalControls();
+    void ProcessGates();
 
     /** Process MCP23017 expander*/
     void ProcessMCP23017();
+
+    void DebounceMCP23017();
 
     /** Process Analog and Digital Controls */
     inline void ProcessAllControls()
     {
         ProcessAnalogControls();
-        ProcessDigitalControls();
+        ProcessGates();
         ProcessMCP23017();
-    }
+    };
 
     /** Returns the knob's value
         \param idx The knob of interest.
@@ -254,7 +284,7 @@ void Init(bool boost = false);
     float GetCvValue(CVs idx);
 
     //returns state of digital input pin on MCP23017
-    bool GetPinState(DigitalInputs idx);
+    bool GetRawPinState(DigitalInputs idx);
 
      /** Getter for knob objects
         \param idx The knob input of interest.
@@ -272,8 +302,7 @@ void Init(bool boost = false);
     Mcp23017                      mcp;
     AnalogControl                 pots[LAST_POT];
     AnalogControl                 cv[LAST_CV];
-    GateIn                        gate_in;
-    bool                          gate_in_trig_;    // True when triggered.
+    GateIn                        gate_in[LAST_GATE];
 
     private:
 

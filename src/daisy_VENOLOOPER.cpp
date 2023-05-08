@@ -42,7 +42,7 @@ using namespace daisy;
 static constexpr I2CHandle::Config i2c_config
     = {I2CHandle::Config::Peripheral::I2C_1,
        {{DSY_GPIOB, 8}, {DSY_GPIOB, 9}},
-       I2CHandle::Config::Speed::I2C_400KHZ};
+       I2CHandle::Config::Speed::I2C_1MHZ};
 
 static LedDriverPca9685<4, true>::DmaBuffer DMA_BUFFER_MEM_SECTION
     led_dma_buffer_a,
@@ -112,7 +112,7 @@ void VenoLooper::Init(bool boost)
 
     //MCP23017 GPIO expander
     Mcp23017::Config mcp_config;
-    mcp_config.transport_config.i2c_address = 0x24; //trying default
+    mcp_config.transport_config.i2c_address = 0x24;
     mcp_config.transport_config.i2c_config = i2c_config;
 
     mcp.Init(mcp_config);
@@ -120,11 +120,34 @@ void VenoLooper::Init(bool boost)
     mcp.PortMode(MCPPort::A,0xFF,0xFF,0xFF);
     mcp.PortMode(MCPPort::B,0xFF,0xFF, 0xFF);
     
+    //set switch types to default:
+    for(size_t i=0; i < LAST_DIN; i++)
+    {
+        mcp.SetSwitchType(i,DefaultSwType[i],0);
+    }
+    
     //Gates
-    dsy_gpio_pin gate_in_pin;
-    gate_in_pin = seed::PIN_CLOCK;
-    gate_in.Init(&gate_in_pin);
-    //Buttons
+    dsy_gpio_pin gate_in_play1 = seed::PIN_PLAY1_GATE;
+    dsy_gpio_pin gate_in_rev1 = seed::PIN_REV1_GATE;
+    dsy_gpio_pin gate_in_rec1 = seed::PIN_REC1_GATE;
+
+    dsy_gpio_pin gate_in_play2 = seed::PIN_PLAY2_GATE;
+    dsy_gpio_pin gate_in_rec2 = seed::PIN_REC2_GATE;
+    dsy_gpio_pin gate_in_rev2 = seed::PIN_REV2_GATE;
+
+    dsy_gpio_pin gate_in_clock = seed::PIN_CLOCK;
+
+    gate_in[0].Init(&gate_in_play1);
+    gate_in[1].Init(&gate_in_rev1);
+    gate_in[2].Init(&gate_in_rec1);
+
+    gate_in[3].Init(&gate_in_play2);
+    gate_in[4].Init(&gate_in_rev2);
+    gate_in[5].Init(&gate_in_rec2);
+
+    gate_in[6].Init(&gate_in_clock);
+
+
     //Encoder
     //SD Card
     //MIDI
@@ -218,15 +241,17 @@ void VenoLooper::ProcessAnalogControls()
         cv[i].Process();
 }
 
-void VenoLooper::ProcessDigitalControls()
-{
-        // Gate Input
-    gate_in_trig_ = gate_in.Trig();
-}
-
 void VenoLooper::ProcessMCP23017()
 {
     mcp.Read();
+}
+
+void VenoLooper::DebounceMCP23017()
+{
+    for(size_t i=0; i < LAST_DIN; i++)
+    {
+        mcp.Debounce(i);
+    }
 }
 
 float VenoLooper::GetKnobValue(Pots idx)
@@ -239,11 +264,10 @@ float VenoLooper::GetCvValue(CVs idx)
     return cv[idx < LAST_CV ? idx : 0].Value();
 }
 
-bool VenoLooper::GetPinState(DigitalInputs idx)
+bool VenoLooper::GetRawPinState(DigitalInputs idx)
 {
     return (mcp.GetPin(idx) == 0xFF) ? true : false;
 }
-
 
 AnalogControl* VenoLooper::GetKnob(size_t idx)
 {
