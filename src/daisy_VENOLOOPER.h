@@ -92,14 +92,14 @@ class VenoLooper
     enum Pots
     {
         //mux1
-        XFADE_POT,
-        PLAY_TOGGLE1_POT,
-        SPEED1_POT,
-        ATTACK1_POT,
-        START1_POT,
-        OVERDUB_DECAY_POT,
-        LAYER1_POT,
-        LENGTH1_POT,
+        XFADE_POT,   //000
+        PLAY_TOGGLE1_POT, //001
+        SPEED1_POT, // 010
+        ATTACK1_POT,  //011
+        START1_POT, //100
+        OVERDUB_DECAY_POT, //101
+        LAYER1_POT, //110
+        LENGTH1_POT, //111
 
         //mux2
         LENGTH2_POT,
