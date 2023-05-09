@@ -52,6 +52,7 @@ void VenoLooper::Init(bool boost)
 {
     seed.Init(boost);
     seed.SetAudioBlockSize(48);
+    seed.SetAudioSampleRate(SaiHandle::Config::SampleRate::SAI_48KHZ);
 
     dsy_gpio_pin CVpins[] = 
     {seed::PIN_LENGTH_CV2_ADC,
@@ -98,9 +99,9 @@ void VenoLooper::Init(bool boost)
      for(size_t i = 0; i < LAST_POT; i++)
      {
         if(i < 8)
-            pots[i].Init(seed.adc.GetMuxPtr(0,i),AudioCallbackRate());
+            pots[i].Init(seed.adc.GetMuxPtr(0,i),AudioCallbackRate(),false,false,0.05f);
         else
-            pots[i].Init(seed.adc.GetMuxPtr(1,i-8),AudioCallbackRate());
+            pots[i].Init(seed.adc.GetMuxPtr(1,i-8),AudioCallbackRate(),false,false,0.05f);
      }
 
 
