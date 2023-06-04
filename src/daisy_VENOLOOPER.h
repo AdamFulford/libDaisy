@@ -307,19 +307,44 @@ void Init(bool boost = false);
     */
     AnalogControl* GetCv(size_t idx);
 
+    /** Print formatted debug log message
+     */
+    template <typename... VA>
+    static void Print(const char* format, VA... va)
+    {
+        Log::Print(format, va...);
+    }
+
+    /** Print formatted debug log message with automatic line termination
+    */
+    template <typename... VA>
+    static void PrintLine(const char* format, VA... va)
+    {
+        Log::PrintLine(format, va...);
+    }
+
+    /** Start the logging session. Optionally wait for terminal connection before proceeding.
+    */
+    static void StartLog(bool wait_for_pc = false)
+    {
+        Log::StartLog(wait_for_pc);
+    }
+
     DaisySeed                     seed;
     LedDriverPca9685<4, true>     led_driver;
-    MidiUartHandler               midi;
+    //MidiUartHandler               midi;
     Mcp23017                      mcp;
     AnalogControl                 pots[LAST_POT];
     AnalogControl                 cv[LAST_CV];
     GateIn                        gate_in[LAST_GATE];
 
-
     private:
 
     /** Set all the HID callback rates any time a new callback rate is established */
     void SetHidUpdateRates();
+    /** Local shorthand for debug log destination
+    */
+    using Log = Logger<LOGGER_INTERNAL>;
     //void InitMidi();
     
 };
