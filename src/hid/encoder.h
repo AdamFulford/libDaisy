@@ -27,10 +27,22 @@ class Encoder
               dsy_gpio_pin b,
               dsy_gpio_pin click,
               float        update_rate = 0.f);
+
+
+    //initalise logic only, not GPIOs
+    void Init();
+    
+    // void Init(VenoLooper::DigitalInputs a,
+    //           VenoLooper::DigitalInputs b,
+    //           VenoLooper::DigitalInputs click,
+    //           float        update_rate = 0.f);
+
     /** Called at update_rate to debounce and handle timing for the switch.
      * In order for events not to be missed, its important that the Edge/Pressed checks be made at the same rate as the debounce function is being called.
      */
     void Debounce();
+
+    void DebounceLogic(uint8_t read_a, uint8_t read_b);
 
     /** Returns +1 if the encoder was turned clockwise, -1 if it was turned counter-clockwise, or 0 if it was not just turned. */
     inline int32_t Increment() const { return updated_ ? inc_ : 0; }

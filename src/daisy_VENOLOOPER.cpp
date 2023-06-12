@@ -23,9 +23,15 @@
 #define PIN_START_CV2_ADC A8
 #define PIN_LENGTH_CV1_ADC A7
 #define PIN_MUX2_ADC A12
-#define PIN_MUX2_SEL1 D32
-#define PIN_MUX2_SEL2 D0
-#define PIN_MUX2_SEL3 D27
+#define PIN_SEV_SEG_DIG1 D0 //not yet connected!
+#define PIN_SEV_SEG_DIG2 D32
+
+//#define PIN_MUX2_SEL1 D32
+//#define PIN_MUX2_SEL2 D0
+//#define PIN_MUX2_SEL3 D27
+#define PIN_MUX2_SEL1 D9
+#define PIN_MUX2_SEL2 D8
+#define PIN_MUX2_SEL3 D10
 #define PIN_PLAY1_GATE D24
 #define PIN_REV1_GATE D25
 #define PIN_REC1_GATE D26
@@ -37,7 +43,8 @@
 #define PIN_SDMMC_D2 D2
 #define PIN_SDMMC_D3 D1
 
-using namespace daisy;
+namespace daisy
+{
 
 static constexpr I2CHandle::Config i2c_config
     = {I2CHandle::Config::Peripheral::I2C_1,
@@ -127,29 +134,29 @@ void VenoLooper::Init(bool boost)
         mcp.SetSwitchType(i,DefaultSwType[i],0);
     }
     
-    //Gates
+    //Gates ins
     dsy_gpio_pin gate_in_play1 = seed::PIN_PLAY1_GATE;
     dsy_gpio_pin gate_in_rev1 = seed::PIN_REV1_GATE;
     dsy_gpio_pin gate_in_rec1 = seed::PIN_REC1_GATE;
-
     dsy_gpio_pin gate_in_play2 = seed::PIN_PLAY2_GATE;
     dsy_gpio_pin gate_in_rec2 = seed::PIN_REC2_GATE;
     dsy_gpio_pin gate_in_rev2 = seed::PIN_REV2_GATE;
-
     dsy_gpio_pin gate_in_clock = seed::PIN_CLOCK;
 
     gate_in[0].Init(&gate_in_play1);
     gate_in[1].Init(&gate_in_rev1);
     gate_in[2].Init(&gate_in_rec1);
-
     gate_in[3].Init(&gate_in_play2);
     gate_in[4].Init(&gate_in_rev2);
     gate_in[5].Init(&gate_in_rec2);
-
     gate_in[6].Init(&gate_in_clock);
 
+    //Gate outs
+    SevenSegDig[0].Init(seed::PIN_SEV_SEG_DIG1, GPIO::Mode::OUTPUT,GPIO::Pull::PULLUP);
+    SevenSegDig[1].Init(seed::PIN_SEV_SEG_DIG2, GPIO::Mode::OUTPUT,GPIO::Pull::PULLUP);
 
-    //Encoder
+    //Encoder init - without GPIOs
+    encoder.Init();
     //SD Card
     //MIDI
 }
@@ -241,8 +248,6 @@ void VenoLooper::ProcessAnalogControls()
 
     for(size_t i = 0; i < LAST_CV; i++)
         cv[i].Process();
-
-
 }
 
 void VenoLooper::ProcessMCP23017()
@@ -256,6 +261,13 @@ void VenoLooper::DebounceMCP23017()
     {
         mcp.Debounce(i);
     }
+}
+
+void VenoLooper::DebounceEnc()
+{
+    encoder.DebounceLogic(
+    mcp.GetPin(VenoLooper::ENC_UP_DIN) == 0xff ? 0x01 : 0x00,
+    mcp.GetPin(VenoLooper::ENC_DOWN_DIN) == 0xff ? 0x01 : 0x00);
 }
 
 float VenoLooper::GetKnobValue(Pots idx)
@@ -282,3 +294,28 @@ AnalogControl* VenoLooper::GetCv(size_t idx)
 {
     return &cv[idx < LAST_CV ? idx : 0];
 }
+
+void VenoLooper::Set7Segment(bool digit, uint8_t value)
+{
+    if(digit)
+    {
+        SevenSegDig[0].Write(true);
+        SevenSegDig[1].Write(false);
+    }
+    else
+    {
+        SevenSegDig[0].Write(false);
+        SevenSegDig[1].Write(true);
+    }
+
+    for(uint8_t i=0; i<7; i++)
+    {
+        led_driver.SetLed(Veno_Looper::SevenSeg[i], Veno_Looper::Numbers[value][i] ? 1.0f : 0.0f);
+    }
+    
+    //set dp
+        led_driver.SetLed(Veno_Looper::SevenSeg[7], 0.0f);
+}
+
+
+} //namespace daisy

@@ -1,6 +1,6 @@
 #pragma once
-#ifndef VENO_LOOPER_H
-#define VENO_LOOPER_H /**< & */
+#ifndef VENO_LOOPER_BOARD_H
+#define VENO_LOOPER_BOARD_H /**< & */
 #include "daisy_seed.h"
 
 namespace daisy
@@ -276,6 +276,8 @@ void Init(bool boost = false);
 
     void DebounceMCP23017();
 
+    void DebounceEnc();
+
     /** Process Analog and Digital Controls */
     inline void ProcessAllControls()
     {
@@ -330,6 +332,8 @@ void Init(bool boost = false);
         Log::StartLog(wait_for_pc);
     }
 
+    void Set7Segment(bool digit, uint8_t value);
+
     DaisySeed                     seed;
     LedDriverPca9685<4, true>     led_driver;
     //MidiUartHandler               midi;
@@ -337,6 +341,9 @@ void Init(bool boost = false);
     AnalogControl                 pots[LAST_POT];
     AnalogControl                 cv[LAST_CV];
     GateIn                        gate_in[LAST_GATE];
+    GPIO                          SevenSegDig[2];
+    Encoder                       encoder;
+    
 
     private:
 
@@ -348,8 +355,54 @@ void Init(bool boost = false);
     //void InitMidi();
     
 };
+namespace Veno_Looper //constants for addressing LEDs on VenoLooper hardware
+{
+constexpr VenoLooper::LEDs Ring1White[9] = {VenoLooper::Ring1White1_LED, VenoLooper::Ring1White2_LED, VenoLooper::Ring1White3_LED,
+                        VenoLooper::Ring1White4_LED, VenoLooper::Ring1White5_LED, VenoLooper::Ring1White6_LED,
+                        VenoLooper::Ring1White7_LED, VenoLooper::Ring1White8_LED, VenoLooper::Ring1White9_LED};
 
-                     
+constexpr VenoLooper::LEDs Ring2White[9] = {VenoLooper::Ring2White1_LED, VenoLooper::Ring2White2_LED, VenoLooper::Ring2White3_LED,
+                        VenoLooper::Ring2White4_LED, VenoLooper::Ring2White5_LED, VenoLooper::Ring2White6_LED,
+                        VenoLooper::Ring2White7_LED, VenoLooper::Ring2White8_LED, VenoLooper::Ring2White9_LED};
+
+constexpr VenoLooper::LEDs Ring1Red[9] = {VenoLooper::Ring1Red1_LED, VenoLooper::Ring1Red2_LED, VenoLooper::Ring1Red3_LED,
+                        VenoLooper::Ring1Red4_LED, VenoLooper::Ring1Red5_LED, VenoLooper::Ring1Red6_LED,
+                        VenoLooper::Ring1Red7_LED, VenoLooper::Ring1Red8_LED, VenoLooper::Ring1Red9_LED};
+
+constexpr VenoLooper::LEDs Ring2Red[9] = {VenoLooper::Ring2Red1_LED, VenoLooper::Ring2Red2_LED, VenoLooper::Ring2Red3_LED,
+                        VenoLooper::Ring2Red4_LED, VenoLooper::Ring2Red5_LED, VenoLooper::Ring2Red6_LED,
+                        VenoLooper::Ring2Red7_LED, VenoLooper::Ring2Red8_LED, VenoLooper::Ring2Red9_LED};   
+
+
+constexpr VenoLooper::LEDs Layer1Leds[4] = {VenoLooper::Ch1Layer1_LED, 
+                                            VenoLooper::Ch1Layer2_LED, 
+                                            VenoLooper::Ch1Layer3_LED, 
+                                            VenoLooper::Ch1Layer4_LED};
+constexpr VenoLooper::LEDs Layer2Leds[4] = {VenoLooper::Ch2Layer1_LED, 
+                                            VenoLooper::Ch2Layer2_LED, 
+                                            VenoLooper::Ch2Layer3_LED, 
+                                            VenoLooper::Ch2Layer4_LED};
+
+constexpr VenoLooper::LEDs SevenSeg[8] = {VenoLooper::SevenSeg_A_LED,
+                                         VenoLooper::SevenSeg_B_LED,
+                                         VenoLooper::SevenSeg_C_LED,
+                                         VenoLooper::SevenSeg_D_LED,
+                                         VenoLooper::SevenSeg_E_LED,
+                                         VenoLooper::SevenSeg_F_LED,
+                                         VenoLooper::SevenSeg_G_LED,
+                                         VenoLooper::SevenSeg_DP_LED};
+
+constexpr bool Numbers[10][7] = {{1,1,1,1,1,1,0}, //0
+                                 {0,1,1,0,0,0,0}, //1
+                                 {1,1,0,1,1,0,1}, //2
+                                 {1,1,1,1,0,0,1}, //3
+                                 {0,1,1,0,0,1,1}, //4
+                                 {1,0,1,1,0,1,1}, //5
+                                 {1,0,1,1,1,1,1}, //6
+                                 {1,1,1,0,0,0,0}, //7
+                                 {1,1,1,1,1,1,1}, //8
+                                 {1,1,1,1,0,1,1}}; //9
+} //namespace VenoLooper                 
 } // namespace daisy
 
 #endif
