@@ -332,7 +332,7 @@ void Init(bool boost = false);
         Log::StartLog(wait_for_pc);
     }
 
-    void Set7Segment(bool digit, uint8_t value);
+    void Set7Segment(bool digit, uint8_t value, float DP);
 
     DaisySeed                     seed;
     LedDriverPca9685<4, true>     led_driver;

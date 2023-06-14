@@ -28,6 +28,10 @@ class Encoder
               dsy_gpio_pin click,
               float        update_rate = 0.f);
 
+    void Init(dsy_gpio_pin a,
+              dsy_gpio_pin b,
+              float        update_rate = 0.f);
+
 
     //initalise logic only, not GPIOs
     void Init();

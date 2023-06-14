@@ -27,8 +27,8 @@
 #define PIN_SEV_SEG_DIG2 D32
 
 //#define PIN_MUX2_SEL1 D32
-//#define PIN_MUX2_SEL2 D0
-//#define PIN_MUX2_SEL3 D27
+#define PIN_ENC_UP D0
+#define PIN_ENC_DOWN D27
 #define PIN_MUX2_SEL1 D9
 #define PIN_MUX2_SEL2 D8
 #define PIN_MUX2_SEL3 D10
@@ -156,7 +156,7 @@ void VenoLooper::Init(bool boost)
     SevenSegDig[1].Init(seed::PIN_SEV_SEG_DIG2, GPIO::Mode::OUTPUT,GPIO::Pull::PULLUP);
 
     //Encoder init - without GPIOs
-    encoder.Init();
+    encoder.Init(seed::PIN_ENC_UP,seed::PIN_ENC_DOWN);
     //SD Card
     //MIDI
 }
@@ -265,9 +265,7 @@ void VenoLooper::DebounceMCP23017()
 
 void VenoLooper::DebounceEnc()
 {
-    encoder.DebounceLogic(
-    mcp.GetPin(VenoLooper::ENC_UP_DIN) == 0xff ? 0x01 : 0x00,
-    mcp.GetPin(VenoLooper::ENC_DOWN_DIN) == 0xff ? 0x01 : 0x00);
+    encoder.Debounce();
 }
 
 float VenoLooper::GetKnobValue(Pots idx)
@@ -295,16 +293,16 @@ AnalogControl* VenoLooper::GetCv(size_t idx)
     return &cv[idx < LAST_CV ? idx : 0];
 }
 
-void VenoLooper::Set7Segment(bool digit, uint8_t value)
+void VenoLooper::Set7Segment(bool digit, uint8_t value, float DP)
 {
     if(digit)
     {
         SevenSegDig[0].Write(true);
-        SevenSegDig[1].Write(false);
+        SevenSegDig[1].Write(true);
     }
     else
     {
-        SevenSegDig[0].Write(false);
+        SevenSegDig[0].Write(true);
         SevenSegDig[1].Write(true);
     }
 
@@ -314,7 +312,7 @@ void VenoLooper::Set7Segment(bool digit, uint8_t value)
     }
     
     //set dp
-        led_driver.SetLed(Veno_Looper::SevenSeg[7], 0.0f);
+        led_driver.SetLed(Veno_Looper::SevenSeg[7], DP);
 }
 
 
