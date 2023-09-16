@@ -3,16 +3,20 @@
 #define SAMPLE_RATE DSY_AUDIO_SAMPLE_RATE /**< & */
 #endif
 
-//v1.0 pin assignments
-#define PIN_MUX1_SEL1 D9
-#define PIN_MUX1_SEL2 D8
-#define PIN_MUX1_SEL3 D10
+//v2.0 pin assignments (Daisy pin numbers)
+#define PIN_MUX_SEL1 D0
+#define PIN_MUX_SEL2 D27
+#define PIN_MUX_SEL3 D10
 #define PIN_MIDI_RX D14
-#define PIN_REC2_GATE D7
+
+#define PIN_PLAY1_GATE D24
+#define PIN_REC1_GATE D26
+#define PIN_PLAY2_GATE D7
+#define PIN_REC2_GATE D30
+
 #define PIN_I2S1_SCL D11
 #define PIN_I2S1_SDA D12
-#define PIN_PLAY2_GATE D30
-#define PIN_REV2_GATE D29
+
 #define PIN_MUX1_ADC A1
 #define PIN_LENGTH_CV2_ADC A4
 #define PIN_VOct_CV1_ADC A5
@@ -23,19 +27,14 @@
 #define PIN_START_CV2_ADC A8
 #define PIN_LENGTH_CV1_ADC A7
 #define PIN_MUX2_ADC A12
-#define PIN_SEV_SEG_DIG1 D0 //not yet connected!
-#define PIN_SEV_SEG_DIG2 D32
+#define PIN_MUX3_ADC A13
 
-//#define PIN_MUX2_SEL1 D32
-#define PIN_ENC_UP D0
-#define PIN_ENC_DOWN D27
-#define PIN_MUX2_SEL1 D9
-#define PIN_MUX2_SEL2 D8
-#define PIN_MUX2_SEL3 D10
-#define PIN_PLAY1_GATE D24
-#define PIN_REV1_GATE D25
-#define PIN_REC1_GATE D26
+#define PIN_ENC_UP D9
+#define PIN_ENC_DOWN D8
+#define PIN_EOC1 D29
+#define PIN_EOC2 D25
 #define PIN_CLOCK D28
+
 #define PIN_SDMMC_SK D6
 #define PIN_SDMMC_CMD D5
 #define PIN_SDMMC_D0 D4
@@ -61,6 +60,7 @@ void VenoLooper::Init(bool boost)
     seed.SetAudioBlockSize(48);
     seed.SetAudioSampleRate(SaiHandle::Config::SampleRate::SAI_48KHZ);
 
+    //V2.0 Hardware
     dsy_gpio_pin CVpins[] = 
     {seed::PIN_LENGTH_CV2_ADC,
     seed::PIN_VOct_CV1_ADC,
@@ -72,44 +72,58 @@ void VenoLooper::Init(bool boost)
     seed::PIN_LENGTH_CV1_ADC};
 
     //ADCs
-    AdcChannelConfig adc_cfg[LAST_CV + 2];
+    AdcChannelConfig adc_cfg[LAST_CV + 3];
 
     //For some reason muxes only work on channels below 8?
     //mux1
     adc_cfg[0].InitMux(seed::PIN_MUX1_ADC, 
                              8,
-                             seed::PIN_MUX1_SEL1,
-                             seed::PIN_MUX1_SEL2,
-                             seed::PIN_MUX1_SEL3);
+                             seed::PIN_MUX_SEL1,
+                             seed::PIN_MUX_SEL2,
+                             seed::PIN_MUX_SEL3);
 
     //mux2
     adc_cfg[1].InitMux(seed::PIN_MUX2_ADC, 
                              8,
-                             seed::PIN_MUX2_SEL1,
-                             seed::PIN_MUX2_SEL2,
-                             seed::PIN_MUX2_SEL3);  
+                             seed::PIN_MUX_SEL1,
+                             seed::PIN_MUX_SEL2,
+                             seed::PIN_MUX_SEL3);  
 
+    //mux3
+    adc_cfg[2].InitMux(seed::PIN_MUX3_ADC, 
+                             8,
+                             seed::PIN_MUX_SEL1,
+                             seed::PIN_MUX_SEL2,
+                             seed::PIN_MUX_SEL3);  
+
+     //channels 4 to 12                        
     for(size_t i = 0; i < (LAST_CV); i++)
     {
-        adc_cfg[i+2].InitSingle(CVpins[i]);
+        adc_cfg[i+3].InitSingle(CVpins[i]);
     }    
 
-    seed.adc.Init(adc_cfg,10);
+    seed.adc.Init(adc_cfg,11);
 
      //init CV handling
     for(size_t i = 0; i < LAST_CV; i++)
     {
-        cv[i].InitBipolarCv(seed.adc.GetPtr(i+2), AudioCallbackRate());
+        cv[i].InitBipolarCv(seed.adc.GetPtr(i+3), AudioCallbackRate());
     }
 
     //init pot handling
-     for(size_t i = 0; i < LAST_POT; i++)
+     for(size_t i = 0; i < LAST_MUX_CHANNEL; i++)
      {
+        //MUX1
         if(i < 8)
             pots[i].Init(seed.adc.GetMuxPtr(0,i),AudioCallbackRate(),false,false,0.05f);
 
-        else
+        //MUX2
+        else if(i < 16)
             pots[i].Init(seed.adc.GetMuxPtr(1,i-8),AudioCallbackRate(),false,false,0.05f);
+
+        //MUX3
+        else
+            pots[i].Init(seed.adc.GetMuxPtr(2,i-16),AudioCallbackRate(),false,false,0.05f);
      }
     //LEDs
     // 4x PCA9685 addresses 0x00, 0x01,  0x02 and 0x03
@@ -126,34 +140,32 @@ void VenoLooper::Init(bool boost)
     mcp.Init(mcp_config);
     //Port direction, including pullups, inverted:
     mcp.PortMode(MCPPort::A,0xFF,0xFF,0xFF);
-    mcp.PortMode(MCPPort::B,0xFF,0xFF, 0xFF);
+    mcp.PortMode(MCPPort::B,0xFF,0xFF,0xFF);
     
     //set switch types to default:
-    for(size_t i=0; i < LAST_DIN; i++)
+    for(size_t i=0; i < LAST_MCP23017_Channel; i++)
     {
         mcp.SetSwitchType(i,DefaultSwType[i],0);
     }
     
     //Gates ins
     dsy_gpio_pin gate_in_play1 = seed::PIN_PLAY1_GATE;
-    dsy_gpio_pin gate_in_rev1 = seed::PIN_REV1_GATE;
+    //dsy_gpio_pin gate_in_rev1 = seed::PIN_REV1_GATE; now on MCP23017
     dsy_gpio_pin gate_in_rec1 = seed::PIN_REC1_GATE;
     dsy_gpio_pin gate_in_play2 = seed::PIN_PLAY2_GATE;
     dsy_gpio_pin gate_in_rec2 = seed::PIN_REC2_GATE;
-    dsy_gpio_pin gate_in_rev2 = seed::PIN_REV2_GATE;
+    //dsy_gpio_pin gate_in_rev2 = seed::PIN_REV2_GATE; now on MCP23017
     dsy_gpio_pin gate_in_clock = seed::PIN_CLOCK;
 
     gate_in[0].Init(&gate_in_play1);
-    gate_in[1].Init(&gate_in_rev1);
-    gate_in[2].Init(&gate_in_rec1);
-    gate_in[3].Init(&gate_in_play2);
-    gate_in[4].Init(&gate_in_rev2);
-    gate_in[5].Init(&gate_in_rec2);
-    gate_in[6].Init(&gate_in_clock);
+    gate_in[1].Init(&gate_in_rec1);
+    gate_in[2].Init(&gate_in_play2);
+    gate_in[3].Init(&gate_in_rec2);
+    gate_in[4].Init(&gate_in_clock);
 
     //Gate outs
-    SevenSegDig[0].Init(seed::PIN_SEV_SEG_DIG1, GPIO::Mode::OUTPUT,GPIO::Pull::PULLUP);
-    SevenSegDig[1].Init(seed::PIN_SEV_SEG_DIG2, GPIO::Mode::OUTPUT,GPIO::Pull::PULLUP);
+    EOC1.Init(seed::PIN_EOC1, GPIO::Mode::OUTPUT,GPIO::Pull::PULLUP);
+    EOC2.Init(seed::PIN_EOC2, GPIO::Mode::OUTPUT,GPIO::Pull::PULLUP);
 
     //Encoder init - without GPIOs
     encoder.Init(seed::PIN_ENC_UP,seed::PIN_ENC_DOWN);
@@ -194,7 +206,7 @@ void VenoLooper::ChangeAudioCallback(AudioHandle::AudioCallback cb)
 void VenoLooper::SetHidUpdateRates()
 {
     //set the hids to the new update rate
-    for(size_t i = 0; i < LAST_POT; i++)
+    for(size_t i = 0; i < LAST_MUX_CHANNEL; i++)
     {
         pots[i].SetSampleRate(AudioCallbackRate());
     }
@@ -243,7 +255,7 @@ void VenoLooper::StopAdc()
 
 void VenoLooper::ProcessAnalogControls()
 {
-    for(size_t i = 0; i < LAST_POT; i++)
+    for(size_t i = 0; i < LAST_MUX_CHANNEL; i++)
             pots[i].Process();
 
     for(size_t i = 0; i < LAST_CV; i++)
@@ -257,7 +269,7 @@ void VenoLooper::ProcessMCP23017()
 
 void VenoLooper::DebounceMCP23017()
 {
-    for(size_t i=0; i < LAST_DIN; i++)
+    for(size_t i=0; i < LAST_MCP23017_Channel; i++)
     {
         mcp.Debounce(i);
     }
@@ -268,9 +280,9 @@ void VenoLooper::DebounceEnc()
     encoder.Debounce();
 }
 
-float VenoLooper::GetKnobValue(Pots idx)
+float VenoLooper::GetKnobValue(MuxChannels idx)
 {
-    return pots[idx < LAST_POT ? idx : 0].Value();
+    return pots[idx < LAST_MUX_CHANNEL ? idx : 0].Value();
 }
 
 float VenoLooper::GetCvValue(CVs idx)
@@ -278,14 +290,14 @@ float VenoLooper::GetCvValue(CVs idx)
     return cv[idx < LAST_CV ? idx : 0].Value();
 }
 
-bool VenoLooper::GetRawPinState(DigitalInputs idx)
+bool VenoLooper::GetRawPinState(MCP23017_Channels idx)
 {
     return (mcp.GetPin(idx) == 0xFF) ? true : false;
 }
 
 AnalogControl* VenoLooper::GetKnob(size_t idx)
 {
-    return &pots[idx < LAST_POT ? idx : 0];
+    return &pots[idx < LAST_MUX_CHANNEL ? idx : 0];
 }
 
 AnalogControl* VenoLooper::GetCv(size_t idx)
@@ -293,27 +305,6 @@ AnalogControl* VenoLooper::GetCv(size_t idx)
     return &cv[idx < LAST_CV ? idx : 0];
 }
 
-void VenoLooper::Set7Segment(bool digit, uint8_t value, float DP)
-{
-    if(digit)
-    {
-        SevenSegDig[0].Write(true);
-        SevenSegDig[1].Write(true);
-    }
-    else
-    {
-        SevenSegDig[0].Write(true);
-        SevenSegDig[1].Write(true);
-    }
-
-    for(uint8_t i=0; i<7; i++)
-    {
-        led_driver.SetLed(Veno_Looper::SevenSeg[i], Veno_Looper::Numbers[value][i] ? 1.0f : 0.0f);
-    }
-    
-    //set dp
-        led_driver.SetLed(Veno_Looper::SevenSeg[7], DP);
-}
 
 
 } //namespace daisy

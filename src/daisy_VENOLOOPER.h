@@ -89,29 +89,40 @@ class VenoLooper
 
 
 
-    enum Pots
+    enum MuxChannels
     {
+        //V2.0 Hardware
         //mux1
-        XFADE_POT,   //000
-        PLAY_TOGGLE1_POT, //001
-        SPEED1_POT, // 010
-        ATTACK1_POT,  //011
-        START1_POT, //100
-        OVERDUB_DECAY_POT, //101
-        LAYER1_POT, //110
-        LENGTH1_POT, //111
+        LENGTH1_POT, //000
+        SPEED2_POT, //001
+        START1_POT, // 010
+        LENGTH2_POT,  //011
+        XFADE_POT, //100
+        PLAY_TOGGLE2,//101
+        OVERDUB_DECAY_POT, //110
+        PLAY_TOGGLE1, //111
 
         //mux2
-        LENGTH2_POT,
-        LAYER2_POT,
+        ATTACK1_POT,
         START2_POT,
-        RELEASE2_POT,
-        SPEED2_POT,
-        PLAY_TOGGLE2_POT,
-        RELEASE1_POT,
+        SPEED1_POT,
         ATTACK2_POT,
+        LAYER1_POT,
+        RELEASE2_POT,
+        LAYER2_POT,
+        RELEASE1_POT,
 
-        LAST_POT
+        //mux3
+        CV1,
+        BLANK,
+        BLANK,
+        BLANK,
+        CV2,
+        BLANK,
+        BLANK,
+        IN_GAIN_POT,
+
+        LAST_MUX_CHANNEL
     };
 
     enum speedControls
@@ -125,29 +136,30 @@ class VenoLooper
         LAST_SPEED    
     };
 
-    enum DigitalInputs
+    enum MCP23017_Channels
     {
+        //V2.0 hardware
         //MCP23017 PortA
-        SAVE_BUTTON_DIN,
-        STOP_BUTTON2_DIN,
-        LINK_TOGGLE_DIN,
-        REC_BUTTON2_DIN,
-        PLAY_BUTTON2_DIN,
-        REV_BUTTON2_DIN,
-        CLR_BUTTON2_DIN,
-        QUANTISE_TOGGLE_DIN,
+        SAVE_BUTTON,
+        STOP2_BUTTON,
+        LINK_TOGGLE,
+        REC2_BUTTON,
+        PLAY2_BUTTON,
+        REV2_BUTTON,
+        CLR2_BUTTON,
+        QUANTISE_TOGGLE,
 
         //MCP23017 PortB
-        ENC_CLICK_DIN,
-        ENC_DOWN_DIN,
-        ENC_UP_DIN,
-        REV_BUTTON1_DIN,
-        PLAY_BUTTON1_DIN,
-        REC_BUTTON1_DIN,
-        CLR_BUTTON1_DIN,
-        STOP_BUTTON1_DIN,
+        ENC_CLICK,
+        REV1_GATE,
+        REV2_GATE,
+        REV1_BUTTON,
+        STOP1_BUTTON,
+        PLAY1_BUTTON,
+        CLR1_BUTTON,
+        REC1_BUTTON,
 
-        LAST_DIN
+        LAST_MCP23017_Channel
     };
 
     Mcp23017::Type DefaultSwType[16] = 
@@ -156,21 +168,22 @@ class VenoLooper
         Mcp23017::Type::TYPE_MOMENTARY,
         Mcp23017::Type::TYPE_MOMENTARY,
         Mcp23017::Type::TYPE_MOMENTARY,
-        Mcp23017::Type::TYPE_TOGGLE,
-        Mcp23017::Type::TYPE_TOGGLE,
-        Mcp23017::Type::TYPE_TOGGLE,
+        Mcp23017::Type::TYPE_MOMENTARY,
+        Mcp23017::Type::TYPE_MOMENTARY,
+        Mcp23017::Type::TYPE_MOMENTARY,
         Mcp23017::Type::TYPE_MOMENTARY,
         Mcp23017::Type::TYPE_MOMENTARY,
         //MCP23017 PortB
         Mcp23017::Type::TYPE_MOMENTARY,
         Mcp23017::Type::TYPE_MOMENTARY,
         Mcp23017::Type::TYPE_MOMENTARY,
-        Mcp23017::Type::TYPE_TOGGLE,
-        Mcp23017::Type::TYPE_TOGGLE,
-        Mcp23017::Type::TYPE_TOGGLE,
+        Mcp23017::Type::TYPE_MOMENTARY,
+        Mcp23017::Type::TYPE_MOMENTARY,
+        Mcp23017::Type::TYPE_MOMENTARY,
         Mcp23017::Type::TYPE_MOMENTARY,
         Mcp23017::Type::TYPE_MOMENTARY
 
+        //perform all latching in program code
     };
 
     enum CVs
@@ -190,13 +203,9 @@ class VenoLooper
     enum Gates
     {
         PLAY1_GATE,
-        REV1_GATE,
-        REC1_GATE,
-        
+        REC1_GATE,   
         PLAY2_GATE,
-        REV2_GATE,
         REC2_GATE,
-
         CLOCK_GATE,
 
         LAST_GATE
@@ -289,7 +298,7 @@ void Init(bool boost = false);
     /** Returns the knob's value
         \param idx The knob of interest.
     */
-    float GetKnobValue(Pots idx);
+    float GetKnobValue(MuxChannels idx);
 
     /** Returns the CV input's value
         \param idx The CV input of interest.
@@ -297,7 +306,7 @@ void Init(bool boost = false);
     float GetCvValue(CVs idx);
 
     //returns state of digital input pin on MCP23017
-    bool GetRawPinState(DigitalInputs idx);
+    bool GetRawPinState(MCP23017_Channels idx);
 
      /** Getter for knob objects
         \param idx The knob input of interest.
@@ -336,12 +345,13 @@ void Init(bool boost = false);
 
     DaisySeed                     seed;
     LedDriverPca9685<4, true>     led_driver;
-    //MidiUartHandler               midi;
+    MidiUartHandler               midi;
     Mcp23017                      mcp;
-    AnalogControl                 pots[LAST_POT];
+    AnalogControl                 pots[LAST_MUX_CHANNEL];
     AnalogControl                 cv[LAST_CV];
     GateIn                        gate_in[LAST_GATE];
-    GPIO                          SevenSegDig[2];
+    GPIO                          EOC1;
+    GPIO                          EOC2;
     Encoder                       encoder;
     
 
