@@ -262,6 +262,12 @@ void VenoLooper::ProcessAnalogControls()
         cv[i].Process();
 }
 
+void VenoLooper::ProcessGates()
+{
+    for(size_t i = 0; i < LAST_GATE; i++)
+    {
+    }
+}
 void VenoLooper::ProcessMCP23017()
 {
     mcp.Read();

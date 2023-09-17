@@ -341,11 +341,9 @@ void Init(bool boost = false);
         Log::StartLog(wait_for_pc);
     }
 
-    void Set7Segment(bool digit, uint8_t value, float DP);
-
     DaisySeed                     seed;
     LedDriverPca9685<4, true>     led_driver;
-    MidiUartHandler               midi;
+    //MidiUartHandler               midi;
     Mcp23017                      mcp;
     AnalogControl                 pots[LAST_MUX_CHANNEL];
     AnalogControl                 cv[LAST_CV];
