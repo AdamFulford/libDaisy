@@ -80,21 +80,24 @@ void VenoLooper::Init(bool boost)
                              8,
                              seed::PIN_MUX_SEL1,
                              seed::PIN_MUX_SEL2,
-                             seed::PIN_MUX_SEL3);
+                             seed::PIN_MUX_SEL3,
+                             AdcChannelConfig::ConversionSpeed::SPEED_387CYCLES_5);
 
     //mux2
     adc_cfg[1].InitMux(seed::PIN_MUX2_ADC, 
                              8,
                              seed::PIN_MUX_SEL1,
                              seed::PIN_MUX_SEL2,
-                             seed::PIN_MUX_SEL3);  
+                             seed::PIN_MUX_SEL3,
+                             AdcChannelConfig::ConversionSpeed::SPEED_387CYCLES_5);  
 
     //mux3
     adc_cfg[2].InitMux(seed::PIN_MUX3_ADC, 
                              8,
                              seed::PIN_MUX_SEL1,
                              seed::PIN_MUX_SEL2,
-                             seed::PIN_MUX_SEL3);  
+                             seed::PIN_MUX_SEL3,
+                             AdcChannelConfig::ConversionSpeed::SPEED_387CYCLES_5);  
 
      //channels 4 to 12                        
     for(size_t i = 0; i < (LAST_CV); i++)
