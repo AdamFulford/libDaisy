@@ -12,81 +12,174 @@ class VenoLooper
 
     enum LEDs
     {
-        //PCA9685 address 0x00
-        REV_BUTTON1_LED, //0
-        PLAY_BUTTON1_LED, //1
-        REC_BUTTON1_LED, //2
-        Ring1White5_LED, //3
-        Ring1Red4_LED, //4
-        Ring1White4_LED, //5
-        Ring1Red3_LED, //6
-        Ring1White3_LED, //7
-        Ch1Layer4_LED, //8
-        Ch1Layer3_LED, //9
-        Ch1Layer2_LED, //10
-        Ch1Layer1_LED, //11
-        Ring1Red2_LED, //12
-        Ring1White2_LED, //13
-        Ring1White1_LED, //14
-        Ring1Red1_LED, //15
+        //RING1
+        RING1_1_RED,
+        RING1_1_GREEN,
+        RING1_1_BLUE,
+
+        RING1_2_RED,
+        RING1_2_GREEN,
+        RING1_2_BLUE,
+
+        RING1_3_RED,
+        RING1_3_GREEN,
+        RING1_3_BLUE,
+
+        RING1_4_RED,
+        RING1_4_GREEN,
+        RING1_4_BLUE,
+
+        RING1_5_RED,
+        RING1_5_GREEN,
+        RING1_5_BLUE,
+
+        RING1_6_RED,
+        RING1_6_GREEN,
+        RING1_6_BLUE,
+
+        RING1_7_RED,
+        RING1_7_GREEN,
+        RING1_7_BLUE,
+
+        RING1_8_RED,
+        RING1_8_GREEN,
+        RING1_8_BLUE,
+
+        RING1_9_RED,
+        RING1_9_GREEN,
+        RING1_9_BLUE,
+
+        RING1_10_RED,
+        RING1_10_GREEN,
+        RING1_10_BLUE,
+
+        RING1_11_RED,
+        RING1_11_GREEN,
+        RING1_11_BLUE,
+
+        //RING2
+        RING2_1_RED,
+        RING2_1_GREEN,
+        RING2_1_BLUE,
+
+        RING2_2_RED,
+        RING2_2_GREEN,
+        RING2_2_BLUE,
+
+        RING2_3_RED,
+        RING2_3_GREEN,
+        RING2_3_BLUE,
+
+        RING2_4_RED,
+        RING2_4_GREEN,
+        RING2_4_BLUE,
+
+        RING2_5_RED,
+        RING2_5_GREEN,
+        RING2_5_BLUE,
+
+        RING2_6_RED,
+        RING2_6_GREEN,
+        RING2_6_BLUE,
+
+        RING2_7_RED,
+        RING2_7_GREEN,
+        RING2_7_BLUE,
+
+        RING2_8_RED,
+        RING2_8_GREEN,
+        RING2_8_BLUE,
+
+        RING2_9_RED,
+        RING2_9_GREEN,
+        RING2_9_BLUE,
+
+        RING2_10_RED,
+        RING2_10_GREEN,
+        RING2_10_BLUE,
+
+        RING2_11_RED,
+        RING2_11_GREEN,
+        RING2_11_BLUE,
+
+        //BANK
+        BANK_1_RED,
+        BANK_1_GREEN,
+        BANK_1_BLUE,
+
+        BANK_2_RED,
+        BANK_2_GREEN,
+        BANK_2_BLUE,
+
+        BANK_3_RED,
+        BANK_3_GREEN,
+        BANK_3_BLUE,
+
+        BANK_4_RED,
+        BANK_4_GREEN,
+        BANK_4_BLUE,
+
+        BANK_5_RED,
+        BANK_5_GREEN,
+        BANK_5_BLUE,
+
+        BANK_6_RED,
+        BANK_6_GREEN,
+        BANK_6_BLUE,
+
+        BANK_7_RED,
+        BANK_7_GREEN,
+        BANK_7_BLUE,
+
+        BANK_8_RED,
+        BANK_8_GREEN,
+        BANK_8_BLUE,
         
-        //PCA9685 address 0x01
-        EOC1_LED,
-        EOC2_LED,
-        Ch2Layer1_LED,
-        Ch2Layer2_LED,
-        Ch2Layer3_LED,
-        Ch2Layer4_LED,
-        Ring2White5_LED,
-        Ring2Red5_LED,
-        Ring2Red8_LED,
-        Ring2White8_LED,
-        Ring2Red7_LED,
-        Ring2White7_LED,
-        Ring2Red6_LED,
-        Ring2White6_LED,
-        Ring2White9_LED,
-        Ring2Red9_LED,
+        //LAYER1
+        LAYER1_1_RED,
+        LAYER1_1_GREEN,
+        LAYER1_1_BLUE,
 
-        //PCA9685 address 0x02
-        Ring2White2_LED,
-        Ring2Red2_LED,
-        Ring2Red4_LED,
-        Ring2White4_LED,
-        Ring2Red3_LED,
-        Ring2White3_LED,
-        REC_BUTTON2_LED,
-        PLAY_BUTTON2_LED,
-        REV_BUTTON2_LED,
-        Ring2White1_LED,
-        Ring2Red1_LED,
-        SevenSeg_E_LED,
-        SevenSeg_D_LED,
-        SevenSeg_Dig2_LED,
-        SevenSeg_DP_LED,
-        SevenSeg_C_LED,
+        LAYER1_2_RED,
+        LAYER1_2_GREEN,
+        LAYER1_2_BLUE,
 
-        //PCA9685 address 0x03
-        Ring1Red8_LED,
-        SevenSeg_Dig1_LED,
-        NC1_LED,
-        NC2_LED,
-        SevenSeg_A_LED,
-        SevenSeg_B_LED,
-        SevenSeg_G_LED,
-        SevenSeg_F_LED,
-        Ring1Red9_LED,
-        Ring1White9_LED,
-        Ring1White8_LED,
-        Ring1Red7_LED,
-        Ring1White7_LED,
-        Ring1Red6_LED,
-        Ring1White6_LED,
-        Ring1Red5_LED,
+        LAYER1_3_RED,
+        LAYER1_3_GREEN,
+        LAYER1_3_BLUE,
 
+        LAYER1_4_RED,
+        LAYER1_4_GREEN,
+        LAYER1_4_BLUE,
+
+        //LAYER2
+        LAYER2_1_RED,
+        LAYER2_1_GREEN,
+        LAYER2_1_BLUE,
+
+        LAYER2_2_RED,
+        LAYER2_2_GREEN,
+        LAYER2_2_BLUE,
+
+        LAYER2_3_RED,
+        LAYER2_3_GREEN,
+        LAYER2_3_BLUE,
+
+        LAYER2_4_RED,
+        LAYER2_4_GREEN,
+        LAYER2_4_BLUE,
+
+        //BUTTON LEDs
+        REC1_BUTTON_LED,
+        PLAY1_BUTTON_LED,
+        REV1_BUTTON_LED,
+
+        REC2_BUTTON_LED,
+        PLAY2_BUTTON_LED,
+        REV2_BUTTON_LED,
+        
         LAST_LED
     };
-
 
 
     enum MuxChannels
@@ -114,12 +207,12 @@ class VenoLooper
 
         //mux3
         CV1,
-        BLANK,
-        BLANK,
-        BLANK,
+        BLANK2,
+        BLANK3,
+        BLANK4,
         CV2,
-        BLANK,
-        BLANK,
+        BLANK6,
+        BLANK7,
         IN_GAIN_POT,
 
         LAST_MUX_CHANNEL
@@ -277,9 +370,6 @@ void Init(bool boost = false);
     /** Processes the ADC inputs, updating their values */
     void ProcessAnalogControls();
 
-    /** Process tactile switches and keyboard states */
-    void ProcessGates();
-
     /** Process MCP23017 expander*/
     void ProcessMCP23017();
 
@@ -291,7 +381,6 @@ void Init(bool boost = false);
     inline void ProcessAllControls()
     {
         ProcessAnalogControls();
-        ProcessGates();
         ProcessMCP23017();
     };
 
@@ -342,7 +431,7 @@ void Init(bool boost = false);
     }
 
     DaisySeed                     seed;
-    LedDriverPca9685<4, true>     led_driver;
+    //LedDriverPca9685<4, true>     led_driver;
     //MidiUartHandler               midi;
     Mcp23017                      mcp;
     AnalogControl                 pots[LAST_MUX_CHANNEL];
@@ -365,51 +454,249 @@ void Init(bool boost = false);
 };
 namespace Veno_Looper //constants for addressing LEDs on VenoLooper hardware
 {
-constexpr VenoLooper::LEDs Ring1White[9] = {VenoLooper::Ring1White1_LED, VenoLooper::Ring1White2_LED, VenoLooper::Ring1White3_LED,
-                        VenoLooper::Ring1White4_LED, VenoLooper::Ring1White5_LED, VenoLooper::Ring1White6_LED,
-                        VenoLooper::Ring1White7_LED, VenoLooper::Ring1White8_LED, VenoLooper::Ring1White9_LED};
+constexpr VenoLooper::LEDs Ring1Red[11] = {VenoLooper::RING1_1_RED, VenoLooper::RING1_2_RED, VenoLooper::RING1_3_RED,
+                                           VenoLooper::RING1_4_RED, VenoLooper::RING1_5_RED, VenoLooper::RING1_6_RED,
+                                           VenoLooper::RING1_7_RED, VenoLooper::RING1_8_RED, VenoLooper::RING1_9_RED,
+                                           VenoLooper::RING1_10_RED, VenoLooper::RING1_11_RED};
 
-constexpr VenoLooper::LEDs Ring2White[9] = {VenoLooper::Ring2White1_LED, VenoLooper::Ring2White2_LED, VenoLooper::Ring2White3_LED,
-                        VenoLooper::Ring2White4_LED, VenoLooper::Ring2White5_LED, VenoLooper::Ring2White6_LED,
-                        VenoLooper::Ring2White7_LED, VenoLooper::Ring2White8_LED, VenoLooper::Ring2White9_LED};
+constexpr VenoLooper::LEDs Ring1Green[11] = {VenoLooper::RING1_1_GREEN, VenoLooper::RING1_2_GREEN, VenoLooper::RING1_3_GREEN,
+                                             VenoLooper::RING1_4_GREEN, VenoLooper::RING1_5_GREEN, VenoLooper::RING1_6_GREEN,
+                                             VenoLooper::RING1_7_GREEN, VenoLooper::RING1_8_GREEN, VenoLooper::RING1_9_GREEN,
+                                             VenoLooper::RING1_10_GREEN, VenoLooper::RING1_11_GREEN};
 
-constexpr VenoLooper::LEDs Ring1Red[9] = {VenoLooper::Ring1Red1_LED, VenoLooper::Ring1Red2_LED, VenoLooper::Ring1Red3_LED,
-                        VenoLooper::Ring1Red4_LED, VenoLooper::Ring1Red5_LED, VenoLooper::Ring1Red6_LED,
-                        VenoLooper::Ring1Red7_LED, VenoLooper::Ring1Red8_LED, VenoLooper::Ring1Red9_LED};
+constexpr VenoLooper::LEDs Ring1Blue[11] = {VenoLooper::RING1_1_BLUE, VenoLooper::RING1_2_BLUE, VenoLooper::RING1_3_BLUE,
+                                             VenoLooper::RING1_4_BLUE, VenoLooper::RING1_5_BLUE, VenoLooper::RING1_6_BLUE,
+                                             VenoLooper::RING1_7_BLUE, VenoLooper::RING1_8_BLUE, VenoLooper::RING1_9_BLUE,
+                                             VenoLooper::RING1_10_BLUE, VenoLooper::RING1_11_BLUE};
 
-constexpr VenoLooper::LEDs Ring2Red[9] = {VenoLooper::Ring2Red1_LED, VenoLooper::Ring2Red2_LED, VenoLooper::Ring2Red3_LED,
-                        VenoLooper::Ring2Red4_LED, VenoLooper::Ring2Red5_LED, VenoLooper::Ring2Red6_LED,
-                        VenoLooper::Ring2Red7_LED, VenoLooper::Ring2Red8_LED, VenoLooper::Ring2Red9_LED};   
+constexpr VenoLooper::LEDs Ring2Red[11] = {VenoLooper::RING2_1_RED, VenoLooper::RING2_2_RED, VenoLooper::RING2_3_RED,
+                                           VenoLooper::RING2_4_RED, VenoLooper::RING2_5_RED, VenoLooper::RING2_6_RED,
+                                           VenoLooper::RING2_7_RED, VenoLooper::RING2_8_RED, VenoLooper::RING2_9_RED,
+                                           VenoLooper::RING2_10_RED, VenoLooper::RING2_11_RED};
+
+constexpr VenoLooper::LEDs Ring2Green[11] = {VenoLooper::RING2_1_GREEN, VenoLooper::RING2_2_GREEN, VenoLooper::RING2_3_GREEN,
+                                             VenoLooper::RING2_4_GREEN, VenoLooper::RING2_5_GREEN, VenoLooper::RING2_6_GREEN,
+                                             VenoLooper::RING2_7_GREEN, VenoLooper::RING2_8_GREEN, VenoLooper::RING2_9_GREEN,
+                                             VenoLooper::RING2_10_GREEN, VenoLooper::RING2_11_GREEN};
+
+constexpr VenoLooper::LEDs Ring2Blue[11] = {VenoLooper::RING2_1_BLUE, VenoLooper::RING2_2_BLUE, VenoLooper::RING2_3_BLUE,
+                                             VenoLooper::RING2_4_BLUE, VenoLooper::RING2_5_BLUE, VenoLooper::RING2_6_BLUE,
+                                             VenoLooper::RING2_7_BLUE, VenoLooper::RING2_8_BLUE, VenoLooper::RING2_9_BLUE,
+                                             VenoLooper::RING2_10_BLUE, VenoLooper::RING2_11_BLUE};
+
+constexpr VenoLooper::LEDs Layer1RED[4] = {VenoLooper::LAYER1_1_RED, 
+                                            VenoLooper::LAYER1_2_RED, 
+                                            VenoLooper::LAYER1_3_RED, 
+                                            VenoLooper::LAYER1_4_RED};
+
+constexpr VenoLooper::LEDs Layer1GREEN[4] = {VenoLooper::LAYER1_1_GREEN, 
+                                            VenoLooper::LAYER1_2_GREEN, 
+                                            VenoLooper::LAYER1_3_GREEN, 
+                                            VenoLooper::LAYER1_4_GREEN};
+
+constexpr VenoLooper::LEDs Layer1BLUE[4] = {VenoLooper::LAYER1_1_BLUE, 
+                                            VenoLooper::LAYER1_2_BLUE, 
+                                            VenoLooper::LAYER1_3_BLUE, 
+                                            VenoLooper::LAYER1_4_BLUE}; 
+
+constexpr VenoLooper::LEDs Layer2RED[4] = {VenoLooper::LAYER2_1_RED, 
+                                            VenoLooper::LAYER2_2_RED, 
+                                            VenoLooper::LAYER2_3_RED, 
+                                            VenoLooper::LAYER2_4_RED};
+
+constexpr VenoLooper::LEDs Layer2GREEN[4] = {VenoLooper::LAYER2_1_GREEN, 
+                                            VenoLooper::LAYER2_2_GREEN, 
+                                            VenoLooper::LAYER2_3_GREEN, 
+                                            VenoLooper::LAYER2_4_GREEN};
+
+constexpr VenoLooper::LEDs Layer2BLUE[4] = {VenoLooper::LAYER2_1_BLUE, 
+                                            VenoLooper::LAYER2_2_BLUE, 
+                                            VenoLooper::LAYER2_3_BLUE, 
+                                            VenoLooper::LAYER2_4_BLUE}; 
+
+constexpr VenoLooper::LEDs BankRed[10] = {VenoLooper::RING1_1_RED, VenoLooper::RING1_2_RED, VenoLooper::RING1_3_RED,
+                                           VenoLooper::RING1_4_RED, VenoLooper::RING1_5_RED, VenoLooper::RING1_6_RED,
+                                           VenoLooper::RING1_7_RED, VenoLooper::RING1_8_RED, VenoLooper::RING1_9_RED,
+                                           VenoLooper::RING1_10_RED};
+
+constexpr VenoLooper::LEDs BankGreen[10] = {VenoLooper::RING1_1_GREEN, VenoLooper::RING1_2_GREEN, VenoLooper::RING1_3_GREEN,
+                                             VenoLooper::RING1_4_GREEN, VenoLooper::RING1_5_GREEN, VenoLooper::RING1_6_GREEN,
+                                             VenoLooper::RING1_7_GREEN, VenoLooper::RING1_8_GREEN, VenoLooper::RING1_9_GREEN,
+                                             VenoLooper::RING1_10_GREEN};
+
+constexpr VenoLooper::LEDs BankBlue[10] = {VenoLooper::RING1_1_BLUE, VenoLooper::RING1_2_BLUE, VenoLooper::RING1_3_BLUE,
+                                             VenoLooper::RING1_4_BLUE, VenoLooper::RING1_5_BLUE, VenoLooper::RING1_6_BLUE,
+                                             VenoLooper::RING1_7_BLUE, VenoLooper::RING1_8_BLUE, VenoLooper::RING1_9_BLUE,
+                                             VenoLooper::RING1_10_BLUE};
+
+//V2.0 Hardware
+constexpr uint8_t LED_Coords[120][2] = //{CSXX,SWXX}
+{ 
+{1,1},// RING1_1_RED,
+{1,2},// RING1_1_GREEN,
+{1,3},// RING1_1_BLUE,
+
+{1,4},// RING1_2_RED,
+{1,5},// RING1_2_GREEN,
+{1,6},// RING1_2_BLUE,
+
+{1,7},// RING1_3_RED,
+{1,8},// RING1_3_GREEN,
+{1,9},// RING1_3_BLUE,
+
+{1,10},// RING1_4_RED,
+{1,11},// RING1_4_GREEN,
+{1,12},// RING1_4_BLUE,
+
+{2,1},// RING1_5_RED,
+{2,2},// RING1_5_GREEN,
+{2,3},// RING1_5_BLUE,
+
+{2,4},// RING1_6_RED,
+{2,5},// RING1_6_GREEN,
+{2,6},// RING1_6_BLUE,
+
+{2,7},// RING1_7_RED,
+{2,8},// RING1_7_GREEN,
+{2,9},// RING1_7_BLUE,
+
+{2,10},// RING1_8_RED,
+{2,11},// RING1_8_GREEN,
+{2,12},// RING1_8_BLUE,
+
+{3,1},// RING1_9_RED,
+{3,2},// RING1_9_GREEN,
+{3,3},// RING1_9_BLUE,
+
+{3,4},// RING1_10_RED,
+{3,5},// RING1_10_GREEN,
+{3,6},// RING1_10_BLUE,
+
+{3,7},// RING1_11_RED,
+{3,8},// RING1_11_GREEN,
+{3,9},// RING1_11_BLUE,
+
+{3,10},// RING2_1_RED,
+{3,11},// RING2_1_GREEN,
+{3,12},// RING2_1_BLUE,
+
+{4,1},// RING2_2_RED,
+{4,2},// RING2_2_GREEN,
+{4,3},// RING2_2_BLUE,
+
+{4,4},// RING2_3_RED,
+{4,5},// RING2_3_GREEN,
+{4,6},// RING2_3_BLUE,
+
+{4,7},// RING2_4_RED,
+{4,8},// RING2_4_GREEN,
+{4,9},// RING2_4_BLUE,
+
+{4,10},// RING2_5_RED,
+{4,11},// RING2_5_GREEN,
+{4,12},// RING2_5_BLUE,
+
+{5,1},// RING2_6_RED,
+{5,2},// RING2_6_GREEN,
+{5,3},// RING2_6_BLUE,
+
+{5,4},// RING2_7_RED,
+{5,5},// RING2_7_GREEN,
+{5,6},// RING2_7_BLUE,
+
+{5,7},// RING2_8_RED,
+{5,8},// RING2_8_GREEN,
+{5,9},// RING2_8_BLUE,
+
+{5,10},// RING2_9_RED,
+{5,11},// RING2_9_GREEN,
+{5,12},// RING2_9_BLUE,
+
+{6,1},// RING2_10_RED,
+{6,2},// RING2_10_GREEN,
+{6,3},// RING2_10_BLUE,
+
+{6,4},// RING2_11_RED,
+{6,5},// RING2_11_GREEN,
+{6,6},// RING2_11_BLUE,
+
+{7,4},// BANK_1_RED,
+{7,5},// BANK_1_GREEN,
+{7,6},// BANK_1_BLUE,
+
+{7,1},// BANK_2_RED,
+{7,2},// BANK_2_GREEN,
+{7,3},// BANK_2_BLUE,
+
+{6,10},// BANK_3_RED,
+{6,11},// BANK_3_GREEN,
+{6,12},// BANK_3_BLUE,
+
+{6,7},// BANK_4_RED,
+{6,8},// BANK_4_GREEN,
+{6,9},// BANK_4_BLUE,
+
+{8,4},// BANK_5_RED,
+{8,5},// BANK_5_GREEN,
+{8,6},// BANK_5_BLUE,
+
+{8,1},// BANK_6_RED,
+{8,2},// BANK_6_GREEN,
+{8,3},// BANK_6_BLUE,
+
+{7,10},// BANK_7_RED,
+{7,11},// BANK_7_GREEN,
+{7,12},// BANK_7_BLUE,
+
+{7,7},// BANK_8_RED,
+{7,8},// BANK_8_GREEN,
+{7,9},// BANK_8_BLUE,
+
+{8,7},// LAYER1_1_RED,
+{8,8},// LAYER1_1_GREEN,
+{8,9},// LAYER1_1_BLUE,
+
+{8,10},// LAYER1_2_RED,
+{8,11},// LAYER1_2_GREEN,
+{8,12},// LAYER1_2_BLUE,
+
+{9,1},// LAYER1_3_RED,
+{9,2},// LAYER1_3_GREEN,
+{9,3},// LAYER1_3_BLUE,
+
+{9,4},// LAYER1_4_RED,
+{9,5},// LAYER1_4_GREEN,
+{9,6},// LAYER1_4_BLUE,
+
+// //LAYER2
+{9,7},// LAYER2_1_RED,
+{9,8},// LAYER2_1_GREEN,
+{9,9},// LAYER2_1_BLUE,
+
+{9,10},// LAYER2_2_RED,
+{9,11},// LAYER2_2_GREEN,
+{9,12},// LAYER2_2_BLUE,
+
+{10,1},// LAYER2_3_RED,
+{10,2},// LAYER2_3_GREEN,
+{10,3},// LAYER2_3_BLUE,
+
+{10,4},// LAYER2_4_RED,
+{10,5},// LAYER2_4_GREEN,
+{10,6},// LAYER2_4_BLUE,
+
+// //BUTTON LEDs
+{10,7},// REC1_BUTTON_LED,
+{10,8},// PLAY1_BUTTON_LED,
+{10,9},// REV1_BUTTON_LED,
+
+{10,10},// REC2_BUTTON_LED,
+{10,11},// PLAY2_BUTTON_LED,
+{10,12},// REV2_BUTTON_LED,
 
 
-constexpr VenoLooper::LEDs Layer1Leds[4] = {VenoLooper::Ch1Layer1_LED, 
-                                            VenoLooper::Ch1Layer2_LED, 
-                                            VenoLooper::Ch1Layer3_LED, 
-                                            VenoLooper::Ch1Layer4_LED};
-constexpr VenoLooper::LEDs Layer2Leds[4] = {VenoLooper::Ch2Layer1_LED, 
-                                            VenoLooper::Ch2Layer2_LED, 
-                                            VenoLooper::Ch2Layer3_LED, 
-                                            VenoLooper::Ch2Layer4_LED};
+};
 
-constexpr VenoLooper::LEDs SevenSeg[8] = {VenoLooper::SevenSeg_A_LED,
-                                         VenoLooper::SevenSeg_B_LED,
-                                         VenoLooper::SevenSeg_C_LED,
-                                         VenoLooper::SevenSeg_D_LED,
-                                         VenoLooper::SevenSeg_E_LED,
-                                         VenoLooper::SevenSeg_F_LED,
-                                         VenoLooper::SevenSeg_G_LED,
-                                         VenoLooper::SevenSeg_DP_LED};
-
-constexpr bool Numbers[10][7] = {{1,1,1,1,1,1,0}, //0
-                                 {0,1,1,0,0,0,0}, //1
-                                 {1,1,0,1,1,0,1}, //2
-                                 {1,1,1,1,0,0,1}, //3
-                                 {0,1,1,0,0,1,1}, //4
-                                 {1,0,1,1,0,1,1}, //5
-                                 {1,0,1,1,1,1,1}, //6
-                                 {1,1,1,0,0,0,0}, //7
-                                 {1,1,1,1,1,1,1}, //8
-                                 {1,1,1,1,0,1,1}}; //9
 } //namespace VenoLooper                 
 } // namespace daisy
 
