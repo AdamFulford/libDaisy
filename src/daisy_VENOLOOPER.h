@@ -2,6 +2,7 @@
 #ifndef VENO_LOOPER_BOARD_H
 #define VENO_LOOPER_BOARD_H /**< & */
 #include "daisy_seed.h"
+#include "dev/IS31FL3737B.h"
 
 namespace daisy
 {
@@ -407,6 +408,8 @@ void Init(bool boost = false);
     */
     AnalogControl* GetCv(size_t idx);
 
+    void SetAllPWM(float value);
+
     /** Print formatted debug log message
      */
     template <typename... VA>
@@ -431,8 +434,8 @@ void Init(bool boost = false);
     }
 
     DaisySeed                     seed;
-    //LedDriverPca9685<4, true>     led_driver;
-    //MidiUartHandler               midi;
+    IS31FL3737B                   led_driver;
+    //MidiUartHandler              midi;
     Mcp23017                      mcp;
     AnalogControl                 pots[LAST_MUX_CHANNEL];
     AnalogControl                 cv[LAST_CV];

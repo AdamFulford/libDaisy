@@ -130,10 +130,10 @@ void VenoLooper::Init(bool boost)
      }
     //LEDs
     // 4x PCA9685 addresses 0x00, 0x01,  0x02 and 0x03
-    // uint8_t   addr[4] = {0x00, 0x01, 0x02, 0x03};
-    // I2CHandle i2c_led;
-    // i2c_led.Init(i2c_config);
-    // led_driver.Init(i2c_led, addr, led_dma_buffer_a, led_dma_buffer_b);
+     uint8_t   addr = {0x00};
+     I2CHandle i2c_led;
+     i2c_led.Init(i2c_config);
+     led_driver.Init(i2c_led, addr);
 
     //MCP23017 GPIO expander
     Mcp23017::Config mcp_config;
@@ -306,6 +306,11 @@ AnalogControl* VenoLooper::GetKnob(size_t idx)
 AnalogControl* VenoLooper::GetCv(size_t idx)
 {
     return &cv[idx < LAST_CV ? idx : 0];
+}
+
+void VenoLooper::SetAllPWM(float value)
+{
+    led_driver.setPWM(f2u8(value));
 }
 
 

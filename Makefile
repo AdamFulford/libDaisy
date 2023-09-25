@@ -66,6 +66,7 @@ ui/FullScreenItemMenu \
 util/color \
 util/MappedValue \
 util/WaveTableLoader \
+util/BitwiseMethods \
 
 ######################################
 # building variables
