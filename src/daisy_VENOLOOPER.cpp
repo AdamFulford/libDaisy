@@ -73,14 +73,16 @@ void VenoLooper::Init(bool boost)
                              8,
                              seed::PIN_MUX1_SEL1,
                              seed::PIN_MUX1_SEL2,
-                             seed::PIN_MUX1_SEL3);
+                             seed::PIN_MUX1_SEL3,
+                             AdcChannelConfig::ConversionSpeed::SPEED_387CYCLES_5);
 
     //mux2
     adc_cfg[1].InitMux(seed::PIN_MUX2_ADC, 
                              8,
                              seed::PIN_MUX2_SEL1,
                              seed::PIN_MUX2_SEL2,
-                             seed::PIN_MUX2_SEL3);  
+                             seed::PIN_MUX2_SEL3,
+                             AdcChannelConfig::ConversionSpeed::SPEED_387CYCLES_5);  
 
     for(size_t i = 0; i < (LAST_CV); i++)
     {
