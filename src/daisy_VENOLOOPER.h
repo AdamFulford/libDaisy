@@ -334,7 +334,8 @@ void Init(bool boost = false);
     Mcp23017                      mcp;
     AnalogControl                 pots[LAST_POT];
     AnalogControl                 cv[LAST_CV];
-    GateIn                        gate_in[LAST_GATE];
+    //GateIn                        gate_in[LAST_GATE];
+    Switch                        gates[LAST_GATE];
 
     private:
 

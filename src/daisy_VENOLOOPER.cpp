@@ -130,26 +130,15 @@ void VenoLooper::Init(bool boost)
     }
     
     //Gates
-    dsy_gpio_pin gate_in_play1 = seed::PIN_PLAY1_GATE;
-    dsy_gpio_pin gate_in_rev1 = seed::PIN_REV1_GATE;
-    dsy_gpio_pin gate_in_rec1 = seed::PIN_REC1_GATE;
+    gates[0].Init(seed::PIN_PLAY1_GATE);
+    gates[1].Init(seed::PIN_REV1_GATE);
+    gates[2].Init(seed::PIN_REC1_GATE);
 
-    dsy_gpio_pin gate_in_play2 = seed::PIN_PLAY2_GATE;
-    dsy_gpio_pin gate_in_rec2 = seed::PIN_REC2_GATE;
-    dsy_gpio_pin gate_in_rev2 = seed::PIN_REV2_GATE;
+    gates[3].Init(seed::PIN_PLAY2_GATE);
+    gates[4].Init(seed::PIN_REV2_GATE);
+    gates[5].Init(seed::PIN_REC2_GATE);
 
-    dsy_gpio_pin gate_in_clock = seed::PIN_CLOCK;
-
-    gate_in[0].Init(&gate_in_play1);
-    gate_in[1].Init(&gate_in_rev1);
-    gate_in[2].Init(&gate_in_rec1);
-
-    gate_in[3].Init(&gate_in_play2);
-    gate_in[4].Init(&gate_in_rev2);
-    gate_in[5].Init(&gate_in_rec2);
-
-    gate_in[6].Init(&gate_in_clock);
-
+    gates[6].Init(seed::PIN_CLOCK);
 
     //Encoder
     //SD Card
@@ -243,8 +232,15 @@ void VenoLooper::ProcessAnalogControls()
 
     for(size_t i = 0; i < LAST_CV; i++)
         cv[i].Process();
+}
 
-
+void VenoLooper::ProcessGates()
+{
+    for (size_t i = 0; i < LAST_GATE; i++)
+    {
+        gates[i].Debounce();
+    }
+        
 }
 
 void VenoLooper::ProcessMCP23017()
