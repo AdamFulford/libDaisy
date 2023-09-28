@@ -174,16 +174,14 @@ class VenoLooper
     };
 
     enum CVs
-    {
-        LENGTH2_CV,
-        VOct1_CV,
+    {   LENGTH2_CV,
         VOct2_CV,
+        VOct1_CV,
         LAYER1_CV,
         LAYER2_CV,
         START1_CV,
         START2_CV,
         LENGTH1_CV,
-
         LAST_CV
     };
 
