@@ -94,17 +94,17 @@ void VenoLooper::Init(bool boost)
      //init CV handling
     for(size_t i = 0; i < LAST_CV; i++)
     {
-        cv[i].InitBipolarCv(seed.adc.GetPtr(i+2), AudioCallbackRate());
+        cv[i].InitBipolarCv(seed.adc.GetPtr(i+2), AudioCallbackRate(),CVSlew[i]);
     }
 
     //init pot handling
      for(size_t i = 0; i < LAST_POT; i++)
      {
         if(i < 8)
-            pots[i].Init(seed.adc.GetMuxPtr(0,i),AudioCallbackRate(),false,false,0.05f);
+            pots[i].Init(seed.adc.GetMuxPtr(0,i),AudioCallbackRate(),false,false,PotSlew[i]);
 
         else
-            pots[i].Init(seed.adc.GetMuxPtr(1,i-8),AudioCallbackRate(),false,false,0.05f);
+            pots[i].Init(seed.adc.GetMuxPtr(1,i-8),AudioCallbackRate(),false,false,PotSlew[i]);
      }
     //LEDs
     // 4x PCA9685 addresses 0x00, 0x01,  0x02 and 0x03

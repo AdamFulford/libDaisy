@@ -174,7 +174,8 @@ class VenoLooper
     };
 
     enum CVs
-    {   LENGTH2_CV,
+    {   
+        LENGTH2_CV,
         VOct2_CV,
         VOct1_CV,
         LAYER1_CV,
@@ -199,6 +200,40 @@ class VenoLooper
 
         LAST_GATE
     };
+
+    //pot param slew
+
+float PotSlew[LAST_POT] =
+{
+    0.05f, //XFADE_POT,   //000
+    0.05f, //PLAY_TOGGLE1_POT
+    0.05f, //SPEED1_POT
+    0.05f, //ATTACK1_POT
+    0.05f, //START1_POT
+    0.05f, //OVERDUB_DECAY_POT
+    0.05f, //LAYER1_POT
+    0.05f, //LENGTH1_POT
+    0.05f, //LENGTH2_POT
+    0.05f, //LAYER2_POT
+    0.05f, //START2_POT
+    0.05f, //RELEASE2_POT
+    0.05f, //SPEED2_POT
+    0.05f, //PLAY_TOGGLE2_POT
+    0.05f, //RELEASE1_POT
+    0.05f //ATTACK2_POT
+};
+
+float CVSlew[LAST_CV] =
+{
+    0.002f, //LENGTH2_CV
+    0.002f, //VOct2_CV
+    0.002f, //VOct1_CV
+    0.002f, //LAYER1_CV
+    0.002f, //LAYER2_CV
+    0.002f, //START1_CV
+    0.002f, //START2_CV
+    0.002f //LENGTH1_CV
+};
 
 
 

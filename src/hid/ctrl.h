@@ -42,7 +42,7 @@ class AnalogControl
     \param *adcptr Pointer to analog digital converter
     \param sr Audio engine sample rate
     */
-    void InitBipolarCv(uint16_t *adcptr, float sr);
+    void InitBipolarCv(uint16_t *adcptr, float sr, float slew_seconds = 0.002f);
 
     /** 
     Filters, and transforms a raw ADC read into a normalized range.
