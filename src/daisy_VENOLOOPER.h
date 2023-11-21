@@ -201,13 +201,16 @@ class VenoLooper
         LAST_GATE
     };
 
+    enum CntrlFreq
+    {Fast,Slow};
+
     //pot param slew
 
 float PotSlew[LAST_POT] =
 {
     0.05f, //XFADE_POT,   //000
     0.05f, //PLAY_TOGGLE1_POT
-    0.05f, //SPEED1_POT
+    0.2f, //SPEED1_POT
     0.05f, //ATTACK1_POT
     0.05f, //START1_POT
     0.05f, //OVERDUB_DECAY_POT
@@ -217,7 +220,7 @@ float PotSlew[LAST_POT] =
     0.05f, //LAYER2_POT
     0.05f, //START2_POT
     0.05f, //RELEASE2_POT
-    0.05f, //SPEED2_POT
+    0.2f, //SPEED2_POT
     0.05f, //PLAY_TOGGLE2_POT
     0.05f, //RELEASE1_POT
     0.05f //ATTACK2_POT
@@ -235,6 +238,37 @@ float CVSlew[LAST_CV] =
     0.002f //LENGTH1_CV
 };
 
+CntrlFreq PotFreq[LAST_POT]
+{
+    Slow, //XFADE_POT,   //000
+    Slow, //PLAY_TOGGLE1_POT
+    Fast, //SPEED1_POT
+    Slow, //ATTACK1_POT
+    Slow, //START1_POT
+    Slow, //OVERDUB_DECAY_POT
+    Slow, //LAYER1_POT
+    Slow, //LENGTH1_POT
+    Slow, //LENGTH2_POT
+    Slow, //LAYER2_POT
+    Slow, //START2_POT
+    Slow, //RELEASE2_POT
+    Fast, //SPEED2_POT
+    Slow, //PLAY_TOGGLE2_POT
+    Slow, //RELEASE1_POT
+    Slow //ATTACK2_POT
+};
+
+CntrlFreq CVFreq[LAST_CV]
+{
+    Slow, //LENGTH2_CV
+    Fast, //VOct2_CV
+    Fast, //VOct1_CV
+    Slow, //LAYER1_CV
+    Slow, //LAYER2_CV
+    Slow, //START1_CV
+    Slow, //START2_CV
+    Slow //LENGTH1_CV
+};
 
 
 VenoLooper() {}
@@ -299,7 +333,7 @@ void Init(bool boost = false);
     void StopAdc();
 
     /** Processes the ADC inputs, updating their values */
-    void ProcessAnalogControls();
+    void ProcessAnalogControls(CntrlFreq freq);
 
     /** Process tactile switches and keyboard states */
     void ProcessGates();
@@ -312,7 +346,8 @@ void Init(bool boost = false);
     /** Process Analog and Digital Controls */
     inline void ProcessAllControls()
     {
-        ProcessAnalogControls();
+        ProcessAnalogControls(Fast);
+        ProcessAnalogControls(Slow);
         ProcessGates();
         ProcessMCP23017();
     };

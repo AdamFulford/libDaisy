@@ -91,20 +91,23 @@ void VenoLooper::Init(bool boost)
 
     seed.adc.Init(adc_cfg,10);
 
+    float CVUpdateFreq{};
      //init CV handling
     for(size_t i = 0; i < LAST_CV; i++)
     {
-        cv[i].InitBipolarCv(seed.adc.GetPtr(i+2), AudioCallbackRate(),CVSlew[i]);
+        CVUpdateFreq = CVFreq[i] == Slow ? AudioCallbackRate() : AudioCallbackRate() * AudioBlockSize();
+        cv[i].InitBipolarCv(seed.adc.GetPtr(i+2), CVUpdateFreq,CVSlew[i]);
     }
+
+    uint8_t potIndex{};
+    float potUpdateFreq{};
 
     //init pot handling
      for(size_t i = 0; i < LAST_POT; i++)
      {
-        if(i < 8)
-            pots[i].Init(seed.adc.GetMuxPtr(0,i),AudioCallbackRate(),false,false,PotSlew[i]);
-
-        else
-            pots[i].Init(seed.adc.GetMuxPtr(1,i-8),AudioCallbackRate(),false,false,PotSlew[i]);
+        potIndex = i < 8 ? i : i-8;
+        potUpdateFreq = PotFreq[i] == Slow ? AudioCallbackRate() : AudioCallbackRate() * AudioBlockSize();
+        pots[i].Init(seed.adc.GetMuxPtr(potIndex == i ? 0 : 1,potIndex),potUpdateFreq,false,false,PotSlew[i]);
      }
     //LEDs
     // 4x PCA9685 addresses 0x00, 0x01,  0x02 and 0x03
@@ -225,13 +228,21 @@ void VenoLooper::StopAdc()
     seed.adc.Stop();
 }
 
-void VenoLooper::ProcessAnalogControls()
+void VenoLooper::ProcessAnalogControls(VenoLooper::CntrlFreq freq)
 {
     for(size_t i = 0; i < LAST_POT; i++)
+    {
+        if(PotFreq[i]==freq)
             pots[i].Process();
+    }
+
 
     for(size_t i = 0; i < LAST_CV; i++)
-        cv[i].Process();
+    {
+        if(CVFreq[i]==freq)
+            cv[i].Process();
+    }
+
 }
 
 void VenoLooper::ProcessGates()
