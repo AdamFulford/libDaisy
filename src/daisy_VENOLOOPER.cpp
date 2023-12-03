@@ -51,7 +51,7 @@ static LedDriverPca9685<4, true>::DmaBuffer DMA_BUFFER_MEM_SECTION
 void VenoLooper::Init(bool boost)
 {
     seed.Init(boost);
-    seed.SetAudioBlockSize(1024);
+    seed.SetAudioBlockSize(96);
     seed.SetAudioSampleRate(SaiHandle::Config::SampleRate::SAI_48KHZ);
 
     dsy_gpio_pin CVpins[] = 
