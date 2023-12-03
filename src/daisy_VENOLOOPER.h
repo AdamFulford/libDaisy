@@ -214,10 +214,10 @@ float PotSlew[LAST_POT] =
     0.05f, //ATTACK1_POT
     0.05f, //START1_POT
     0.05f, //OVERDUB_DECAY_POT
-    0.05f, //LAYER1_POT
+    0.1f, //LAYER1_POT
     0.05f, //LENGTH1_POT
     0.05f, //LENGTH2_POT
-    0.05f, //LAYER2_POT
+    0.1f, //LAYER2_POT
     0.05f, //START2_POT
     0.05f, //RELEASE2_POT
     0.2f, //SPEED2_POT
