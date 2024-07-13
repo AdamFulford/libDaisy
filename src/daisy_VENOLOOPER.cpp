@@ -245,14 +245,14 @@ void VenoLooper::ProcessAnalogControls(VenoLooper::CntrlFreq freq)
 
 }
 
-/* void VenoLooper::ProcessGates()
+void VenoLooper::ProcessGates()
 {
     for (size_t i = 0; i < LAST_GATE; i++)
     {
-        gates[i].Debounce();
+        gates[i].Update();
     }
         
-} */
+}
 
 void VenoLooper::ProcessMCP23017()
 {

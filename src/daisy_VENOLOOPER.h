@@ -336,7 +336,7 @@ void Init(bool boost = false);
     void ProcessAnalogControls(CntrlFreq freq);
 
     /** Process tactile switches and keyboard states */
-    //void ProcessGates();
+    void ProcessGates();
 
     /** Process MCP23017 expander*/
     void ProcessMCP23017();

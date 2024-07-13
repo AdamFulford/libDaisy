@@ -49,6 +49,9 @@ class GateIn
     /** Checks current state of gate input.
      *  @return True if the GPIO just transitioned.
      */
+
+    void Update();
+
     bool Trig();
 
     bool Released();

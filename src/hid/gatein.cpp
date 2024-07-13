@@ -21,18 +21,18 @@ void GateIn::Init(Pin pin_cfg, bool invert)
     invert_     = invert;
 }
 
-bool GateIn::Trig()
+void GateIn::Update()
 {
-    // Inverted because of typical BJT input circuit.
     prev_state_ = state_;
     state_      = invert_ ? !pin_.Read() : pin_.Read();
+}
+
+bool GateIn::Trig()
+{
     return state_ && !prev_state_;
 }
 
 bool GateIn::Released()
 {
-    // Inverted because of typical BJT input circuit.
-    prev_state_ = state_;
-    state_      = invert_ ? !pin_.Read() : pin_.Read();
     return !state_ && prev_state_;
 }
