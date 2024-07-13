@@ -28,3 +28,11 @@ bool GateIn::Trig()
     state_      = invert_ ? !pin_.Read() : pin_.Read();
     return state_ && !prev_state_;
 }
+
+bool GateIn::Released()
+{
+    // Inverted because of typical BJT input circuit.
+    prev_state_ = state_;
+    state_      = invert_ ? !pin_.Read() : pin_.Read();
+    return !state_ && prev_state_;
+}

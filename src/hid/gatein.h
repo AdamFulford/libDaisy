@@ -51,6 +51,7 @@ class GateIn
      */
     bool Trig();
 
+    bool Released();
     /** Checks current state of gate input (no state required)
      *  read function is inverted because of suggested BJT input circuit
      */
