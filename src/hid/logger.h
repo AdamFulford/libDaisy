@@ -57,6 +57,13 @@ namespace daisy
  */
 #define FLT_VAR3(_x) FLT_VAR(3, _x)
 
+/** Shorthand for 10^-3 fraction, output equivalent to %.3f
+ */
+#define FLT_FMT6 FLT_FMT(6)
+/** Shorthand for 10^-3 fraction
+ */
+#define FLT_VAR6(_x) FLT_VAR(6, _x)
+
 /** @} */ // End logging_macros
 
 /**   @brief Interface for simple USB logging
