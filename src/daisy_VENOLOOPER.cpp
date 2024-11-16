@@ -36,6 +36,9 @@
 #define PIN_SDMMC_D1 D3
 #define PIN_SDMMC_D2 D2
 #define PIN_SDMMC_D3 D1
+#define PIN_MIDI_UART_RX D14
+#define PIN_MIDI_UART_TX D13
+
 
 using namespace daisy;
 
@@ -146,6 +149,12 @@ void VenoLooper::Init(bool boost)
     //Encoder
     //SD Card
     //MIDI
+    MidiUartHandler::Config midi_config;
+    midi_config.transport_config.periph = UartHandler::Config::Peripheral::USART_1;
+    midi_config.transport_config.rx = seed::PIN_MIDI_UART_RX;
+    midi_config.transport_config.tx = seed::PIN_MIDI_UART_TX;
+    midi.Init(midi_config);
+    midi.StartReceive();
 }
 
 void VenoLooper::DelayMs(size_t del)

@@ -1,6 +1,6 @@
 #pragma once
-#ifndef VENO_LOOPER_H
-#define VENO_LOOPER_H /**< & */
+#ifndef VENO_LOOPER_BOARD_H
+#define VENO_LOOPER_BOARD_H /**< & */
 #include "daisy_seed.h"
 
 namespace daisy
@@ -400,7 +400,7 @@ void Init(bool boost = false);
 
     DaisySeed                     seed;
     LedDriverPca9685<4, true>     led_driver;
-    //MidiUartHandler               midi;
+    MidiUartHandler               midi;
     Mcp23017                      mcp;
     AnalogControl                 pots[LAST_POT];
     AnalogControl                 cv[LAST_CV];
