@@ -35,7 +35,7 @@ add_library(${TARGET} STATIC
     ${MODULE_DIR}/daisy_legio.cpp
     ${MODULE_DIR}/daisy_patch_sm.cpp
     ${MODULE_DIR}/daisy_VENOLOOPER.cpp
-    ${MODULE_DIR}/daisy_VENOLOOPER_v5.cpp
+    # ${MODULE_DIR}/daisy_VENOLOOPER_v5.cpp
     ${MODULE_DIR}/sys/system.cpp
     ${MODULE_DIR}/dev/sr_595.cpp
     ${MODULE_DIR}/dev/codec_ak4556.cpp
@@ -70,6 +70,7 @@ add_library(${TARGET} STATIC
     ${MODULE_DIR}/ui/UI.cpp
     ${MODULE_DIR}/util/color.cpp
     ${MODULE_DIR}/util/WaveTableLoader.cpp
+    ${MODULE_DIR}/dev/PICO_UART_TXRX.cpp
 
     Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal.c
     Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_adc.c

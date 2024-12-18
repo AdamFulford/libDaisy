@@ -10,6 +10,7 @@
 
 #define PIN_ENC_DOWN D10
 #define PIN_MIDI_UART_RX D14
+#define PIN_MIDI_UART_TX D13
 #define PIN_PLAY2_GATE D7
 #define PIN_UART_RP2040_TO_STM D11
 #define PIN_UART_STM_TO_RP2040 D12
@@ -41,6 +42,8 @@
 #define PIN_SDMMC_D2 D2
 #define PIN_SDMMC_D3 D1
 
+#define BAUD_RATE 31250
+
 using namespace daisy;
 
 static constexpr I2CHandle::Config i2c_config
@@ -59,14 +62,12 @@ void VenoLooper_v5::Init(bool boost)
     seed.SetAudioSampleRate(SaiHandle::Config::SampleRate::SAI_48KHZ);
 
     dsy_gpio_pin CVpins[] = 
-    {seed::PIN_LENGTH_CV2_ADC,
-    seed::PIN_VOct_CV1_ADC,
+    {seed::PIN_VOct_CV1_ADC,
     seed::PIN_Voct_CV2_ADC,
     seed::PIN_LAYER_CV1_ADC,
     seed::PIN_LAYER_CV2_ADC,
     seed::PIN_START_CV1_ADC,
-    seed::PIN_START_CV2_ADC,
-    seed::PIN_LENGTH_CV1_ADC};
+    seed::PIN_START_CV2_ADC};
 
     //ADCs
     AdcChannelConfig adc_cfg[LAST_CV + 2];
@@ -124,15 +125,25 @@ void VenoLooper_v5::Init(bool boost)
 
 
     //Gates
-    gates[0].Init(seed::PIN_PLAY1_GATE);
-    gates[1].Init(seed::PIN_REV1_GATE);
-    gates[2].Init(seed::PIN_REC1_GATE);
+    // gates[0].Init(seed::PIN_PLAY1_GATE);
+    // gates[1].Init(seed::PIN_REV1_GATE);
+    // gates[2].Init(seed::PIN_REC1_GATE);
 
-    gates[3].Init(seed::PIN_PLAY2_GATE);
-    gates[4].Init(seed::PIN_REV2_GATE);
-    gates[5].Init(seed::PIN_REC2_GATE);
+    // gates[3].Init(seed::PIN_PLAY2_GATE);
+    // gates[4].Init(seed::PIN_REV2_GATE);
+    // gates[5].Init(seed::PIN_REC2_GATE);
 
-    gates[6].Init(seed::PIN_CLOCK);
+    // gates[6].Init(seed::PIN_CLOCK);
+
+    //PICO Uart connection
+    PicoUartTXRX::Config config;
+
+    config.periph = UartHandler::Config::Peripheral::UART_4;
+    config.baudrate = BAUD_RATE;
+    config.tx = Pin(PORTB,9);
+    config.rx = Pin(PORTB,8);
+
+   // PicoUart.Init(config);
 
     //Encoder
     //SD Card
@@ -251,20 +262,20 @@ void VenoLooper_v5::ProcessGates()
         
 }
 
-void VenoLooper_v5::ProcessMCP23017()
-{
-    mcp.Read();
-}
+// void VenoLooper_v5::ProcessMCP23017()
+// {
+//     mcp.Read();
+// }
 
-void VenoLooper_v5::DebounceMCP23017()
-{
-    for(size_t i=0; i < LAST_DIN; i++)
-    {
-        mcp.Debounce(i);
-    }
-}
+// void VenoLooper_v5::DebounceMCP23017()
+// {
+//     for(size_t i=0; i < LAST_PICO_INPUT; i++)
+//     {
+//         mcp.Debounce(i);
+//     }
+// }
 
-float VenoLooper_v5::GetKnobValue(Pots idx)
+float VenoLooper_v5::GetKnobValue(MUX_Inputs idx)
 {
     return pots[idx < LAST_POT ? idx : 0].Value();
 }
@@ -274,10 +285,10 @@ float VenoLooper_v5::GetCvValue(CVs idx)
     return cv[idx < LAST_CV ? idx : 0].Value();
 }
 
-bool VenoLooper_v5::GetRawPinState(DigitalInputs idx)
-{
-    return (mcp.GetPin(idx) == 0xFF) ? true : false;
-}
+// bool VenoLooper_v5::GetRawPinState(MUX_Inputs idx)
+// {
+//     return (mcp.GetPin(idx) == 0xFF) ? true : false;
+// }
 
 AnalogControl* VenoLooper_v5::GetKnob(size_t idx)
 {

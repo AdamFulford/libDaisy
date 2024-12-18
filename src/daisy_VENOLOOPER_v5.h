@@ -273,7 +273,7 @@ void Init(bool boost = false);
     /** Returns the knob's value
         \param idx The knob of interest.
     */
-    float GetKnobValue(Pots idx);
+    float GetKnobValue(MUX_Inputs idx);
 
     /** Returns the CV input's value
         \param idx The CV input of interest.
@@ -281,7 +281,7 @@ void Init(bool boost = false);
     float GetCvValue(CVs idx);
 
     //returns state of digital input pin on MCP23017
-    bool GetRawPinState(DigitalInputs idx);
+    bool GetRawPinState(PICO_Inputs idx);
 
      /** Getter for knob objects
         \param idx The knob input of interest.
@@ -319,6 +319,7 @@ void Init(bool boost = false);
     DaisySeed                     seed;
     //LedDriverPca9685<4, true>     led_driver;
     MidiUartHandler               midi;
+    PicoUartTXRX                  PicoUart;
     //Mcp23017                      mcp;
     AnalogControl                 pots[LAST_POT];
     AnalogControl                 cv[LAST_CV];

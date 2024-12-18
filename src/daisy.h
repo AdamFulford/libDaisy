@@ -70,5 +70,6 @@
 #include "util/VoctCalibration.h"
 #include "util/WaveTableLoader.h"
 #include "util/WavWriter.h"
+#include "dev/PICO_UART_TXRX.h"
 #endif
 #endif
