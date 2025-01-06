@@ -3,62 +3,13 @@
 #define SAMPLE_RATE DSY_AUDIO_SAMPLE_RATE /**< & */
 #endif
 
-//v5.1 pin assignments
-//fix with seed assignments
-#define PIN_EOC2 D9
-#define PIN_EOC1 D8
-
-#define PIN_ENC_DOWN D10
-#define PIN_MIDI_UART_RX D14
-#define PIN_MIDI_UART_TX D13
-#define PIN_PLAY2_GATE D7
-#define PIN_UART_RP2040_TO_STM D11
-#define PIN_UART_STM_TO_RP2040 D12
-#define PIN_REC2_GATE D30
-
-#define PIN_MUX1_ADC A1
-#define PIN_ENC_UP D19
-#define PIN_Voct_CV2_ADC A5
-#define PIN_VOct_CV1_ADC A3
-#define PIN_LAYER_CV1_ADC A2
-#define PIN_LAYER_CV2_ADC A6
-#define PIN_START_CV1_ADC A0
-#define PIN_START_CV2_ADC A8
-#define PIN_MUX3_ADC A7
-#define PIN_MUX2_ADC A12
-
-#define PIN_MUX_SEL3 D32
-#define PIN_MUX_SEL1 D0
-#define PIN_MUX_SEL2 D27
-
-#define PIN_REC1_GATE D25
-#define PIN_CLOCK D26
-#define PIN_PLAY1_GATE D28
-
-#define PIN_SDMMC_SK D6
-#define PIN_SDMMC_CMD D5
-#define PIN_SDMMC_D0 D4
-#define PIN_SDMMC_D1 D3
-#define PIN_SDMMC_D2 D2
-#define PIN_SDMMC_D3 D1
-
-#define BAUD_RATE 31250
-
 using namespace daisy;
 
-static constexpr I2CHandle::Config i2c_config
-    = {I2CHandle::Config::Peripheral::I2C_1,
-       {{DSY_GPIOB, 8}, {DSY_GPIOB, 9}},
-       I2CHandle::Config::Speed::I2C_1MHZ};
-
-static LedDriverPca9685<4, true>::DmaBuffer DMA_BUFFER_MEM_SECTION
-    led_dma_buffer_a,
-    led_dma_buffer_b;
 
 void VenoLooper_v5::Init(bool boost)
 {
     seed.Init(boost);
-    seed.SetAudioBlockSize(256);
+    seed.SetAudioBlockSize(BLOCK_SIZE);
     seed.SetAudioSampleRate(SaiHandle::Config::SampleRate::SAI_48KHZ);
 
     dsy_gpio_pin CVpins[] = 
@@ -102,51 +53,53 @@ void VenoLooper_v5::Init(bool boost)
         adc_cfg[i+3].InitSingle(CVpins[i]);
     }    
 
-    seed.adc.Init(adc_cfg,11);
+    seed.adc.Init(adc_cfg, (LAST_MUX / 8 ) + LAST_CV);
 
     float CVUpdateFreq{};
      //init CV handling
     for(size_t i = 0; i < LAST_CV; i++)
     {
-        CVUpdateFreq = CVFreq[i] == Slow ? AudioCallbackRate() : AudioCallbackRate() * AudioBlockSize();
-        cv[i].InitBipolarCv(seed.adc.GetPtr(i+2), CVUpdateFreq,CVSlew[i]);
+        CVUpdateFreq = CVFreq[i] == Slow ? 
+                                    AudioCallbackRate() : 
+                                    AudioCallbackRate() * AudioBlockSize();
+
+        cv[i].InitBipolarCv(seed.adc.GetPtr(i+3), CVUpdateFreq,CVSlew[i]);
     }
 
-    uint8_t potIndex{};
+    uint8_t muxIndex{};
+    uint8_t muxChannel{};
     float potUpdateFreq{};
 
     //init pot handling
-     for(size_t i = 0; i < LAST_POT; i++)
+     for(size_t i = 0; i < LAST_MUX; i++)
      {
-        potIndex = i < 8 ? i : i-8;
-        potUpdateFreq = PotFreq[i] == Slow ? AudioCallbackRate() : AudioCallbackRate() * AudioBlockSize();
-        pots[i].Init(seed.adc.GetMuxPtr(potIndex == i ? 0 : 1,potIndex),potUpdateFreq,false,false,PotSlew[i]);
+        if(i<8) //0 -> 7
+        {
+            muxIndex = i;
+            muxChannel = 0;
+        }
+        else if(i<16) //8 -> 16
+        {
+            muxIndex = i - 8;
+            muxChannel = 1;
+        }
+        else //16 -> 24
+        {
+            muxIndex = i - 16;
+            muxChannel = 2;
+        }
+        //muxIndex = i < 8 ? i : i-8;
+        potUpdateFreq = MuxFreq[i] == Slow ? 
+        AudioCallbackRate() : 
+        AudioCallbackRate() * AudioBlockSize();
+
+        MUX_Input[i].Init(seed.adc.GetMuxPtr(muxChannel,muxIndex),
+        potUpdateFreq,
+        false,
+        false,
+        MuxSlew[i]);
      }
 
-
-    //Gates
-    // gates[0].Init(seed::PIN_PLAY1_GATE);
-    // gates[1].Init(seed::PIN_REV1_GATE);
-    // gates[2].Init(seed::PIN_REC1_GATE);
-
-    // gates[3].Init(seed::PIN_PLAY2_GATE);
-    // gates[4].Init(seed::PIN_REV2_GATE);
-    // gates[5].Init(seed::PIN_REC2_GATE);
-
-    // gates[6].Init(seed::PIN_CLOCK);
-
-    //PICO Uart connection
-    PicoUartTXRX::Config config;
-
-    config.periph = UartHandler::Config::Peripheral::UART_4;
-    config.baudrate = BAUD_RATE;
-    config.tx = Pin(PORTB,9);
-    config.rx = Pin(PORTB,8);
-
-   // PicoUart.Init(config);
-
-    //Encoder
-    //SD Card
     //MIDI
     MidiUartHandler::Config midi_config;
     midi_config.transport_config.periph = UartHandler::Config::Peripheral::USART_1;
@@ -154,6 +107,22 @@ void VenoLooper_v5::Init(bool boost)
     midi_config.transport_config.tx = seed::PIN_MIDI_UART_TX;
     midi.Init(midi_config);
     midi.StartReceive();
+
+    //Encoder
+    //SD Card
+}
+
+void VenoLooper_v5::InitPicoUart(uint8_t* rx_buff)
+{
+    PicoUartTXRX::Config config;
+    config.periph = UartHandler::Config::Peripheral::UART_4;
+    config.baudrate = BAUD_RATE;
+    config.tx = Pin(seed::PIN_UART_STM_TO_RP2040);
+    config.rx = Pin(seed::PIN_UART_RP2040_TO_STM);
+
+    PicoUart.Init(config, rx_buff);
+
+    PicoUart.StartListening();
 }
 
 void VenoLooper_v5::DelayMs(size_t del)
@@ -189,9 +158,9 @@ void VenoLooper_v5::ChangeAudioCallback(AudioHandle::AudioCallback cb)
 void VenoLooper_v5::SetHidUpdateRates()
 {
     //set the hids to the new update rate
-    for(size_t i = 0; i < LAST_POT; i++)
+    for(size_t i = 0; i < LAST_MUX; i++)
     {
-        pots[i].SetSampleRate(AudioCallbackRate());
+        MUX_Input[i].SetSampleRate(AudioCallbackRate());
     }
     for(size_t i = 0; i < LAST_CV; i++)
     {
@@ -238,19 +207,17 @@ void VenoLooper_v5::StopAdc()
 
 void VenoLooper_v5::ProcessAnalogControls(VenoLooper_v5::CntrlFreq freq)
 {
-    for(size_t i = 0; i < LAST_POT; i++)
+    for(size_t i = 0; i < LAST_MUX; i++)
     {
-        if(PotFreq[i]==freq)
-            pots[i].Process();
+        if(MuxFreq[i]==freq)
+            MUX_Input[i].Process();
     }
-
 
     for(size_t i = 0; i < LAST_CV; i++)
     {
         if(CVFreq[i]==freq)
             cv[i].Process();
     }
-
 }
 
 void VenoLooper_v5::ProcessGates()
@@ -259,8 +226,12 @@ void VenoLooper_v5::ProcessGates()
     {
         gates[i].Update();
     }
+
+    //add RP2040 gates (rev L and rev R)
         
 }
+
+//functions for pico UART inputs
 
 // void VenoLooper_v5::ProcessMCP23017()
 // {
@@ -275,12 +246,12 @@ void VenoLooper_v5::ProcessGates()
 //     }
 // }
 
-float VenoLooper_v5::GetKnobValue(MUX_Inputs idx)
+float VenoLooper_v5::GetMuxValue(MUX_IDs idx)
 {
-    return pots[idx < LAST_POT ? idx : 0].Value();
+    return MUX_Input[idx < LAST_MUX ? idx : 0].Value();
 }
 
-float VenoLooper_v5::GetCvValue(CVs idx)
+float VenoLooper_v5::GetCvValue(CV_IDs idx)
 {
     return cv[idx < LAST_CV ? idx : 0].Value();
 }
@@ -292,7 +263,7 @@ float VenoLooper_v5::GetCvValue(CVs idx)
 
 AnalogControl* VenoLooper_v5::GetKnob(size_t idx)
 {
-    return &pots[idx < LAST_POT ? idx : 0];
+    return &MUX_Input[idx < LAST_MUX ? idx : 0];
 }
 
 AnalogControl* VenoLooper_v5::GetCv(size_t idx)

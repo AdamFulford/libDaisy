@@ -35,7 +35,7 @@ add_library(${TARGET} STATIC
     ${MODULE_DIR}/daisy_legio.cpp
     ${MODULE_DIR}/daisy_patch_sm.cpp
     ${MODULE_DIR}/daisy_VENOLOOPER.cpp
-    # ${MODULE_DIR}/daisy_VENOLOOPER_v5.cpp
+    ${MODULE_DIR}/daisy_VENOLOOPER_v5.cpp
     ${MODULE_DIR}/sys/system.cpp
     ${MODULE_DIR}/dev/sr_595.cpp
     ${MODULE_DIR}/dev/codec_ak4556.cpp

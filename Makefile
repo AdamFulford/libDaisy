@@ -30,6 +30,7 @@ daisy_versio \
 daisy_legio \
 daisy_patch_sm \
 daisy_VENOLOOPER \
+daisy_VENOLOOPER_v5 \
 sys/fatfs \
 sys/system \
 dev/sr_595 \

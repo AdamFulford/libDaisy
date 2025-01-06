@@ -1,6 +1,6 @@
 #include "PICO_Uart_TXRX.h"
 
-daisy::UartHandler::Result PicoUartTXRX::Init(Config config, uint8_t* rx_buffer)
+void PicoUartTXRX::Init(Config config, uint8_t* rx_buffer)
 {
     //tx_buffer_ = tx_buffer;
     rx_buffer_ = rx_buffer;
@@ -40,6 +40,12 @@ daisy::UartHandler::Result PicoUartTXRX::Init(Config config, uint8_t* rx_buffer)
     memset(gate_prev_state_,false,sizeof(gate_prev_state_));
 
     //System::Delay(1000);
+
+}
+
+
+daisy::UartHandler::Result PicoUartTXRX::StartListening()
+{
 
     //start receiving
     return uart.DmaListenStart(rx_buffer_,BUFF_SIZE,PicoUartTXRX::rx_callback, this);

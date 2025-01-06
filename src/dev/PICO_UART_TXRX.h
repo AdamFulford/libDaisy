@@ -50,7 +50,9 @@ struct Config
 
 };
 
-daisy::UartHandler::Result Init(Config config, uint8_t* rx_buffer);
+void Init(Config config, uint8_t* rx_buffer);
+
+daisy::UartHandler::Result StartListening();
 
 //send data over uart in format array of uint8_t
 daisy::UartHandler::Result transmit_packet(const uint8_t *data, size_t length);
