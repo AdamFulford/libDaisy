@@ -158,12 +158,20 @@ class VenoLooper_v5
     enum Daisy_Gates
     {
         PLAY1_GATE,
-        REC1_GATE,
         PLAY2_GATE,
+        REC1_GATE,
         REC2_GATE,
         CLOCK_GATE,
 
         LAST_GATE
+    };
+
+    enum GateOuts
+    {
+        EOC1,
+        EOC2,
+
+        LAST_GATE_OUT
     };
 
     enum CntrlFreq
@@ -411,15 +419,14 @@ void Init(bool boost = false);
     }
 
     DaisySeed                     seed;
-    //LedDriverPca9685<4, true>     led_driver;
     MidiUartHandler               midi;
     PicoUartTXRX                  PicoUart;
-    //Mcp23017                      mcp;
     AnalogControl                 MUX_Input[LAST_MUX];
     AnalogControl                 cv[LAST_CV];
     GateIn                        gates[LAST_GATE];
-    //Switch                        gates[LAST_GATE];                    
-
+    GPIO                          gateOut[LAST_GATE_OUT];
+    Encoder                       encoder;
+               
     private:
 
     std::array<bool, NUM_LEDS> ButtonLEDStates_a {};

@@ -164,9 +164,17 @@ void VenoLooper_v5::Init(bool boost)
     //Init for Pico UART inputs called from main() separately to this function,
     //to connect to rx_buff
 
+    //Gate (EOC) outputs
+    gateOut[0].Init(seed::PIN_EOC1,GPIO::Mode::OUTPUT);
+    gateOut[1].Init(seed::PIN_EOC2,GPIO::Mode::OUTPUT);
+
     //Encoder
+    encoder.Init(seed::PIN_ENC_UP, seed::PIN_ENC_DOWN);
+
+
+
     //SD Card
-    //EOC outputs
+
 }
 
 void VenoLooper_v5::InitPicoUart(uint8_t* rx_buff)

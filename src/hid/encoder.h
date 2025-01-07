@@ -27,6 +27,9 @@ class Encoder
               dsy_gpio_pin b,
               dsy_gpio_pin click,
               float        update_rate = 0.f);
+
+   void Init(dsy_gpio_pin a, 
+                      dsy_gpio_pin b);
     /** Called at update_rate to debounce and handle timing for the switch.
      * In order for events not to be missed, its important that the Edge/Pressed checks be made at the same rate as the debounce function is being called.
      */
