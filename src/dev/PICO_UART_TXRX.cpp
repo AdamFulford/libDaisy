@@ -30,9 +30,9 @@ void PicoUartTXRX::Init(Config config, uint8_t* rx_buffer)
 
     memset(last_update_, 0, sizeof(last_update_));
     memset(updated_, false, sizeof(updated_));
-    memset(t_,SwitchType::TYPE_MOMENTARY,sizeof(t_));
+    //memset(t_,SwitchType::TYPE_MOMENTARY,sizeof(t_));
     memset(state_, 0x00, sizeof(state_));
-    memset(flip_, false, sizeof(flip_));
+    //memset(flip_, false, sizeof(flip_));
     memset(toggleState_, false , sizeof(toggleState_));
     memset(rising_edge_time_, 0 , sizeof(rising_edge_time_));
 
@@ -338,6 +338,11 @@ bool PicoUartTXRX::Pressed(uint8_t id) const
         retval = (state_[id] == 0xff);
     }
     return retval; 
+}
+
+bool PicoUartTXRX::GateState(uint8_t id)
+{
+    return gate_state_[id];
 }
 
 void PicoUartTXRX::GateUpdate(uint8_t id)

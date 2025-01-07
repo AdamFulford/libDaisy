@@ -2,9 +2,9 @@
 #ifndef VENO_LOOPER_V5_BOARD_H
 #define VENO_LOOPER_V5_BOARD_H /**< & */
 #include "daisy_seed.h"
+#include <map>
 
 //v5.1 pin assignments
-//fix with seed assignments
 #define PIN_EOC2 D9
 #define PIN_EOC1 D8
 
@@ -44,6 +44,7 @@
 
 #define BAUD_RATE 115200
 #define BLOCK_SIZE 256
+#define NUM_LEDS 6
 
 namespace daisy
 {
@@ -57,9 +58,42 @@ class VenoLooper_v5
         LAST_NP_LED
     };
 
-    enum Button_LEDs //enum for addressing button LEDs
+    enum PICO_Button_LEDs //enum for addressing button LEDs
     {
+        REC1_LED,
+        PLAY1_LED,
+        REV1_LED,
+        REC2_LED,
+        PLAY2_LED,
+        REV2_LED,
         LAST_BUTTON_LED
+    };
+
+    enum Pico_Buttons
+    {
+    REC1_BUTTON,
+    PLAY1_BUTTON,
+    REV1_BUTTON,   
+    STOP1_BUTTON,
+    CLR1_BUTTON,
+    REC2_BUTTON,
+    PLAY2_BUTTON,
+    REV2_BUTTON,
+    STOP2_BUTTON,
+    CLR2_BUTTON,
+    SAVE_BUTTON,
+    ENC_CLICK_BUTTON,
+    LINK_SW,
+    QUANTISE_SW,
+
+    LAST_PICO_BUTTON
+    };
+
+    enum Pico_Gates
+    {
+        REV1_GATE = 14,
+        REV2_GATE = 15,
+        LAST_PICO_GATE = 16
     };
 
     //order of inputs connected to MUXs
@@ -109,31 +143,6 @@ class VenoLooper_v5
         LAST_SPEED    
     };
 
-    enum PICO_Inputs
-    {
-        REC1_BUTTON,
-        PLAY1_BUTTON,
-        REV1_BUTTON,
-        STOP1_BUTTON,
-        CLR1_BUTTON,
-
-        REC2_BUTTON,
-        PLAY2_BUTTON,
-        REV2_BUTTON,
-        STOP2_BUTTON,
-        CLR2_BUTTON,
-
-        LINK_SWITCH,
-        QUANTISE_SWITCH,
-        SAVE_BUTTON,
-        ENC_CLICK,
-
-        REV1_GATE,
-        REV2_GATE,
-
-        LAST_PICO_INPUT    
-    };
-
 
     enum CV_IDs
     {   
@@ -143,7 +152,6 @@ class VenoLooper_v5
         LAYER2_CV,
         START1_CV,
         START2_CV,
-
         LAST_CV
     };
 
@@ -328,10 +336,10 @@ void Init(bool boost = false);
     /** Process tactile switches and keyboard states */
     void ProcessGates();
 
-    /** Process MCP23017 expander*/
     //void ProcessMCP23017();
-
-    //void DebounceMCP23017();
+    void DebouncePicoButtons();
+    void UpdatePicoGates();
+    void UpdateDaisyGates();
 
     /** Process Analog and Digital Controls */
     inline void ProcessAllControls()
@@ -353,7 +361,7 @@ void Init(bool boost = false);
     float GetCvValue(CV_IDs idx);
 
     //returns state of digital input pin on MCP23017
-    bool GetRawPinState(PICO_Inputs idx);
+    //bool GetRawPinState(PICO_Inputs idx);
 
      /** Getter for knob objects
         \param idx The knob input of interest.
@@ -365,10 +373,15 @@ void Init(bool boost = false);
     */
     AnalogControl* GetCv(size_t idx);
 
-    // ToDo: 
-    // helper functions for LED setting (Layer, Ring, Bank, Buttons)
-    // memory allocation for active and ready LED buffers
-    // UpdateLEDs() (swaps the active and ready buffers)
+    //swaps buffers active and ready buffers ready 
+    //for transmission to Pico. Call in audiocallback
+    void UpdateLEDs(std::array<bool,NUM_LEDS>& data);
+ 
+    //Blocking UART transmit for bool array 
+    //for LED states. Call in main() (polling)
+    void TransmitLED_States();
+
+    //void SetLED(PICO_Button_LEDs id, bool state);
 
     //UartButton Debounce()
 
@@ -409,14 +422,12 @@ void Init(bool boost = false);
 
     private:
 
-    std::array<bool, 6> ButtonLEDStates_a {};
-    std::array<bool, 6> ButtonLEDStates_b {};
+    std::array<bool, NUM_LEDS> ButtonLEDStates_a {};
+    std::array<bool, NUM_LEDS> ButtonLEDStates_b {};
 
-    // Pointers to active and ready buffers
-    std::array<bool, 6>* active_buffer = &ButtonLEDStates_a;
-    std::array<bool, 6>* ready_buffer = &ButtonLEDStates_b;
-
-
+    // Pointers to active and ready buffers for LEDs
+    std::array<bool, NUM_LEDS>* active_buffer = &ButtonLEDStates_a;
+    std::array<bool, NUM_LEDS>* ready_buffer = &ButtonLEDStates_b;
 
     /** Set all the HID callback rates any time a new callback rate is established */
     void SetHidUpdateRates();

@@ -86,6 +86,8 @@ bool Pressed(uint8_t id) const;
 
 bool GetPin(uint8_t id);
 
+bool GateState(uint8_t id);
+
 void GateUpdate(uint8_t id);
 
 bool GateTrig(uint8_t id);
