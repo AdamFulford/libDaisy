@@ -13,7 +13,7 @@
 #define START_BYTE 0x7e
 #define END_BYTE 0x81
 #define NUM_BOOLS 6
-#define PAYLOAD_LENGTH 2
+#define PAYLOAD_LENGTH 181
 #define BUFF_SIZE (5 + PAYLOAD_LENGTH) //start byte + payload + CRC + end byte
 
 using namespace daisy;

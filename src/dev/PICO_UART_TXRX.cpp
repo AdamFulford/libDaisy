@@ -93,7 +93,7 @@ daisy::UartHandler::Result
 {
     uint8_t data[PAYLOAD_LENGTH]{};
 
-    data[0] = packBools(bools);
+    data[PAYLOAD_LENGTH - 1] = packBools(bools);
 
     return transmit_packet(data, PAYLOAD_LENGTH);
 }

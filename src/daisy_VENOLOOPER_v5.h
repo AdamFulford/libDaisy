@@ -42,9 +42,17 @@
 #define PIN_SDMMC_D2 D2
 #define PIN_SDMMC_D3 D1
 
-#define BAUD_RATE 115200
+#define BAUD_RATE 921600
 #define BLOCK_SIZE 256
-#define NUM_LEDS 6
+#define NUM_BUTTON_LEDS 6
+
+#define NUM_NEOPIXELS 60
+
+#define RING1_START 55
+#define RING1_END 34
+
+#define RING2_START 25
+#define RING2_END 4
 
 namespace daisy
 {
@@ -52,11 +60,6 @@ namespace daisy
 class VenoLooper_v5
 {
     public:
-
-    enum NeoPixel_LEDs //enum for addressing NeoPixels
-    {
-        LAST_NP_LED
-    };
 
     enum PICO_Button_LEDs //enum for addressing button LEDs
     {
@@ -381,15 +384,22 @@ void Init(bool boost = false);
     */
     AnalogControl* GetCv(size_t idx);
 
-    //swaps buffers active and ready buffers ready 
+    //fills active buffer
+    //swaps active and ready buffers
     //for transmission to Pico. Call in audiocallback
-    void UpdateLEDs(std::array<bool,NUM_LEDS>& data);
+    void UpdateLEDs();
  
     //Blocking UART transmit for bool array 
     //for LED states. Call in main() (polling)
     void TransmitLED_States();
 
-    //void SetLED(PICO_Button_LEDs id, bool state);
+    //sets the RGB values for a single neopixel
+    void SetNeoPixel(uint8_t id, uint8_t Red, uint8_t Green, uint8_t Blue);
+
+    void ClearAllNeoPixels();
+
+    //sets a single button led state (on or off)
+    void SetButtonLED(PICO_Button_LEDs id, bool state);
 
     //UartButton Debounce()
 
@@ -429,12 +439,17 @@ void Init(bool boost = false);
                
     private:
 
-    std::array<bool, NUM_LEDS> ButtonLEDStates_a {};
-    std::array<bool, NUM_LEDS> ButtonLEDStates_b {};
+    //data for LEDs: first 180 bytes are RGB values for all 60 neopixels
+    //Last byte is packed bools for 6 Button LEDs
+    uint8_t LED_Data_a[(NUM_NEOPIXELS * 3) + 1] {};
+    uint8_t LED_Data_b[(NUM_NEOPIXELS * 3) + 1] {};
 
     // Pointers to active and ready buffers for LEDs
-    std::array<bool, NUM_LEDS>* active_buffer = &ButtonLEDStates_a;
-    std::array<bool, NUM_LEDS>* ready_buffer = &ButtonLEDStates_b;
+    uint8_t* active_buffer = LED_Data_a;
+    uint8_t* ready_buffer = LED_Data_b;
+
+    bool ButtonLED_State[NUM_BUTTON_LEDS] {};
+    uint8_t NeoPixelState[NUM_NEOPIXELS * 3] {};
 
     /** Set all the HID callback rates any time a new callback rate is established */
     void SetHidUpdateRates();

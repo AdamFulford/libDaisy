@@ -323,7 +323,6 @@ void VenoLooper_v5::UpdateDaisyGates()
     }
 }
 
-
 float VenoLooper_v5::GetMuxValue(MUX_IDs idx)
 {
     return MUX_Input[idx < LAST_MUX ? idx : 0].Value();
@@ -333,11 +332,6 @@ float VenoLooper_v5::GetCvValue(CV_IDs idx)
 {
     return cv[idx < LAST_CV ? idx : 0].Value();
 }
-
-// bool VenoLooper_v5::GetRawPinState(MUX_Inputs idx)
-// {
-//     return (mcp.GetPin(idx) == 0xFF) ? true : false;
-// }
 
 AnalogControl* VenoLooper_v5::GetKnob(size_t idx)
 {
@@ -349,10 +343,23 @@ AnalogControl* VenoLooper_v5::GetCv(size_t idx)
     return &cv[idx < LAST_CV ? idx : 0];
 }
 
-
-void VenoLooper_v5::UpdateLEDs(std::array<bool,NUM_LEDS>& data)
+void VenoLooper_v5::UpdateLEDs()
 {
-    *active_buffer = data;
+    //copy neopixel data into active buffer
+    memcpy(active_buffer,NeoPixelState,sizeof(NeoPixelState));
+
+    //pack LED states into last byte of active buffer
+    uint8_t packed = 0;
+
+    int NumBits{NUM_BOOLS <= 8 ? NUM_BOOLS : 8}; 
+    //don't allow num bits to be larger than 8
+    for (int i = 0; i < NumBits; i++) {
+        packed |= (ButtonLED_State[i] & 0x01) << i; // Shift each boolean into the correct bit position
+    }
+    //set final byte in active buffer
+    active_buffer[NUM_NEOPIXELS * 3] = packed;
+
+    //swap over buffers
     auto* temp = active_buffer;
     active_buffer = ready_buffer;
     ready_buffer = temp;
@@ -360,11 +367,30 @@ void VenoLooper_v5::UpdateLEDs(std::array<bool,NUM_LEDS>& data)
 
 void VenoLooper_v5::TransmitLED_States()
 {
-    PicoUart.transmit_bools(*ready_buffer);
+    //transmit bools
+    PicoUart.transmit_packet(ready_buffer, (NUM_NEOPIXELS * 3) + 1);
 }
 
-// void VenoLooper_v5::SetLED(PICO_Button_LEDs id, bool state)
-// {
-//        (*active_buffer)[id]  = state;
-//        ButtonLEDsUpdated_ = true; //set flag
-// }
+void VenoLooper_v5::SetNeoPixel(uint8_t id, uint8_t Red, uint8_t Green, uint8_t Blue)
+{
+    if(id < NUM_NEOPIXELS)
+    {
+        NeoPixelState[id * 3] = Red;
+        NeoPixelState[(id * 3) + 1] = Green;
+        NeoPixelState[(id*3) + 2] = Blue;
+    }
+        //set relevant bytes in active buffer (first 180 relate to neopixels)
+}
+
+void VenoLooper_v5::ClearAllNeoPixels()
+{
+    memset(NeoPixelState,0,sizeof(NeoPixelState));
+}
+
+void VenoLooper_v5::SetButtonLED(PICO_Button_LEDs id, bool state)
+{
+    if(id < LAST_BUTTON_LED) //check id is within bounds
+    {
+        ButtonLED_State[id] = state;
+    }
+}
