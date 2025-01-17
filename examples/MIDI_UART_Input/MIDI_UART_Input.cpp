@@ -49,6 +49,9 @@ int main(void)
     hw.StartLog();
 
     MidiUartHandler::Config midi_config;
+    midi_config.transport_config.periph = UartHandler::Config::Peripheral::USART_1;
+    midi_config.transport_config.rx = seed::D14;
+    midi_config.transport_config.tx = seed::D13;
     midi.Init(midi_config);
 
     midi.StartReceive();

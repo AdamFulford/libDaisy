@@ -1,8 +1,8 @@
 #pragma once
 #ifndef VENO_LOOPER_V5_BOARD_H
 #define VENO_LOOPER_V5_BOARD_H /**< & */
-#include "daisy_seed.h"
 #include <map>
+#include "daisy_seed.h"
 
 //v5.1 pin assignments
 #define PIN_EOC2 D9
@@ -54,6 +54,11 @@
 #define RING2_START 25
 #define RING2_END 4
 
+#define LAYER1_START 59
+#define LAYER2_START 0
+
+#define NUM_RING_PIXELS 22
+
 namespace daisy
 {
 
@@ -70,6 +75,16 @@ class VenoLooper_v5
         PLAY2_LED,
         REV2_LED,
         LAST_BUTTON_LED
+    };
+
+    enum Layer1Leds
+    {
+
+    };
+
+    enum Layer2Leds
+    {
+
     };
 
     enum Pico_Buttons
@@ -396,7 +411,13 @@ void Init(bool boost = false);
     //sets the RGB values for a single neopixel
     void SetNeoPixel(uint8_t id, uint8_t Red, uint8_t Green, uint8_t Blue);
 
+    void SetLayerLED(uint8_t channel, uint8_t layer, uint8_t Red, uint8_t Green, uint8_t Blue);
+
+    void SetRingLED(uint8_t channel, uint8_t position, uint8_t Red, uint8_t Green, uint8_t Blue);
+
     void ClearAllNeoPixels();
+
+    void ClearAllButtonLEDs();
 
     //sets a single button led state (on or off)
     void SetButtonLED(PICO_Button_LEDs id, bool state);
@@ -436,6 +457,8 @@ void Init(bool boost = false);
     GateIn                        gates[LAST_GATE];
     GPIO                          gateOut[LAST_GATE_OUT];
     Encoder                       encoder;
+
+    float Length1_Value{};
                
     private:
 

@@ -80,15 +80,20 @@ void VenoLooper_v5::Init(bool boost)
             muxIndex = i;
             muxChannel = 0;
         }
-        else if(i<16) //8 -> 16
+        else if(i<16) //8 -> 15
         {
             muxIndex = i - 8;
             muxChannel = 1;
         }
-        else //16 -> 24
+        else if(i<24) //16 -> 23
         {
             muxIndex = i - 16;
             muxChannel = 2;
+        }
+
+        else //error
+        {
+            continue; //don't set anything up
         }
         //muxIndex = i < 8 ? i : i-8;
         UpdateFreq = MuxFreq[i] == Slow ? 
@@ -123,7 +128,6 @@ void VenoLooper_v5::Init(bool boost)
     midi.Init(midi_config);
     midi.StartReceive();
 
-
     //gate pins
     std::array<dsy_gpio_pin, LAST_GATE> Gatepins = 
     {dsy_gpio_pin(seed::PIN_PLAY1_GATE),
@@ -153,7 +157,6 @@ void VenoLooper_v5::Init(bool boost)
     PicoUart.SetSwitchType(Pico_Gates::REV2_GATE,
                            PicoUartTXRX::SwitchType::TYPE_MOMENTARY, 
                            false);
-
 
     //buttons
     for(size_t i=0; i<LAST_PICO_BUTTON; ++i)
@@ -186,7 +189,6 @@ void VenoLooper_v5::InitPicoUart(uint8_t* rx_buff)
     config.rx = Pin(seed::PIN_UART_RP2040_TO_STM);
 
     PicoUart.Init(config, rx_buff);
-
     PicoUart.StartListening();
 }
 
@@ -271,7 +273,7 @@ void VenoLooper_v5::StopAdc()
 }
 
 void VenoLooper_v5::ProcessAnalogControls(VenoLooper_v5::CntrlFreq freq)
-{
+{   
     for(size_t i = 0; i < LAST_MUX; i++)
     {
         if(MuxFreq[i]==freq)
@@ -283,6 +285,7 @@ void VenoLooper_v5::ProcessAnalogControls(VenoLooper_v5::CntrlFreq freq)
         if(CVFreq[i]==freq)
             cv[i].Process();
     }
+
 }
 
 void VenoLooper_v5::ProcessGates()
@@ -382,9 +385,53 @@ void VenoLooper_v5::SetNeoPixel(uint8_t id, uint8_t Red, uint8_t Green, uint8_t 
         //set relevant bytes in active buffer (first 180 relate to neopixels)
 }
 
+void VenoLooper_v5::SetLayerLED(uint8_t channel, uint8_t layer, uint8_t Red, uint8_t Green, uint8_t Blue)
+{
+    if(channel == 0)
+    {
+        SetNeoPixel(LAYER1_START - layer,
+                    Red,
+                    Green,
+                    Blue);
+    }
+    if(channel == 1)
+    {
+        SetNeoPixel(LAYER2_START + layer,
+                    Red,
+                    Green,
+                    Blue);
+    }
+    
+}
+
+ void VenoLooper_v5::SetRingLED(uint8_t channel, uint8_t position, uint8_t Red, uint8_t Green, uint8_t Blue)
+ {
+    if (position > NUM_RING_PIXELS)
+    {
+        //don't set anything
+    }
+    else
+    {
+        if(channel == 0)
+        {
+            SetNeoPixel(RING1_START - position,Red,Green,Blue);
+        }
+
+        if(channel == 1)
+        {
+            SetNeoPixel(RING2_START - position,Red,Green,Blue);
+        }
+    }
+ }
+
 void VenoLooper_v5::ClearAllNeoPixels()
 {
     memset(NeoPixelState,0,sizeof(NeoPixelState));
+}
+
+void VenoLooper_v5::ClearAllButtonLEDs()
+{
+    memset(ButtonLED_State,false,NUM_BUTTON_LEDS);
 }
 
 void VenoLooper_v5::SetButtonLED(PICO_Button_LEDs id, bool state)
