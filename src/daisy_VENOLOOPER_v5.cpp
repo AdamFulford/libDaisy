@@ -189,7 +189,7 @@ void VenoLooper_v5::InitPicoUart(uint8_t* rx_buff)
     config.rx = Pin(seed::PIN_UART_RP2040_TO_STM);
 
     PicoUart.Init(config, rx_buff);
-    PicoUart.StartListening();
+    //PicoUart.StartListening();
 }
 
 void VenoLooper_v5::DelayMs(size_t del)

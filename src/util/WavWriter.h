@@ -84,6 +84,16 @@ class WavWriter
         /** Also calcs SubChunk2Size */
         wavheader_.FileSize = CalcFileSize();
         // This is calculated as part of the subchunk size
+
+        /** Setup our interface to the FatFS middleware */
+        // FatFSInterface::Config fsi_config;
+        // fsi_config.media = FatFSInterface::Config::MEDIA_SD;
+        // fsi.Init(fsi_config);
+
+        //fs = fsi.GetSDFileSystem();
+
+        isWriting_ = false;
+        fileReady_ = false;
     }
 
     /** Records the current sample into the working buffer,
@@ -133,6 +143,7 @@ class WavWriter
             offset  = bstate_ == BufferState::FLUSH0 ? 0 : kTransferSamps;
             bstate_ = BufferState::IDLE;
             f_write(&fp_, &transfer_buff[offset], transfer_size, &bw);
+            isWriting_ = true;
         }
     }
 
@@ -149,20 +160,57 @@ class WavWriter
         f_lseek(&fp_, 0);
         f_write(&fp_, &wavheader_, sizeof(wavheader_), &bw);
         f_close(&fp_);
+
+        fileReady_ = false;
+        isWriting_ = false;
+    }
+
+    // FRESULT MountDrive()
+    // {
+    //     return  f_mount(&fs, "/", 0);
+    // }
+
+    /** Opens a file for writing. Writes the initial WAV Header, and gets ready for stream-based recording. */
+    FRESULT OpenFile(const char *name)
+    {
+        return f_open(&fp_, name, (FA_CREATE_ALWAYS | FA_WRITE));
+    }
+
+    FRESULT TestFile()
+    {
+        FRESULT res = FR_NO_FILESYSTEM;
+        
+        if(f_open(&file, "LOOPER_SD_TEST.txt", (FA_CREATE_ALWAYS | FA_WRITE))
+           == FR_OK)
+        {
+            FixedCapStr<56> str = "Hello Adam! This is the Veno-Looper v5 HW";
+            UINT            bytes_written;
+            res = f_write(&file, str.Cstr(), str.Size(), &bytes_written);
+            f_close(&file);
+        }
+
+        return res;
     }
 
     /** Opens a file for writing. Writes the initial WAV Header, and gets ready for stream-based recording. */
-    void OpenFile(const char *name)
+    FRESULT PrepareWav(FRESULT OpenFileResult)
     {
-        if(f_open(&fp_, name, FA_WRITE | FA_CREATE_ALWAYS) == FR_OK)
+        FRESULT result{OpenFileResult};
+
+        if(OpenFileResult == FR_OK)
         {
             unsigned int bw = 0;
-            if(f_write(&fp_, &wavheader_, sizeof(wavheader_), &bw) == FR_OK)
+
+            result = f_write(&fp_, &wavheader_, sizeof(wavheader_), &bw);
+            if(result == FR_OK)
             {
                 recording_ = true;
                 num_samps_ = 0;
+                fileReady_ = true;
             }
         }
+        //}
+        return result;
     }
 
     /** Returns whether recording is currently active or not. */
@@ -176,6 +224,11 @@ class WavWriter
     {
         return (float)num_samps_ / (float)cfg_.samplerate;
     }
+
+    BufferState GetBufferState(){ return bstate_; }
+
+    bool IsFileReady() { return fileReady_; }
+    bool IsWriting() { return isWriting_; }
 
   private:
     /** Calculate the file size based on current recording */
@@ -200,7 +253,16 @@ class WavWriter
     int32_t           transfer_buff[kTransferSamps * 2];
     BufferState       bstate_;
     bool              recording_;
+    bool              isWriting_;
+    bool              fileReady_;
+    //
+    // FatFSInterface    fsi;
+    //
     FIL               fp_;
+    FIL file; //test file
+    // FATFS dummyFS;
+
+    // FATFS& fs{dummyFS};
 };
 
 } // namespace daisy

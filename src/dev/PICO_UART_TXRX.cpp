@@ -48,6 +48,8 @@ daisy::UartHandler::Result PicoUartTXRX::StartListening()
 {
 
     //start receiving
+    //dsy_dma_clear_cache_for_buffer((uint8_t*)rx_buffer_, sizeof(rx_buffer_));
+
     return uart.DmaListenStart(rx_buffer_,BUFF_SIZE,PicoUartTXRX::rx_callback, this);
 
 }
