@@ -133,6 +133,7 @@ class UartHandler::Impl
 
     static constexpr uint8_t      kNumUartWithDma = 9;
     static volatile int8_t        dma_active_peripheral_;
+    static volatile int8_t        dma_active_peripheral2_;
     static UartDmaJob             queued_dma_transfers_[kNumUartWithDma];
     static EndCallbackFunctionPtr next_end_callback_;
     static void*                  next_callback_context_;
@@ -188,6 +189,7 @@ void UartHandler::Impl::GlobalInit()
 {
     // init the scheduler queue
     dma_active_peripheral_ = -1;
+    dma_active_peripheral2_ = -1;
     for(int per = 0; per < kNumUartWithDma; per++)
         queued_dma_transfers_[per] = UartHandler::Impl::UartDmaJob();
 }
@@ -331,7 +333,19 @@ UartHandler::Result UartHandler::Impl::SetDmaPeripheral()
 
 UartHandler::Result UartHandler::Impl::InitDma(bool rx, bool tx)
 {
-    hdma_rx_.Instance                 = DMA1_Stream5;
+    //hdma_rx_.Instance                 = DMA1_Stream5;
+
+    //change dma stream depending on uart periphal used
+    switch(config_.periph)
+    {
+        case UartHandler::Config::Peripheral::UART_4:
+           hdma_rx_.Instance = DMA2_Stream6; 
+           break;
+        default: 
+            hdma_rx_.Instance = DMA1_Stream5; 
+            break;
+    }
+
     hdma_rx_.Init.PeriphInc           = DMA_PINC_DISABLE;
     hdma_rx_.Init.MemInc              = DMA_MINC_ENABLE;
     hdma_rx_.Init.PeriphDataAlignment = DMA_PDATAALIGN_BYTE;
@@ -490,7 +504,7 @@ UartHandler::Result UartHandler::Impl::DmaTransmit(
         buff, size, start_callback, end_callback, callback_context);
 }
 
-
+//Starts DMA stream listening on dma1 stream 5
 UartHandler::Result
 UartHandler::Impl::DmaListenStart(uint8_t* buff,
                                   size_t   size,
@@ -504,11 +518,26 @@ UartHandler::Impl::DmaListenStart(uint8_t* buff,
     circular_rx_context_    = callback_context;
     circular_rx_last_pos_   = 0;
     listener_mode_          = true;
-
+    
     /** Initialize DMA Rx i
      *  TODO: Update when dynamic DMA Stream acquisition is added
      */
-    hdma_rx_.Instance                 = DMA1_Stream5;
+
+    //change dma stream depending on uart periphal used
+    switch(config_.periph)
+    {
+        case UartHandler::Config::Peripheral::UART_4:
+           hdma_rx_.Instance = DMA2_Stream6; 
+           dma_active_peripheral2_ = int(config_.periph);
+           break;
+        default: 
+            hdma_rx_.Instance = DMA1_Stream5; 
+            dma_active_peripheral_ = int(config_.periph);
+            break;
+    }
+
+
+    //hdma_rx_.Instance                 = DMA1_Stream5;
     hdma_rx_.Init.PeriphInc           = DMA_PINC_DISABLE;
     hdma_rx_.Init.MemInc              = DMA_MINC_ENABLE;
     hdma_rx_.Init.PeriphDataAlignment = DMA_PDATAALIGN_BYTE;
@@ -530,7 +559,8 @@ UartHandler::Impl::DmaListenStart(uint8_t* buff,
     dsy_dma_invalidate_cache_for_buffer(buff, size);
     if(HAL_UART_Receive_DMA(&huart_, buff, size) != HAL_OK)
         return UartHandler::Result::ERR;
-    dma_active_peripheral_ = int(config_.periph);
+    
+    //dma_active_peripheral_ = int(config_.periph);
     return UartHandler::Result::OK;
 }
 
@@ -839,6 +869,8 @@ UartHandler::Result UartHandler::Impl::DeInitPins()
 }
 
 volatile int8_t UartHandler::Impl::dma_active_peripheral_;
+volatile int8_t UartHandler::Impl::dma_active_peripheral2_;
+
 UartHandler::Impl::UartDmaJob
     UartHandler::Impl::queued_dma_transfers_[kNumUartWithDma];
 
@@ -975,13 +1007,29 @@ static void UART_CheckRxListener(UartHandler::Impl* handle)
     size_t pos;
     size_t old_pos = handle->circular_rx_last_pos_;
 
+    uint32_t DMA_GetDataLength;
+
+        //change dma stream depending on uart periphal used
+    switch(handle->config_.periph)
+    {
+        case UartHandler::Config::Peripheral::UART_4:
+           DMA_GetDataLength = LL_DMA_GetDataLength(DMA2, LL_DMA_STREAM_6);
+        break;
+        default: 
+            DMA_GetDataLength = LL_DMA_GetDataLength(DMA1, LL_DMA_STREAM_5);
+        break;
+    }
+
+    //if(handle->)
+
     /** calculate pos. in buffer 
      * TODO: make flexible for other DMA STreams
      * 
      */
     uint8_t* buffer = handle->circular_rx_buff_;
     pos             = handle->circular_rx_total_size_
-          - LL_DMA_GetDataLength(DMA1, LL_DMA_STREAM_5);
+    //      - LL_DMA_GetDataLength(DMA1, LL_DMA_STREAM_5);
+             - DMA_GetDataLength;
     if(handle->circular_rx_callback_ && pos != old_pos)
     {
         if(pos > old_pos)
@@ -1054,17 +1102,37 @@ extern "C"
     void LPUART1_IRQHandler() { UART_IRQHandler(&uart_handles[8]); }
 }
 
-void HalUartDmaRxStreamCallback(void)
+void HalUartDmaRxStreamCallback(uint8_t stream)
 {
+    int8_t uart_handle_index{};
+    switch(stream)
+    {
+        case 1:
+            uart_handle_index = UartHandler::Impl::dma_active_peripheral2_;
+
+        break;
+        default:
+            uart_handle_index = UartHandler::Impl::dma_active_peripheral_;
+
+        break;
+    }
+
     ScopedIrqBlocker block;
-    if(UartHandler::Impl::dma_active_peripheral_ >= 0)
+    if(uart_handle_index >= 0)
         HAL_DMA_IRQHandler(
-            &uart_handles[UartHandler::Impl::dma_active_peripheral_].hdma_rx_);
+            &uart_handles[uart_handle_index].hdma_rx_);
 }
+
+extern "C" void DMA2_Stream6_IRQHandler(void)
+{
+    HalUartDmaRxStreamCallback(1);
+}
+
 extern "C" void DMA1_Stream5_IRQHandler(void)
 {
-    HalUartDmaRxStreamCallback();
+    HalUartDmaRxStreamCallback(0);
 }
+
 
 void HalUartDmaTxStreamCallback(void)
 {

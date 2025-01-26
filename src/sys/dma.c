@@ -48,6 +48,10 @@ extern "C"
         HAL_NVIC_EnableIRQ(DMA2_Stream2_IRQn);
         HAL_NVIC_SetPriority(DMA2_Stream3_IRQn, 0, 0);
         HAL_NVIC_EnableIRQ(DMA2_Stream3_IRQn);
+
+        //DMA2_Stream6_IRQn for UART4
+        HAL_NVIC_SetPriority(DMA2_Stream6_IRQn, 0, 0);
+        HAL_NVIC_EnableIRQ(DMA2_Stream6_IRQn);
     }
 
     void dsy_dma_deinit(void)
@@ -80,6 +84,10 @@ extern "C"
         // DMA2_Stream2_IRQn and DMA2_Stream3_IRQn interrupt configuration for SPI
         HAL_NVIC_DisableIRQ(DMA2_Stream2_IRQn);
         HAL_NVIC_DisableIRQ(DMA2_Stream3_IRQn);
+        
+        //DMA2_Stream6_IRQn for UART4
+        HAL_NVIC_DisableIRQ(DMA2_Stream6_IRQn);
+
     }
 
     void dsy_dma_clear_cache_for_buffer(uint8_t* buffer, size_t size)

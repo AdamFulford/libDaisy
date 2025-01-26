@@ -104,7 +104,8 @@ private:
 void ParseByte(uint8_t byte);
 
 //callback for receiving data with interrupt
-static void rx_callback(unsigned char *data, size_t size, void *context, daisy::UartHandler::Result result);
+static void rx_callback(unsigned char *data, size_t size, 
+    void *context, daisy::UartHandler::Result result);
 
 //helper function to pack bools into a byte
 uint8_t packBools(const std::array<bool, NUM_BOOLS>& bools);
