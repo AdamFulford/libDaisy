@@ -1,16 +1,99 @@
 # libDaisy Changelog
 
-## Unreleased
+## v7.1.0
 
 ### Features
 
+* Support for MIDI via USB Host has been added. (PR #611)
+* Four new OLED fonts were added: 4x6, 4x8, 5x8, and 6x7. (PR #619)
+
+### Bugfixes
+
+* Fixed issue with posting test results for contributor PRs form forks (PR #617)
+
+## v7.0.1
+
+### Features
+- Change `AudioHandle::Config` to an aggregate type, allows for aggregate init. Doesn't break existing code.
+- Add SerialRead example, shows how to read via Serial over USB
+- Add SH1106 OLED driver
+
+### Bugfixes
+- Fix float range for `Random::GetFloat()`
+- Move SAI initialized check so it isn't a no-op
+
+## v7.0.0
+
+### Features
+- Update internal CMSIS and HAL.
+- Adds new HAL module support via `src/sys/stm32h7xx_hal_conf.h`
+  - Digital Temperature Sensor
+  - Filter Math Accelerator (FMAC)
+  - Octo-SPI Controller (OSPI)
+  - Digital Filter for Delta-Sigma Modulation
+  - CORDIC co-processor block
+- Moves relevant HAL, CMSIS, Middleware code to submodules:
+  - https://github.com/ARM-software/CMSIS_5
+  - https://github.com/STMicroelectronics/cmsis_device_h7
+  - https://github.com/STMicroelectronics/stm32h7xx_hal_driver
+  - https://github.com/ARM-software/CMSIS-DSP
+  - https://github.com/STMicroelectronics/stm32_mw_usb_device
+
+### Bugfixes
+- Very minor bugfix in CpuLoadMeter_gtest.cpp so that a number would no longer overflow when bitshifting left
+
+### Migrating
+- Updating an existing libDaisy install via `git pull` will require you to run `git restore . --recurse-submodules` before it will compile.
+  - Note, this will also undo any local changes you may have to the library. Make sure to stash those!
+- If you clone a fresh copy of libDaisy with `git clone https://www.github.com/electro-smith/libDaisy --recurse-submodules`, this will not be necessary
+- Breaking changes:
+  - `GPIO::Mode::OUTPUT_OD` renamed to `GPIO::Mode::OPEN_DRAIN` due to a name conflict collision
+  - Compiled code size has increased by up to 7%
+
+## v6.0.0
+
+### Features
+
+* bootloader: Add local BootloaderBlink example for testing the bootloader and its various configs
+* bootloader: Add four bin variants: internal / external DFU, and 10ms / 2000ms timeouts
+* core: Add USE_DAISYSP_LGPL flag to core/Makefile for DaisySP_LGPL support.
+* bootloader: added `System::BootloaderMode::DAISY`, `System::BootloaderMode::DAISY_SKIP_TIMEOUT`, and `System::BootloaderMode::DAISY_INFINITE_TIMEOUT` options to `System::ResetToBootloader` method for better firmware updating flexibility.
+
+### Bug fixes
+
+* Fix link to electro-smith website in README
+* bootloader: pins `D0`, `D29` and `D30` are no longer stuck when using the Daisy bootloader
+* Color: Fixed bug with init not setting the green value correctly
+
+#### Bootloader
+
+* This version of libDaisy and greater will be compatible with any version of the Daisy bootloader, meaning you won't have to update the bootloader on your product if you want the latest changes to libDaisy.
+* However, for newer versions of the bootloader, you must use a compatible version of libDaisy.
+  * Daisy bootloader v6.0 and up will only be compatible with libDaisy v5.3 and up.
+
+## v5.4.0
+
+### Features
+
+* adc: added ConversionSpeed configuration to the AdcChannelConfig (#579)
+* board: Updated Daisy board definitions to use new Pin system (#581)
 * board: added official support for new Daisy Seed2 DFM hardware (built in compatibility with DaisySeed class).
+* device: added driver for SK9822 (#574)
 * examples: added a number of minimal examples for the Seed/Seed2DFM
 * gatein: added new Init function that is compatible with newer C++ `Pin` type.
 
 ### Bug Fixes
 
 * patchsm: Corrected gate out pin assignment confusion added by (#417) as noted by [apbianco](https://forum.electro-smith.com/u/apbianco) and [tele_player](https://forum.electro-smith.com/u/tele_player)
+* midi: improvements to UART transport stability, and fixes to parser (#566, #564, #583)
+* qspi: fixed memory cache invalidation for Persistent Storage (#572)
+* spi: fixed issue with unpredictable pin states at end of transmission (#553, #559)
+
+### Other
+
+* build: removed redundant compile-time def from CMake build (#565)
+* docs: use explicit grouping; omit comments from output (#563)
+* docs: fix typo in GPIO guide (#567)
 
 ## v5.3.0
 
@@ -52,7 +135,7 @@
 * bootloader: Working with the bootloader has been simplified. See [the new guide for updates on usage](https://electro-smith.github.io/libDaisy/md_doc_md__a7__getting__started__daisy__bootloader.html)
 * usb: `USBHost` class has added support for user callbacks on device connection, disconnection, and when the MSC class becomes active.
 * uart: Adds DMA RX and TX modes, similar to how they work on the I2C and SPI.
-* uart: Update function names to be more in line with the new DMA / Blocking scheme. 
+* uart: Update function names to be more in line with the new DMA / Blocking scheme.
   * The old methods are wrappers for the new ones to preserve backwards compatibility, but **will be removed in a future version**.
   * Affected functions: `PollReceive`, `PollTx`, `StartRx`, `RxActive`, `FlushRx`, `PopRx`, `Readable`
 
@@ -97,7 +180,7 @@
 * testing: debugging configuration now uses `lldb` debugging extension to support unit test debugging on macOS with Apple Silicon
 * driver: oled_ssd130x.h - Add the SpiHandle:Config struct to SSD130x4WireTransport:Config to allow full access to the SPI peripheral configuration.
 * hid: fixed issue in `AnalogControl` where computed coeff could be out of range with certain block sizes
-* driver: added missing alternate function pin mappings for SPI2, and UART for pins available on the patch_sm hardware 
+* driver: added missing alternate function pin mappings for SPI2, and UART for pins available on the patch_sm hardware
 * usb: fixed issue with MIDI output from USB
 * driver: fixed off-by-one error in qspi erase function.
 
@@ -246,7 +329,7 @@ max11300driver.ConfigurePinAsAnalogWrite(daisy::MAX11300::PIN_1, daisy::MAX11300
 
 ### Other
 
-* switch: Use `System::GetNow()` rather than the update rate to calculate `TimeHeldMs()`.  
+* switch: Use `System::GetNow()` rather than the update rate to calculate `TimeHeldMs()`.
   * This has also been applied to the `Encoder` class (since it uses `Switch` internally).
 * usb host: ST Middleware for USB Host support has been added to the Middlewares folder
 * fatfs: changed default `FS_LOCK` to 0, allowing for more simultaneously open FIL objects.
@@ -440,7 +523,7 @@ sdram.Init();
 
 ### Other
 
-* test: add unit testing for midi parser.  
+* test: add unit testing for midi parser.
 * tests: add tests for `FIFO`
 * docs: Update TODO comment in `uart.h` to reflect most recent uart update.
 * ci: add filters to the workflows
