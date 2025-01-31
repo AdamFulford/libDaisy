@@ -44,9 +44,9 @@ enum SwitchType
 struct Config
 {
     UartHandler::Config::Peripheral periph;
-    dsy_gpio_pin                    rx;
-    dsy_gpio_pin                    tx;
-    uint32_t                        baudrate;
+    Pin                    rx;
+    Pin                    tx;
+    uint32_t               baudrate;
 
 };
 

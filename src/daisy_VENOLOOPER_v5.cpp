@@ -14,7 +14,7 @@ void VenoLooper_v5::Init(bool boost)
     seed.SetAudioBlockSize(BLOCK_SIZE);
     seed.SetAudioSampleRate(SaiHandle::Config::SampleRate::SAI_48KHZ);
 
-    dsy_gpio_pin CVpins[] = 
+    Pin CVpins[] = 
     {seed::PIN_VOct_CV1_ADC,
     seed::PIN_Voct_CV2_ADC,
     seed::PIN_LAYER_CV1_ADC,
@@ -129,25 +129,25 @@ void VenoLooper_v5::Init(bool boost)
     midi.StartReceive();
 
     //gate pins
-    std::array<dsy_gpio_pin, LAST_GATE> Gatepins = 
-    {dsy_gpio_pin(seed::PIN_PLAY1_GATE),
-    dsy_gpio_pin(seed::PIN_PLAY2_GATE),
-    dsy_gpio_pin(seed::PIN_REC1_GATE),
-    dsy_gpio_pin(seed::PIN_REC2_GATE),
-    dsy_gpio_pin(seed::PIN_CLOCK)};
+    std::array<Pin, LAST_GATE> Gatepins = 
+    {seed::PIN_PLAY1_GATE,
+     seed::PIN_PLAY2_GATE,
+     seed::PIN_REC1_GATE,
+     seed::PIN_REC2_GATE,
+     seed::PIN_CLOCK};
 
-    //pointers to gate pins
-    dsy_gpio_pin* GatePinPtrs[LAST_GATE] {};
+    // //pointers to gate pins
+    // Pin* GatePinPtrs[LAST_GATE] {};
 
-    for (size_t i=0; i<LAST_GATE; ++i)
-    {
-        GatePinPtrs[i] = &Gatepins[i];
-    }
+    // for (size_t i=0; i<LAST_GATE; ++i)
+    // {
+    //     GatePinPtrs[i] = &Gatepins[i];
+    // }
 
     //gates init
     for(size_t i=0; i<LAST_GATE; ++i)
     {
-        gates[i].Init(GatePinPtrs[i], true);
+        gates[i].Init(Gatepins[i], true);
     }
 
     PicoUart.SetSwitchType(Pico_Gates::REV1_GATE,

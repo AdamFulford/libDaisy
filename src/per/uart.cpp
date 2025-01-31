@@ -1168,13 +1168,7 @@ extern "C" void HAL_UART_RxCpltCallback(UART_HandleTypeDef* huart)
 
 extern "C" void HAL_UART_RxHalfCpltCallback(UART_HandleTypeDef* huart)
 {
-    /** Only need the HalfCplt for circular DMA mode */
-    auto* handle = MapInstanceToHandle(huart->Instance);
-    if(handle->listener_mode_)
-    {
-        UART_CheckRxListener(handle);
-    }
-{
+
     auto* handle = MapInstanceToHandle(huart->Instance);
     if(handle->listener_mode_)
     {
@@ -1184,16 +1178,6 @@ extern "C" void HAL_UART_RxHalfCpltCallback(UART_HandleTypeDef* huart)
     else
     {
         UartHandler::Impl::DmaTransferFinished(huart, UartHandler::Result::OK);
-    }
-}
-
-extern "C" void HAL_UART_RxHalfCpltCallback(UART_HandleTypeDef* huart)
-{
-    /** Only need the HalfCplt for circular DMA mode */
-    auto* handle = MapInstanceToHandle(huart->Instance);
-    if(handle->listener_mode_)
-    {
-        UART_CheckRxListener(handle);
     }
 }
 
@@ -1280,27 +1264,19 @@ UartHandler::DmaListenStart(uint8_t*                                   buff,
                             size_t                                     size,
                             UartHandler::CircularRxCallbackFunctionPtr cb,
                             void* callback_context)
-UartHandler::Result
-UartHandler::DmaListenStart(uint8_t*                                   buff,
-                            size_t                                     size,
-                            UartHandler::CircularRxCallbackFunctionPtr cb,
-                            void* callback_context)
 {
     return pimpl_->DmaListenStart(buff, size, cb, callback_context);
     return pimpl_->DmaListenStart(buff, size, cb, callback_context);
 }
 
-UartHandler::Result UartHandler::DmaListenStop()
+
 UartHandler::Result UartHandler::DmaListenStop()
 {
-    return pimpl_->DmaListenStop();
     return pimpl_->DmaListenStop();
 }
 
 bool UartHandler::IsListening() const
-bool UartHandler::IsListening() const
 {
-    return pimpl_->IsListening();
     return pimpl_->IsListening();
 }
 

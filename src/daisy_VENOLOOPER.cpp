@@ -42,10 +42,10 @@
 
 using namespace daisy;
 
-static constexpr I2CHandle::Config i2c_config
-    = {I2CHandle::Config::Peripheral::I2C_1,
-       {{DSY_GPIOB, 8}, {DSY_GPIOB, 9}},
-       I2CHandle::Config::Speed::I2C_1MHZ};
+// static constexpr I2CHandle::Config i2c_config
+//     = {I2CHandle::Config::Peripheral::I2C_1,
+//        {{DSY_GPIOB, 8}, {DSY_GPIOB, 9}},
+//        I2CHandle::Config::Speed::I2C_1MHZ};
 
 static LedDriverPca9685<4, true>::DmaBuffer DMA_BUFFER_MEM_SECTION
     led_dma_buffer_a,
@@ -57,7 +57,7 @@ void VenoLooper::Init(bool boost)
     seed.SetAudioBlockSize(256);
     seed.SetAudioSampleRate(SaiHandle::Config::SampleRate::SAI_48KHZ);
 
-    dsy_gpio_pin CVpins[] = 
+    Pin CVpins[] = 
     {seed::PIN_LENGTH_CV2_ADC,
     seed::PIN_VOct_CV1_ADC,
     seed::PIN_Voct_CV2_ADC,
@@ -116,13 +116,13 @@ void VenoLooper::Init(bool boost)
     // 4x PCA9685 addresses 0x00, 0x01,  0x02 and 0x03
     uint8_t   addr[4] = {0x00, 0x01, 0x02, 0x03};
     I2CHandle i2c_led;
-    i2c_led.Init(i2c_config);
+    //i2c_led.Init(i2c_config);
     led_driver.Init(i2c_led, addr, led_dma_buffer_a, led_dma_buffer_b);
 
     //MCP23017 GPIO expander
     Mcp23017::Config mcp_config;
     mcp_config.transport_config.i2c_address = 0x24;
-    mcp_config.transport_config.i2c_config = i2c_config;
+   // mcp_config.transport_config.i2c_config = i2c_config;
 
     mcp.Init(mcp_config);
     //Port direction, including pullups, inverted:

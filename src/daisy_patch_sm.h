@@ -133,7 +133,7 @@ namespace patch_sm
        // }
 
         /** Returns the current value for one of the ADCs */
-        //float GetAdcValue(int idx);
+        float GetAdcValue(int idx);
 
         float GetADCRawFloatValue(int idx);
 

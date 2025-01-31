@@ -17,21 +17,15 @@ void Encoder::Init(Pin a, Pin b, Pin click, float update_rate)
     a_ = b_ = 0xff;
 }
 
-void Encoder::Init(dsy_gpio_pin a,
-                   dsy_gpio_pin b)
+void Encoder::Init(Pin a,
+                   Pin b)
 {
     last_update_ = System::GetNow();
     updated_     = false;
 
     // Init GPIO for A, and B
-    hw_a_.pin  = a;
-    hw_a_.mode = DSY_GPIO_MODE_INPUT;
-    hw_a_.pull = DSY_GPIO_PULLUP;
-    hw_b_.pin  = b;
-    hw_b_.mode = DSY_GPIO_MODE_INPUT;
-    hw_b_.pull = DSY_GPIO_PULLUP;
-    dsy_gpio_init(&hw_a_);
-    dsy_gpio_init(&hw_b_);
+    hw_a_.Init(a, GPIO::Mode::INPUT, GPIO::Pull::PULLUP);
+    hw_b_.Init(b, GPIO::Mode::INPUT, GPIO::Pull::PULLUP);
     // Default Initialization for Switch
     //sw_.Init(click);
     // Set initial states, etc.
