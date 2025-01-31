@@ -20,7 +20,7 @@ int main(void)
     hw.Init();
 
     /** Initialize our Gate Input */
-    gate_in.Init(seed::D11);
+    gate_in.Init(seed::D30);
 
 
     /** Infinite Loop */
