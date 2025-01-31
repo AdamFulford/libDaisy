@@ -4,7 +4,7 @@ var classdaisy_1_1_g_p_i_o =
     [ "Mode", "classdaisy_1_1_g_p_i_o.html#af853f20a7e4f4d4f337c30fe1d6f1827", [
       [ "INPUT", "classdaisy_1_1_g_p_i_o.html#af853f20a7e4f4d4f337c30fe1d6f1827aa84cc046d48610b05c21fd3670d0c829", null ],
       [ "OUTPUT", "classdaisy_1_1_g_p_i_o.html#af853f20a7e4f4d4f337c30fe1d6f1827a50a87f0d71f7221582dad4bf507a0f34", null ],
-      [ "OUTPUT_OD", "classdaisy_1_1_g_p_i_o.html#af853f20a7e4f4d4f337c30fe1d6f1827a9fdc84240088be4e2d30979a2cef2b78", null ],
+      [ "OPEN_DRAIN", "classdaisy_1_1_g_p_i_o.html#af853f20a7e4f4d4f337c30fe1d6f1827af8eab64275fc0fab3d946c89bb143865", null ],
       [ "ANALOG", "classdaisy_1_1_g_p_i_o.html#af853f20a7e4f4d4f337c30fe1d6f1827a8b7d08163aa92ed2a8aceb06b9488e60", null ]
     ] ],
     [ "Pull", "classdaisy_1_1_g_p_i_o.html#a99f432b0880dab3d3b202f1cd8081f0d", [
@@ -21,6 +21,7 @@ var classdaisy_1_1_g_p_i_o =
     [ "GPIO", "classdaisy_1_1_g_p_i_o.html#a6726cb4b7a9c3f18289399376d7ca8bc", null ],
     [ "DeInit", "classdaisy_1_1_g_p_i_o.html#a0858299f2acc196b1236473fef011219", null ],
     [ "GetConfig", "classdaisy_1_1_g_p_i_o.html#ae56f11f7645e6b6c307fca573cb43dcb", null ],
+    [ "Init", "classdaisy_1_1_g_p_i_o.html#ae576cffc1eef8b59d6cc2142cf1d9f97", null ],
     [ "Init", "classdaisy_1_1_g_p_i_o.html#a56572310bb54b2c847d2129dc293693b", null ],
     [ "Init", "classdaisy_1_1_g_p_i_o.html#a18443f33a5e5346f522908ad555b54dc", null ],
     [ "Init", "classdaisy_1_1_g_p_i_o.html#ad1ccf2f88576b9f86467db1cea61bbde", null ],

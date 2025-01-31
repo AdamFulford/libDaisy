@@ -2,6 +2,7 @@ var structdaisy_1_1_midi_event =
 [
     [ "AsAllNotesOff", "structdaisy_1_1_midi_event.html#a8a909f5a769eedf0eed5ee54890c5fa5", null ],
     [ "AsAllSoundOff", "structdaisy_1_1_midi_event.html#a51bf39a73e3d521f93e0a940d3dead96", null ],
+    [ "AsChannelMode", "structdaisy_1_1_midi_event.html#a08f868f8613fb38af27b3bfe10fea60c", null ],
     [ "AsChannelPressure", "structdaisy_1_1_midi_event.html#ab0fdc3a0e9e448ec561af10749705f2d", null ],
     [ "AsControlChange", "structdaisy_1_1_midi_event.html#a95ed496b1b526f640376d5819131d064", null ],
     [ "AsLocalControl", "structdaisy_1_1_midi_event.html#aa6d8435f2ada50147850e7c040a78f3c", null ],
@@ -24,7 +25,7 @@ var structdaisy_1_1_midi_event =
     [ "data", "structdaisy_1_1_midi_event.html#acec5e71c5a91871bdeb46f6e39125670", null ],
     [ "sc_type", "structdaisy_1_1_midi_event.html#a8f58f94c7adcb1974372ce1379958b76", null ],
     [ "srt_type", "structdaisy_1_1_midi_event.html#a6981641c0057f45e3a8556a55948b9fc", null ],
-    [ "sysex_data", "structdaisy_1_1_midi_event.html#a3832d8ac412e42359eff562b56362cbb", null ],
+    [ "sysex_data", "structdaisy_1_1_midi_event.html#a7a51f09a3214731e5c02b6bf72985ac9", null ],
     [ "sysex_message_len", "structdaisy_1_1_midi_event.html#a63fe8f48ba2e932b407a8fb4d74f8cc1", null ],
     [ "type", "structdaisy_1_1_midi_event.html#aeb9a8c018a3f54c7cafd11b6f8e63e91", null ]
 ];

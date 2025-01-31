@@ -32,13 +32,14 @@ var structdaisy_1_1_uart_handler_1_1_config =
       [ "BITS_8", "structdaisy_1_1_uart_handler_1_1_config.html#ab6153f90fb41fbfe3c95a48b63dbfcd2a506328a07de044eef05ac29ed6b48a7e", null ],
       [ "BITS_9", "structdaisy_1_1_uart_handler_1_1_config.html#ab6153f90fb41fbfe3c95a48b63dbfcd2a9ab6572ed9c11c2b6bd8e9876730ea8c", null ]
     ] ],
+    [ "Config", "structdaisy_1_1_uart_handler_1_1_config.html#a8fb7fc98d0066fa010457bbe092d434b", null ],
     [ "baudrate", "structdaisy_1_1_uart_handler_1_1_config.html#aaa158f6471d11b79c9873215bac76df7", null ],
     [ "mode", "structdaisy_1_1_uart_handler_1_1_config.html#a3b30e6ff02efbb4829b888f7d93091ea", null ],
     [ "parity", "structdaisy_1_1_uart_handler_1_1_config.html#ac48641737eaf10a6d0c78172aff2762a", null ],
     [ "periph", "structdaisy_1_1_uart_handler_1_1_config.html#a610e071e45e1258b17896a05c4a23cf3", null ],
-    [ "pin_config", "structdaisy_1_1_uart_handler_1_1_config.html#ad2165832f623d8cd4654bf10f9713d0f", null ],
-    [ "rx", "structdaisy_1_1_uart_handler_1_1_config.html#adb318e26f13636e1bee740fa47497392", null ],
+    [ "pin_config", "structdaisy_1_1_uart_handler_1_1_config.html#a8895d6daee7e2997b291d0d6e7188803", null ],
+    [ "rx", "structdaisy_1_1_uart_handler_1_1_config.html#a22f12839934f97f0a7a87f42d768684b", null ],
     [ "stopbits", "structdaisy_1_1_uart_handler_1_1_config.html#a490845e58271053432b93ec8cc56798e", null ],
-    [ "tx", "structdaisy_1_1_uart_handler_1_1_config.html#aede71d4e3449591e661b0decfeecd993", null ],
+    [ "tx", "structdaisy_1_1_uart_handler_1_1_config.html#a253d862229be57c8aaf14451ad74c6ab", null ],
     [ "wordlength", "structdaisy_1_1_uart_handler_1_1_config.html#a563a78c968ce1adbcc05585c617a5eec", null ]
 ];

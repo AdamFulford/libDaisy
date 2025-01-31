@@ -9,11 +9,14 @@ var dir_68267d1309a1af8e8297ef4c3efbcdba =
     [ "daisy.h", "daisy_8h.html", null ],
     [ "daisy_core.h", "daisy__core_8h.html", "daisy__core_8h" ],
     [ "daisy_field.h", "daisy__field_8h.html", "daisy__field_8h" ],
+    [ "daisy_legio.h", "daisy__legio_8h.html", null ],
     [ "daisy_patch.h", "daisy__patch_8h.html", "daisy__patch_8h" ],
     [ "daisy_patch_sm.h", "daisy__patch__sm_8h.html", null ],
     [ "daisy_petal.h", "daisy__petal_8h.html", "daisy__petal_8h" ],
     [ "daisy_pod.h", "daisy__pod_8h.html", "daisy__pod_8h" ],
     [ "daisy_seed.h", "daisy__seed_8h.html", "daisy__seed_8h" ],
+    [ "daisy_VENOLOOPER.h", "daisy___v_e_n_o_l_o_o_p_e_r_8h.html", "daisy___v_e_n_o_l_o_o_p_e_r_8h" ],
+    [ "daisy_VENOLOOPER_v5.h", "daisy___v_e_n_o_l_o_o_p_e_r__v5_8h.html", "daisy___v_e_n_o_l_o_o_p_e_r__v5_8h" ],
     [ "daisy_versio.h", "daisy__versio_8h.html", null ],
     [ "version.h", "version_8h.html", "version_8h" ]
 ];

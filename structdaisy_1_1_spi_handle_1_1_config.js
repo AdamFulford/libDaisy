@@ -41,17 +41,18 @@ var structdaisy_1_1_spi_handle_1_1_config =
       [ "SPI_5", "structdaisy_1_1_spi_handle_1_1_config.html#a446ef992a86b93c86fa966f42375586dad542978ab136ddc731480ff46302acb9", null ],
       [ "SPI_6", "structdaisy_1_1_spi_handle_1_1_config.html#a446ef992a86b93c86fa966f42375586dac81c898df22f87db948fdb3f9377314b", null ]
     ] ],
+    [ "Config", "structdaisy_1_1_spi_handle_1_1_config.html#ac8f7dcc5214fc0b910e7755deac5e5f5", null ],
     [ "baud_prescaler", "structdaisy_1_1_spi_handle_1_1_config.html#aafe290af675fa8107f3692353e2f60b1", null ],
     [ "clock_phase", "structdaisy_1_1_spi_handle_1_1_config.html#a87e4362d9c238f2401231b0209780415", null ],
     [ "clock_polarity", "structdaisy_1_1_spi_handle_1_1_config.html#a035f8343e15d67d087f019f6256a0e81", null ],
     [ "datasize", "structdaisy_1_1_spi_handle_1_1_config.html#af67ea87634b7b76240fb970ca98f5f2f", null ],
     [ "direction", "structdaisy_1_1_spi_handle_1_1_config.html#aec8328c5e3c8d37b4748937a4296b364", null ],
-    [ "miso", "structdaisy_1_1_spi_handle_1_1_config.html#ac3cb9b26b974ca55a47f5b4c807b9a78", null ],
+    [ "miso", "structdaisy_1_1_spi_handle_1_1_config.html#acc3e683777d7800c28b3be2a32c03beb", null ],
     [ "mode", "structdaisy_1_1_spi_handle_1_1_config.html#a3b5162776d4041f88248fa439c6076a8", null ],
-    [ "mosi", "structdaisy_1_1_spi_handle_1_1_config.html#a42f657f0cc1ad98f107602d8263809ac", null ],
-    [ "nss", "structdaisy_1_1_spi_handle_1_1_config.html#a636ef18d574ac72ee1b2770e8989bc42", null ],
+    [ "mosi", "structdaisy_1_1_spi_handle_1_1_config.html#a6746ee8339be3fc1ce538c5ada08c4e7", null ],
+    [ "nss", "structdaisy_1_1_spi_handle_1_1_config.html#a18cd592724b6023960043ec19f9e0719", null ],
     [ "nss", "structdaisy_1_1_spi_handle_1_1_config.html#a4f16b1422469399d116457cf83dc6258", null ],
     [ "periph", "structdaisy_1_1_spi_handle_1_1_config.html#a176f3ada9fd6d962275ba7372b051b28", null ],
-    [ "pin_config", "structdaisy_1_1_spi_handle_1_1_config.html#a3670fbca71f9f481abfc24298db444c9", null ],
-    [ "sclk", "structdaisy_1_1_spi_handle_1_1_config.html#a2f789b2a42c5a05c271b01e735aebcde", null ]
+    [ "pin_config", "structdaisy_1_1_spi_handle_1_1_config.html#a1e342957fce131364ad4208779cea144", null ],
+    [ "sclk", "structdaisy_1_1_spi_handle_1_1_config.html#a738a554fb0f18cb7f3adeb284a459e60", null ]
 ];

@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['zero_5fto_5f10_0',['ZERO_TO_10',['../classdaisy_1_1_m_a_x11300_driver.html#a907598f467ef006bbf5c15b9b352cd9aa5c8b5748dc40c6fd5064af585f5d3224',1,'daisy::MAX11300Driver::ZERO_TO_10()'],['../classdaisy_1_1_m_a_x11300_driver.html#ab1d7fdba107fa9770457c1c373dc23b4a5c8b5748dc40c6fd5064af585f5d3224',1,'daisy::MAX11300Driver::ZERO_TO_10()']]],
-  ['zero_5fto_5f2p5_1',['ZERO_TO_2P5',['../classdaisy_1_1_m_a_x11300_driver.html#a907598f467ef006bbf5c15b9b352cd9aaa4db7ece02d17dd62ee8459f8c07b04b',1,'daisy::MAX11300Driver']]]
+  ['x_0',['x',['../structdaisy_1_1_icm20948_1_1_icm20948_vect.html#ad7641c50603b69039427dd2ca10419a9',1,'daisy::Icm20948::Icm20948Vect']]],
+  ['xfade_5fpot_1',['XFADE_POT',['../classdaisy_1_1_veno_looper.html#ab497859f41ea3aac3a51a9e7995bfa5faf7c8af8237882abc8f0f1d30d82f35bd',1,'daisy::VenoLooper::XFADE_POT'],['../classdaisy_1_1_veno_looper__v5.html#aeab421cd94acae39cd4c845ff613d7c7a3ae3f46628167db02bb1f8fbcaa47131',1,'daisy::VenoLooper_v5::XFADE_POT']]]
 ];
