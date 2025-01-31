@@ -16,6 +16,7 @@ var classdaisy_1_1patch__sm_1_1_daisy_patch_s_m =
     [ "Delay", "classdaisy_1_1patch__sm_1_1_daisy_patch_s_m.html#a0cda289d881c60e8d19de900c3f4767a", null ],
     [ "GetADCRawFloatValue", "classdaisy_1_1patch__sm_1_1_daisy_patch_s_m.html#a0cfacc9ceb5096cda9be061e79311032", null ],
     [ "GetADCRawMuxFloatValue", "classdaisy_1_1patch__sm_1_1_daisy_patch_s_m.html#abd79c1f3b33f594c1f12dfd8f0fe42ba", null ],
+    [ "GetAdcValue", "classdaisy_1_1patch__sm_1_1_daisy_patch_s_m.html#aa317e42bbec7fa789b2002160dda96f5", null ],
     [ "GetPin", "classdaisy_1_1patch__sm_1_1_daisy_patch_s_m.html#aaaab37456347e6ff151f75cb30266787", null ],
     [ "GetRandomFloat", "classdaisy_1_1patch__sm_1_1_daisy_patch_s_m.html#a95458f0d0f483d96d89be0dd134424eb", null ],
     [ "GetRandomValue", "classdaisy_1_1patch__sm_1_1_daisy_patch_s_m.html#acbbf0b3c5615ee2b4b99638e3367554b", null ],
