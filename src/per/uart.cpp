@@ -1077,12 +1077,7 @@ void UART_IRQHandler(UartHandler::Impl* handle)
 
     if(handle->listener_mode_
        && __HAL_UART_GET_FLAG(&handle->huart_, UART_FLAG_IDLE))
-    if(handle->listener_mode_
-       && __HAL_UART_GET_FLAG(&handle->huart_, UART_FLAG_IDLE))
     {
-        /** find position, and call callback */
-        UART_CheckRxListener(handle);
-        /** Clear IDLE Interrupt flag */
         /** find position, and call callback */
         UART_CheckRxListener(handle);
         /** Clear IDLE Interrupt flag */
@@ -1183,10 +1178,6 @@ extern "C" void HAL_UART_RxHalfCpltCallback(UART_HandleTypeDef* huart)
 
 extern "C" void HAL_UART_ErrorCallback(UART_HandleTypeDef* huart)
 {
-    /** TODO: This hooks into the "Normal" DMA completion, 
-     *  might want to change this to have a different fallthrough
-     *  for "listener_mode_"
-     */
     /** TODO: This hooks into the "Normal" DMA completion, 
      *  might want to change this to have a different fallthrough
      *  for "listener_mode_"
