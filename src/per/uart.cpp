@@ -1266,7 +1266,6 @@ UartHandler::DmaListenStart(uint8_t*                                   buff,
                             void* callback_context)
 {
     return pimpl_->DmaListenStart(buff, size, cb, callback_context);
-    return pimpl_->DmaListenStart(buff, size, cb, callback_context);
 }
 
 
