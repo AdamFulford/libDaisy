@@ -26,7 +26,9 @@ int main(void)
     hw.Init();
 
     /** Initialize our Encoder */
-    encoder.Init(seed::D20, seed::D16, seed::D19);
+    //encoder.Init(seed::D20, seed::D16, seed::D19);
+    encoder.Init(seed::D19, seed::D10);
+
 
     /** Start Serial COM Port logging via USB 
      *  The program will wait until a connection is made to move on from here.

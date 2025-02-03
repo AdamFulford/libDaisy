@@ -42,7 +42,7 @@
 #define PIN_SDMMC_D2 D2
 #define PIN_SDMMC_D3 D1
 
-#define BAUD_RATE 921600
+#define BAUD_RATE 115200 
 #define BLOCK_SIZE 256
 #define NUM_BUTTON_LEDS 6
 
