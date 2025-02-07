@@ -12,10 +12,10 @@ int main(void)
 
     // set up our UART peripheral
     UartHandler::Config uart_conf;
-    uart_conf.periph        = UartHandler::Config::Peripheral::USART_1;
+    uart_conf.periph        = UartHandler::Config::Peripheral::UART_4;
     uart_conf.mode          = UartHandler::Config::Mode::TX_RX;
-    uart_conf.pin_config.tx = Pin(PORTB, 6);
-    uart_conf.pin_config.rx = Pin(PORTB, 7);
+    uart_conf.pin_config.tx = Pin(seed::D12);
+    uart_conf.pin_config.rx = Pin(seed::D11);
 
     // initialize the UART peripheral, and start reading
     uart.Init(uart_conf);

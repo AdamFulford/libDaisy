@@ -278,8 +278,6 @@ UartHandler::Result UartHandler::Impl::Init(const UartHandler::Config& config)
 
     /** New listener mode to replace old "Fifo" stuff */
     listener_mode_ = false;
-    /** New listener mode to replace old "Fifo" stuff */
-    listener_mode_ = false;
 
     return Result::OK;
 }
