@@ -1,5 +1,7 @@
 var NAVTREEINDEX5 =
 {
+"daisy__versio_8h.html":[16,0,1,17],
+"daisy__versio_8h_source.html":[16,0,1,17],
 "deprecated.html":[12],
 "dir_220d2bd384b446346a1cdcf02b1b2295.html":[16,0,1,3],
 "dir_68267d1309a1af8e8297ef4c3efbcdba.html":[16,0,1],
@@ -247,7 +249,5 @@ var NAVTREEINDEX5 =
 "globals_defs_s.html":[16,1,3,15],
 "globals_defs_t.html":[16,1,3,16],
 "globals_defs_u.html":[16,1,3,17],
-"globals_defs_v.html":[16,1,3,18],
-"globals_defs_w.html":[16,1,3,19],
-"globals_e.html":[16,1,0,5]
+"globals_defs_v.html":[16,1,3,18]
 };

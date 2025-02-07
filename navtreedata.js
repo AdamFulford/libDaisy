@@ -152,14 +152,14 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "_abstract_menu_8h.html",
-"classdaisy_1_1_f_i_f_o.html",
-"classdaisy_1_1_persistent_storage.html#ad573b53a242aae9743eea18b93f6e39d",
-"classdaisy_1_1_veno_looper.html#a48763f041276fe73aaecd40154fdc470a359b11cd9b2864f6f03d4708076249b2",
-"classdaisy_1_1_veno_looper__v5.html#af0d2a28c62f982a2f9c024218646d60aad03b91e99ac7d209567bb59167478098",
-"deprecated.html",
-"globals_f.html",
-"md_doc_2md_2__a8___getting-_started-_s_p_i.html#autotoc_md59",
-"structdaisy_1_1_s_s_d130x_driver_1_1_config.html#a576d18c3fe7f9a81565cd21ccca866da"
+"classdaisy_1_1_dot_star_spi_transport.html#a0e87480f91b4a2ed819406bc80ba4dc8",
+"classdaisy_1_1_persistent_storage.html#ad48f55bcb2a8b6959c0f4cf7822b0efaa54d700a7a4d725116036a3e443b8a4df",
+"classdaisy_1_1_veno_looper.html#a48763f041276fe73aaecd40154fdc470a2f38c7d9be33196a5e02d8d99e408e05",
+"classdaisy_1_1_veno_looper__v5.html#af0d2a28c62f982a2f9c024218646d60aaae3e6096b15e6b134fc07f24986ca00d",
+"daisy__versio_8h.html",
+"globals_defs_w.html",
+"md_doc_2md_2__a7___getting-_started-_daisy-_bootloader.html#autotoc_md57",
+"structdaisy_1_1_s_s_d130x4_wire_spi_transport_1_1_config.html#af2f5c92ac23ceeed040e6f63d880cbaa"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

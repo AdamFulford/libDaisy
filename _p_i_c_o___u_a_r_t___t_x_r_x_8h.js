@@ -7,5 +7,6 @@ var _p_i_c_o___u_a_r_t___t_x_r_x_8h =
     [ "NUM_BOOLS", "_p_i_c_o___u_a_r_t___t_x_r_x_8h.html#aa42efc50350e767a01c15d2b6e46b860", null ],
     [ "PAYLOAD_LENGTH", "_p_i_c_o___u_a_r_t___t_x_r_x_8h.html#aa75921daae7d3a3f7aabae84fb6acf90", null ],
     [ "PICO_UART_H", "_p_i_c_o___u_a_r_t___t_x_r_x_8h.html#aacb103b86d70eb0e71494fc374b2c4e0", null ],
+    [ "RX_BUFF_SIZE", "_p_i_c_o___u_a_r_t___t_x_r_x_8h.html#a9ffd460647ecd927786c7d3db9297e05", null ],
     [ "START_BYTE", "_p_i_c_o___u_a_r_t___t_x_r_x_8h.html#a30d2043ca397843e08c43ade3aaee5b2", null ]
 ];

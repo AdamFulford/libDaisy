@@ -1,5 +1,7 @@
 var NAVTREEINDEX8 =
 {
+"structdaisy_1_1_s_s_d130x4_wire_spi_transport_1_1_config.html#af2f5c92ac23ceeed040e6f63d880cbaa":[15,0,0,114,0,0],
+"structdaisy_1_1_s_s_d130x_driver_1_1_config.html":[15,0,0,115,0],
 "structdaisy_1_1_s_s_d130x_driver_1_1_config.html#a576d18c3fe7f9a81565cd21ccca866da":[15,0,0,115,0,0],
 "structdaisy_1_1_s_s_d130x_i2_c_transport_1_1_config.html":[15,0,0,116,0],
 "structdaisy_1_1_s_s_d130x_i2_c_transport_1_1_config.html#a4ab21336ab0b2e121284265d2902091d":[15,0,0,116,0,2],

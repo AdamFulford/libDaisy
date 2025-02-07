@@ -15,6 +15,7 @@ var class_pico_uart_t_x_r_x =
     ] ],
     [ "PicoUartTXRX", "class_pico_uart_t_x_r_x.html#a163667601698d1775d5a567926aa7af1", null ],
     [ "~PicoUartTXRX", "class_pico_uart_t_x_r_x.html#abc4f5e38f7aad9a3ef58eb6c4aeda869", null ],
+    [ "BlockingReceive", "class_pico_uart_t_x_r_x.html#aefd69cb94c0e98ff90a1ecd6376d5778", null ],
     [ "Debounce", "class_pico_uart_t_x_r_x.html#ac38e615a21431e106b8630e2473548b2", null ],
     [ "FallingEdge", "class_pico_uart_t_x_r_x.html#a8ddcec4412dbb48d2b54b8cc9b1364aa", null ],
     [ "GateReleased", "class_pico_uart_t_x_r_x.html#a6f23cc9263dd61b543a53dee3b279ee5", null ],

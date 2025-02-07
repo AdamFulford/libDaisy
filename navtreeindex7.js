@@ -1,5 +1,7 @@
 var NAVTREEINDEX7 =
 {
+"md_doc_2md_2__a7___getting-_started-_daisy-_bootloader.html#autotoc_md57":[9,5],
+"md_doc_2md_2__a8___getting-_started-_s_p_i.html":[10],
 "md_doc_2md_2__a8___getting-_started-_s_p_i.html#autotoc_md59":[10,0],
 "md_doc_2md_2__a8___getting-_started-_s_p_i.html#autotoc_md60":[10,0,0],
 "md_doc_2md_2__a8___getting-_started-_s_p_i.html#autotoc_md61":[10,1],
@@ -247,7 +249,5 @@ var NAVTREEINDEX7 =
 "structdaisy_1_1_s_s_d130x4_wire_spi_transport_1_1_config.html#a221754de5cd1a0e1fe1b5491849a7e43":[15,0,0,114,0,2],
 "structdaisy_1_1_s_s_d130x4_wire_spi_transport_1_1_config.html#a2725b473c07c6bf9e8b57a0a810799c1":[15,0,0,114,0,5],
 "structdaisy_1_1_s_s_d130x4_wire_spi_transport_1_1_config.html#a2d4cd8072f0348581e6777290c5a1465":[15,0,0,114,0,1],
-"structdaisy_1_1_s_s_d130x4_wire_spi_transport_1_1_config.html#a4273d35c4a13337de45ece31f6e1c50a":[15,0,0,114,0,3],
-"structdaisy_1_1_s_s_d130x4_wire_spi_transport_1_1_config.html#af2f5c92ac23ceeed040e6f63d880cbaa":[15,0,0,114,0,0],
-"structdaisy_1_1_s_s_d130x_driver_1_1_config.html":[15,0,0,115,0]
+"structdaisy_1_1_s_s_d130x4_wire_spi_transport_1_1_config.html#a4273d35c4a13337de45ece31f6e1c50a":[15,0,0,114,0,3]
 };
