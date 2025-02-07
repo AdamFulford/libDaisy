@@ -15,6 +15,7 @@
 #define NUM_BOOLS 6
 #define PAYLOAD_LENGTH 181
 #define BUFF_SIZE (5 + PAYLOAD_LENGTH) //start byte + payload + CRC + end byte
+#define RX_BUFF_SIZE 7 //start byte + length + CRC + rx payload (2) + end byte
 
 using namespace daisy;
 
@@ -53,6 +54,8 @@ struct Config
 void Init(Config config, uint8_t* rx_buffer);
 
 daisy::UartHandler::Result StartListening();
+
+daisy::UartHandler::Result BlockingReceive();
 
 //send data over uart in format array of uint8_t
 daisy::UartHandler::Result transmit_packet(const uint8_t *data, size_t length);
@@ -118,13 +121,13 @@ uint8_t* rx_buffer_;
 uint8_t* tx_buffer_;
  
 UartHandler uart;
-uint8_t rx_payload_[PAYLOAD_LENGTH];
+uint8_t rx_payload_[2];
 
 bool dataReceived_;
 uint32_t NumBytesReceived_;
 
 ParserState parserState_;
-uint8_t temp_buffer_[BUFF_SIZE];
+//uint8_t temp_buffer_[BUFF_SIZE];
 uint8_t LENGTH_BYTE;
 uint8_t rx_index_;
 uint8_t COBS_OH_BYTE;

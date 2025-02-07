@@ -1,4 +1,4 @@
-#include "PICO_Uart_TXRX.h"
+#include "PICO_UART_TXRX.h"
 
 void PicoUartTXRX::Init(Config config, uint8_t* rx_buffer)
 {
@@ -16,13 +16,13 @@ void PicoUartTXRX::Init(Config config, uint8_t* rx_buffer)
 
     uart.Init(UartConfig);
 
-    memset(rx_buffer_,0x00,BUFF_SIZE);
+    memset(rx_buffer_,0x00,RX_BUFF_SIZE);
     //memset(tx_buffer_,0x00,BUFF_SIZE);
 
     NumBytesReceived_ = 0;
 
     parserState_ = ParserState::WAIT_FOR_START_BYTE;
-    memset(temp_buffer_,0x00,sizeof(temp_buffer_));
+    //memset(temp_buffer_,0x00,sizeof(temp_buffer_));
     LENGTH_BYTE = 0x00;
     rx_index_ = 0;
     COBS_OH_BYTE = 255;
@@ -50,7 +50,7 @@ daisy::UartHandler::Result PicoUartTXRX::StartListening()
     //start receiving
     //dsy_dma_clear_cache_for_buffer((uint8_t*)rx_buffer_, sizeof(rx_buffer_));
 
-    return uart.DmaListenStart(rx_buffer_,BUFF_SIZE,PicoUartTXRX::rx_callback, this);
+    return uart.DmaListenStart(rx_buffer_,RX_BUFF_SIZE,PicoUartTXRX::rx_callback, this);
 
 }
 
@@ -118,6 +118,13 @@ void PicoUartTXRX::rx_callback(unsigned char *data,
     }
 
 }
+
+// daisy::UartHandler::Result PicoUartTXRX::BlockingReceive()
+// {
+
+//     uart.BlockingReceive(rx_buffer_,)
+//     return daisy::UartHandler::Result::Err;
+// }
 
 uint8_t PicoUartTXRX::packBools(const std::array<bool, NUM_BOOLS>& bools)
 {
