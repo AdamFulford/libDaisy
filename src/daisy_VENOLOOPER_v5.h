@@ -57,7 +57,10 @@
 #define LAYER1_START 59
 #define LAYER2_START 0
 
+#define BANK_START 33
+
 #define NUM_RING_PIXELS 22
+#define NUM_BANK_PIXELS 8
 
 namespace daisy
 {
@@ -414,6 +417,8 @@ void Init(bool boost = false);
     void SetLayerLED(uint8_t channel, uint8_t layer, uint8_t Red, uint8_t Green, uint8_t Blue);
 
     void SetRingLED(uint8_t channel, uint8_t position, uint8_t Red, uint8_t Green, uint8_t Blue);
+
+    void SetBankLED(uint8_t slot, uint8_t Red, uint8_t Green, uint8_t Blue);
 
     void ClearAllNeoPixels();
 

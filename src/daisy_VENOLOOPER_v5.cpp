@@ -424,6 +424,18 @@ void VenoLooper_v5::SetLayerLED(uint8_t channel, uint8_t layer, uint8_t Red, uin
     }
  }
 
+ void VenoLooper_v5::SetBankLED(uint8_t slot, uint8_t Red, uint8_t Green, uint8_t Blue)
+ {
+    if(slot > NUM_BANK_PIXELS)
+    {
+        //out of range, don't set
+    }
+    else
+    {
+        SetNeoPixel(BANK_START - slot,Red,Green,Blue);
+    }
+ }
+
 void VenoLooper_v5::ClearAllNeoPixels()
 {
     memset(NeoPixelState,0,sizeof(NeoPixelState));
