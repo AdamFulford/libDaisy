@@ -1,10 +1,12 @@
 var daisy___v_e_n_o_l_o_o_p_e_r__v5_8h =
 [
     [ "daisy::VenoLooper_v5", "classdaisy_1_1_veno_looper__v5.html", "classdaisy_1_1_veno_looper__v5" ],
+    [ "BANK_START", "daisy___v_e_n_o_l_o_o_p_e_r__v5_8h.html#a6c3847eccd44f1021c0868e77225b937", null ],
     [ "BAUD_RATE", "daisy___v_e_n_o_l_o_o_p_e_r__v5_8h.html#ad4455691936f92fdd6c37566fc58ba1f", null ],
     [ "BLOCK_SIZE", "daisy___v_e_n_o_l_o_o_p_e_r__v5_8h.html#ad51ded0bbd705f02f73fc60c0b721ced", null ],
     [ "LAYER1_START", "daisy___v_e_n_o_l_o_o_p_e_r__v5_8h.html#aa0ef17825bdc4ddb5cb961e62de9d7f0", null ],
     [ "LAYER2_START", "daisy___v_e_n_o_l_o_o_p_e_r__v5_8h.html#a55dd101da0e77bd7b0c229e140e9e318", null ],
+    [ "NUM_BANK_PIXELS", "daisy___v_e_n_o_l_o_o_p_e_r__v5_8h.html#a1fff809d47ab1715bbc87681dab8cc6e", null ],
     [ "NUM_BUTTON_LEDS", "daisy___v_e_n_o_l_o_o_p_e_r__v5_8h.html#a144bd9225b80c6093bc623e0ed2e7e72", null ],
     [ "NUM_NEOPIXELS", "daisy___v_e_n_o_l_o_o_p_e_r__v5_8h.html#ac483c44fa1643d661f66153d2286e076", null ],
     [ "NUM_RING_PIXELS", "daisy___v_e_n_o_l_o_o_p_e_r__v5_8h.html#a9c339755ffaf940bd9d504ad31878f9e", null ],

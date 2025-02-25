@@ -1,5 +1,8 @@
 var NAVTREEINDEX5 =
 {
+"daisy__seed_8h.html#aeda57c38b8d592dc08cd9480420f1f58":[16,0,1,14,16],
+"daisy__seed_8h.html#af25309300fab257713e7f2f3098bb541":[16,0,1,14,37],
+"daisy__seed_8h_source.html":[16,0,1,14],
 "daisy__versio_8h.html":[16,0,1,17],
 "daisy__versio_8h_source.html":[16,0,1,17],
 "deprecated.html":[12],
@@ -246,8 +249,5 @@ var NAVTREEINDEX5 =
 "globals_defs_p.html":[16,1,3,12],
 "globals_defs_q.html":[16,1,3,13],
 "globals_defs_r.html":[16,1,3,14],
-"globals_defs_s.html":[16,1,3,15],
-"globals_defs_t.html":[16,1,3,16],
-"globals_defs_u.html":[16,1,3,17],
-"globals_defs_v.html":[16,1,3,18]
+"globals_defs_s.html":[16,1,3,15]
 };

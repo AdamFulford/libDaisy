@@ -306,6 +306,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a1f6a4c53bd5198a626087b9bebc74bb8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a17ea11b6698895c9e305b4796c56e900" id="r_a17ea11b6698895c9e305b4796c56e900"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a17ea11b6698895c9e305b4796c56e900">SetRingLED</a> (uint8_t channel, uint8_t position, uint8_t Red, uint8_t Green, uint8_t Blue)</td></tr>
 <tr class="separator:a17ea11b6698895c9e305b4796c56e900"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6cc30dc9bcc583cb034f3768563043ee" id="r_a6cc30dc9bcc583cb034f3768563043ee"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6cc30dc9bcc583cb034f3768563043ee">SetBankLED</a> (uint8_t slot, uint8_t Red, uint8_t Green, uint8_t Blue)</td></tr>
+<tr class="separator:a6cc30dc9bcc583cb034f3768563043ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac230ec2e7dce8206fdefec13783be2b6" id="r_ac230ec2e7dce8206fdefec13783be2b6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac230ec2e7dce8206fdefec13783be2b6">ClearAllNeoPixels</a> ()</td></tr>
 <tr class="separator:ac230ec2e7dce8206fdefec13783be2b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a063970be3b8f610324267ba5d484c1df" id="r_a063970be3b8f610324267ba5d484c1df"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a063970be3b8f610324267ba5d484c1df">ClearAllButtonLEDs</a> ()</td></tr>
@@ -1113,6 +1115,37 @@ template&lt;typename... VA&gt; </div>
 
 </div>
 </div>
+<a id="a6cc30dc9bcc583cb034f3768563043ee" name="a6cc30dc9bcc583cb034f3768563043ee"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6cc30dc9bcc583cb034f3768563043ee">&#9670;&#160;</a></span>SetBankLED()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void daisy::VenoLooper_v5::SetBankLED </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t</td>          <td class="paramname"><span class="paramname"><em>slot</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t</td>          <td class="paramname"><span class="paramname"><em>Red</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t</td>          <td class="paramname"><span class="paramname"><em>Green</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t</td>          <td class="paramname"><span class="paramname"><em>Blue</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a8843829f95992f3846fe7ec65a8c6135" name="a8843829f95992f3846fe7ec65a8c6135"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a8843829f95992f3846fe7ec65a8c6135">&#9670;&#160;</a></span>SetButtonLED()</h2>
 
@@ -1465,8 +1498,8 @@ template&lt;typename... VA&gt; </div>
 <div class="line">    <a class="code hl_enumvalue" href="#a8c88c26380e2ae279fff762ff76dcf69afc54a5399cdccbebbe8732e3c4cbe6f5">Slow</a>, </div>
 <div class="line">    <a class="code hl_enumvalue" href="#a8c88c26380e2ae279fff762ff76dcf69afc54a5399cdccbebbe8732e3c4cbe6f5">Slow</a> </div>
 <div class="line">}</div>
-<div class="ttc" id="aclassdaisy_1_1_veno_looper__v5_html_a8c88c26380e2ae279fff762ff76dcf69a4ad13f6cd0b1a25e1f325835b7c82c00"><div class="ttname"><a href="#a8c88c26380e2ae279fff762ff76dcf69a4ad13f6cd0b1a25e1f325835b7c82c00">daisy::VenoLooper_v5::Fast</a></div><div class="ttdeci">@ Fast</div><div class="ttdef"><b>Definition</b> daisy_VENOLOOPER_v5.h:196</div></div>
-<div class="ttc" id="aclassdaisy_1_1_veno_looper__v5_html_a8c88c26380e2ae279fff762ff76dcf69afc54a5399cdccbebbe8732e3c4cbe6f5"><div class="ttname"><a href="#a8c88c26380e2ae279fff762ff76dcf69afc54a5399cdccbebbe8732e3c4cbe6f5">daisy::VenoLooper_v5::Slow</a></div><div class="ttdeci">@ Slow</div><div class="ttdef"><b>Definition</b> daisy_VENOLOOPER_v5.h:196</div></div>
+<div class="ttc" id="aclassdaisy_1_1_veno_looper__v5_html_a8c88c26380e2ae279fff762ff76dcf69a4ad13f6cd0b1a25e1f325835b7c82c00"><div class="ttname"><a href="#a8c88c26380e2ae279fff762ff76dcf69a4ad13f6cd0b1a25e1f325835b7c82c00">daisy::VenoLooper_v5::Fast</a></div><div class="ttdeci">@ Fast</div><div class="ttdef"><b>Definition</b> daisy_VENOLOOPER_v5.h:199</div></div>
+<div class="ttc" id="aclassdaisy_1_1_veno_looper__v5_html_a8c88c26380e2ae279fff762ff76dcf69afc54a5399cdccbebbe8732e3c4cbe6f5"><div class="ttname"><a href="#a8c88c26380e2ae279fff762ff76dcf69afc54a5399cdccbebbe8732e3c4cbe6f5">daisy::VenoLooper_v5::Slow</a></div><div class="ttdeci">@ Slow</div><div class="ttdef"><b>Definition</b> daisy_VENOLOOPER_v5.h:199</div></div>
 </div><!-- fragment -->
 </div>
 </div>

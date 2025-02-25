@@ -155,11 +155,11 @@ var NAVTREEINDEX =
 "classdaisy_1_1_dot_star_spi_transport.html#a0e87480f91b4a2ed819406bc80ba4dc8",
 "classdaisy_1_1_persistent_storage.html#ad48f55bcb2a8b6959c0f4cf7822b0efaa54d700a7a4d725116036a3e443b8a4df",
 "classdaisy_1_1_veno_looper.html#a48763f041276fe73aaecd40154fdc470a2f38c7d9be33196a5e02d8d99e408e05",
-"classdaisy_1_1_veno_looper__v5.html#af0d2a28c62f982a2f9c024218646d60aaae3e6096b15e6b134fc07f24986ca00d",
-"daisy__versio_8h.html",
-"globals_defs_w.html",
-"md_doc_2md_2__a7___getting-_started-_daisy-_bootloader.html#autotoc_md57",
-"structdaisy_1_1_s_s_d130x4_wire_spi_transport_1_1_config.html#af2f5c92ac23ceeed040e6f63d880cbaa"
+"classdaisy_1_1_veno_looper__v5.html#af0d2a28c62f982a2f9c024218646d60aa90df0a9694f8ccdbbd4b44ea78d8daed",
+"daisy__seed_8h.html#aeda57c38b8d592dc08cd9480420f1f58",
+"globals_defs_t.html",
+"md_doc_2md_2__a7___getting-_started-_daisy-_bootloader.html#autotoc_md54",
+"structdaisy_1_1_s_s_d130x4_wire_spi_transport_1_1_config.html#a2725b473c07c6bf9e8b57a0a810799c1"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

@@ -115,6 +115,7 @@ var classdaisy_1_1_veno_looper__v5 =
     [ "ProcessGates", "classdaisy_1_1_veno_looper__v5.html#a843593da9fc275263bcb89f519f00415", null ],
     [ "SetAudioBlockSize", "classdaisy_1_1_veno_looper__v5.html#ab31421cdf37f427291017aeac9568e42", null ],
     [ "SetAudioSampleRate", "classdaisy_1_1_veno_looper__v5.html#ae205855c4f5a0dd16e4538e1b30d7566", null ],
+    [ "SetBankLED", "classdaisy_1_1_veno_looper__v5.html#a6cc30dc9bcc583cb034f3768563043ee", null ],
     [ "SetButtonLED", "classdaisy_1_1_veno_looper__v5.html#a8843829f95992f3846fe7ec65a8c6135", null ],
     [ "SetLayerLED", "classdaisy_1_1_veno_looper__v5.html#a1f6a4c53bd5198a626087b9bebc74bb8", null ],
     [ "SetNeoPixel", "classdaisy_1_1_veno_looper__v5.html#a40ec67e5af281f2632d9e576a2b15acc", null ],
