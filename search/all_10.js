@@ -85,7 +85,7 @@ var searchData=
   ['pin_5fuart_5frp2040_5fto_5fstm_82',['PIN_UART_RP2040_TO_STM',['../daisy___v_e_n_o_l_o_o_p_e_r__v5_8h.html#a64887a05dfa8ab59c1ea3213e1b1ed29',1,'daisy_VENOLOOPER_v5.h']]],
   ['pin_5fuart_5fstm_5fto_5frp2040_83',['PIN_UART_STM_TO_RP2040',['../daisy___v_e_n_o_l_o_o_p_e_r__v5_8h.html#a913f52cfd294564526fc1e9257ae39cf',1,'daisy_VENOLOOPER_v5.h']]],
   ['pin_5fvoct_5fcv1_5fadc_84',['PIN_VOct_CV1_ADC',['../daisy___v_e_n_o_l_o_o_p_e_r__v5_8h.html#a96bddc6b7925d33ec349d98875b611f0',1,'daisy_VENOLOOPER_v5.h']]],
-  ['pin_5fvoct_5fcv2_5fadc_85',['PIN_Voct_CV2_ADC',['../daisy___v_e_n_o_l_o_o_p_e_r__v5_8h.html#a4c68a34e1abc3b2d7b831a0819dd1a2f',1,'daisy_VENOLOOPER_v5.h']]],
+  ['pin_5fvoct_5fcv2_5fadc_85',['PIN_VOct_CV2_ADC',['../daisy___v_e_n_o_l_o_o_p_e_r__v5_8h.html#a931852af4d69b7a8303b32e1527b7460',1,'daisy_VENOLOOPER_v5.h']]],
   ['pinbank_86',['PinBank',['../classdaisy_1_1patch__sm_1_1_daisy_patch_s_m.html#a47dabfb33a6efcaace04b05c97f5299d',1,'daisy::patch_sm::DaisyPatchSM']]],
   ['pinconfig_87',['PinConfig',['../structdaisy_1_1_m_a_x11300_multi_slave_spi_transport_1_1_config_1_1_pin_config.html',1,'daisy::MAX11300MultiSlaveSpiTransport::Config']]],
   ['pinmode_88',['PinMode',['../classdaisy_1_1_mcp23_x17.html#a507f1696d75da0d075ee517dc7c92464',1,'daisy::Mcp23X17']]],

@@ -40,7 +40,7 @@ var daisy___v_e_n_o_l_o_o_p_e_r__v5_8h =
     [ "PIN_UART_RP2040_TO_STM", "daisy___v_e_n_o_l_o_o_p_e_r__v5_8h.html#a64887a05dfa8ab59c1ea3213e1b1ed29", null ],
     [ "PIN_UART_STM_TO_RP2040", "daisy___v_e_n_o_l_o_o_p_e_r__v5_8h.html#a913f52cfd294564526fc1e9257ae39cf", null ],
     [ "PIN_VOct_CV1_ADC", "daisy___v_e_n_o_l_o_o_p_e_r__v5_8h.html#a96bddc6b7925d33ec349d98875b611f0", null ],
-    [ "PIN_Voct_CV2_ADC", "daisy___v_e_n_o_l_o_o_p_e_r__v5_8h.html#a4c68a34e1abc3b2d7b831a0819dd1a2f", null ],
+    [ "PIN_VOct_CV2_ADC", "daisy___v_e_n_o_l_o_o_p_e_r__v5_8h.html#a931852af4d69b7a8303b32e1527b7460", null ],
     [ "RING1_END", "daisy___v_e_n_o_l_o_o_p_e_r__v5_8h.html#ad8023ce7fabae4fb2146645192ed9b36", null ],
     [ "RING1_START", "daisy___v_e_n_o_l_o_o_p_e_r__v5_8h.html#afadcfbf47df6d23a2b9286b1a60323ec", null ],
     [ "RING2_END", "daisy___v_e_n_o_l_o_o_p_e_r__v5_8h.html#a6fbb2e6537bb1159b9e4ae2e7b63bcbd", null ],
