@@ -18,7 +18,7 @@
 
 #define PIN_MUX1_ADC A1
 #define PIN_ENC_UP D19
-#define PIN_Voct_CV2_ADC A5
+#define PIN_VOct_CV2_ADC A5
 #define PIN_VOct_CV1_ADC A3
 #define PIN_LAYER_CV1_ADC A2
 #define PIN_LAYER_CV2_ADC A6

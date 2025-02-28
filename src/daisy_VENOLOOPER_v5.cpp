@@ -15,8 +15,8 @@ void VenoLooper_v5::Init(bool boost)
     seed.SetAudioSampleRate(SaiHandle::Config::SampleRate::SAI_48KHZ);
 
     Pin CVpins[] = 
-    {seed::PIN_VOct_CV1_ADC,
-    seed::PIN_Voct_CV2_ADC,
+    {seed::PIN_VOct_CV2_ADC,
+    seed::PIN_VOct_CV1_ADC,
     seed::PIN_LAYER_CV1_ADC,
     seed::PIN_LAYER_CV2_ADC,
     seed::PIN_START_CV1_ADC,
