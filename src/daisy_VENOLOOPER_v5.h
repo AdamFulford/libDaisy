@@ -204,7 +204,7 @@ float MuxSlew[LAST_MUX] =
 {
     //mux1
     0.05f,    // LENGTH1_POT,   //000
-    0.2f,    // SPEED2_POT, //001
+    0.05f,    // SPEED2_POT, //001
     0.05f,    // START1_POT, // 010
     0.05f,    // LENGTH2_POT,  //011
     0.05f,    // XFADE_POT, //100
@@ -215,7 +215,7 @@ float MuxSlew[LAST_MUX] =
     //mux2
     0.05f,    // ATTACK1_POT,
     0.05f,    // START2_POT,
-    0.2f,    // SPEED1_POT,
+    0.05f,    // SPEED1_POT,
     0.05f,    // ATTACK2_POT,
     0.000001f,    // LAYER1_POT,
     0.05f,    // RELEASE2_POT,
@@ -250,7 +250,7 @@ CntrlFreq MuxFreq[LAST_MUX]
 {
     //mux1
     Slow,// LENGTH1_POT,   //000
-    Fast,// SPEED2_POT, //001
+    Slow,// SPEED2_POT, //001
     Slow,// START1_POT, // 010
     Slow,// LENGTH2_POT,  //011
     Slow,// XFADE_POT, //100
@@ -261,7 +261,7 @@ CntrlFreq MuxFreq[LAST_MUX]
     //mux2
     Slow,// ATTACK1_POT,
     Slow,// START2_POT,
-    Fast,// SPEED1_POT,
+    Slow,// SPEED1_POT,
     Slow,// ATTACK2_POT,
     Slow,// LAYER1_POT,
     Slow,// RELEASE2_POT,
