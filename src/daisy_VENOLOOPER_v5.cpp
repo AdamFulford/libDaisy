@@ -328,12 +328,16 @@ void VenoLooper_v5::UpdateDaisyGates()
 
 float VenoLooper_v5::GetMuxValue(MUX_IDs idx)
 {
-    return MUX_Input[idx < LAST_MUX ? idx : 0].Value();
+        return (MUX_Input[idx < LAST_MUX ? idx : 0].Value() 
+                * calibration.MuxScale[idx]) 
+                + calibration.MuxOffsets[idx];
 }
 
 float VenoLooper_v5::GetCvValue(CV_IDs idx)
 {
-    return cv[idx < LAST_CV ? idx : 0].Value();
+    return (cv[idx < LAST_CV ? idx : 0].Value() 
+            * calibration.CV_Scale[idx]) 
+            + calibration.CV_Offsets[idx];
 }
 
 AnalogControl* VenoLooper_v5::GetKnob(size_t idx)

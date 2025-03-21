@@ -223,11 +223,11 @@ float MuxSlew[LAST_MUX] =
     0.05f,    // RELEASE1_POT,
 
     //mux3
-    0.05f,    // INPUT1_CV,
+    0.000001f,    // INPUT1_CV,
     0.05f,    // LENGTH1_CV,
     0.05f,    // LENGTH2_CV,
     0.05f,    // MUX3_3,
-    0.05f,    // INPUT2_CV,
+    0.000001f,    // INPUT2_CV,
     0.05f,    // MUX3_5,
     0.05f,    // MUX3_6,
     0.05f    // CRUSH_POT,
@@ -269,11 +269,11 @@ CntrlFreq MuxFreq[LAST_MUX]
     Slow,// RELEASE1_POT,
 
     // //mux3
-    Slow,// INPUT1_CV,
+    Fast,// INPUT1_CV,
     Slow,// LENGTH1_CV,
     Slow,// LENGTH2_CV,
     Slow,// MUX3_3,
-    Slow,// INPUT2_CV,
+    Fast,// INPUT2_CV,
     Slow,// MUX3_5,
     Slow,// MUX3_6,
     Slow,// CRUSH_POT,
@@ -293,6 +293,128 @@ CntrlFreq CVFreq[LAST_CV]
     Slow //START2_CV
 };
 
+struct CV_Calibration
+{
+    std::array<float,LAST_CV> CV_Offsets {};
+    std::array<float,LAST_CV> CV_Scale {};
+
+
+    std::array<float, LAST_MUX> MuxOffsets {};
+    std::array<float, LAST_MUX> MuxScale {};
+
+    //VOct2_CV 0
+    //VOct1_CV 1
+    //LAYER1_CV 2
+    //LAYER2_CV 3
+    //START1_CV 4
+    //START2_CV 5
+
+    // INPUT1_CV,
+    // LENGTH1_CV,
+    // LENGTH2_CV,
+    // MUX3_3,
+    // INPUT2_CV,
+    // MUX3_5,
+    // MUX3_6,
+    // CRUSH_POT,
+};
+
+CV_Calibration calibration
+
+//CV offset
+{{  0.020568f,    //VOct2_CV 0
+    0.026275f,    //VOct1_CV 1
+    0.010223f,    //LAYER1_CV 2
+    0.016174f,    //LAYER2_CV 3
+    0.026702f,    //START1_CV 4
+    0.022521f,    //START2_CV 5
+},
+
+//CV scale
+{   1.0f,    //VOct2_CV 0
+    1.0f,    //VOct1_CV 1
+    1.0f,    //LAYER1_CV 2
+    1.0f,    //LAYER2_CV 3
+    1.0f,    //START1_CV 4
+    1.0f,    //START2_CV 5
+},
+//MUX offset
+{
+0.0f,    // LENGTH1_POT,   //000
+0.0f,    // SPEED2_POT, //001
+0.0f,    // START1_POT, // 010
+0.0f,    // LENGTH2_POT,  //011
+0.0f,    // XFADE_POT, //100
+0.0f,    // PLAY_TOGGLE2_POT, //101
+0.0f,    // DECAY_POT, //110
+0.0f,    // PLAY_TOGGLE1_POT, //111
+
+//mux2
+0.0f,    // ATTACK1_POT,
+0.0f,    // START2_POT,
+0.0f,    // SPEED1_POT,
+0.0f,    // ATTACK2_POT,
+0.0f,    // LAYER1_POT,
+0.0f,    // RELEASE2_POT,
+0.0f,    // LAYER2_POT,
+0.0f,    // RELEASE1_POT,
+
+//mux3
+0.021423f, // INPUT1_CV,
+0.020058f, // LENGTH1_CV,
+0.024497f, // LENGTH2_CV,
+0.0f, // MUX3_3,
+0.023590f, // INPUT2_CV,
+0.0f, // MUX3_5,
+0.0f, // MUX3_6,
+0.0f // CRUSH_POT,
+},
+
+//MUX scale
+{
+    1.033058f,    // LENGTH1_POT,   //000
+    1.033058f,    // SPEED2_POT, //001
+    1.033058f,    // START1_POT, // 010
+    1.033058f,    // LENGTH2_POT,  //011
+    1.033058f,    // XFADE_POT, //100
+    1.033058f,    // PLAY_TOGGLE2_POT, //101
+    1.033058f,    // DECAY_POT, //110
+    1.033058f,    // PLAY_TOGGLE1_POT, //111
+    
+    //mux2
+    1.033058f,    // ATTACK1_POT,
+    1.033058f,    // START2_POT,
+    1.033058f,    // SPEED1_POT,
+    1.033058f,    // ATTACK2_POT,
+    1.033058f,    // LAYER1_POT,
+    1.033058f,    // RELEASE2_POT,
+    1.033058f,    // LAYER2_POT,
+    1.033058f,    // RELEASE1_POT,
+    
+    //mux3
+    1.0f, // INPUT1_CV,
+    1.0f, // LENGTH1_CV,
+    1.0f, // LENGTH2_CV,
+    1.0f, // MUX3_3,
+    1.0f, // INPUT2_CV,
+    1.0f, // MUX3_5,
+    1.0f, // MUX3_6,
+    1.0f // CRUSH_POT,
+}
+
+};    
+
+// MUX Inputs:
+// MUX_1:  0.206539	MUX_2:  0.457402	MUX_3:  0.000000	MUX_4:  0.967815
+// MUX_5:  0.435149	MUX_6:  0.000011	MUX_7:  0.498974	MUX_8:  0.000009
+// MUX_9:  0.215240	MUX_10:  0.000000	MUX_11:  0.454380	MUX_12:  0.000026
+// MUX_13:  0.000000	MUX_14:  0.294754	MUX_15:  0.000000	MUX_16:  0.348115
+// MUX_17: -0.021423	MUX_18: -0.020058	MUX_19: -0.024497	MUX_20:  0.000000
+// MUX_21: -0.023590	MUX_22:  0.000000	MUX_23:  0.000000	MUX_24:  0.967864
+// ######################
+// Direct CV Inputs:
+// CV_1: -0.020568	CV_2: -0.026275	CV_3: -0.010223
+// CV_4: -0.016174	CV_5: -0.026702	CV_6: -0.022521
 
 VenoLooper_v5() {}
 ~VenoLooper_v5() {}
