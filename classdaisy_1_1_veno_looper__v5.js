@@ -1,5 +1,6 @@
 var classdaisy_1_1_veno_looper__v5 =
 [
+    [ "CV_Calibration", "structdaisy_1_1_veno_looper__v5_1_1_c_v___calibration.html", "structdaisy_1_1_veno_looper__v5_1_1_c_v___calibration" ],
     [ "CntrlFreq", "classdaisy_1_1_veno_looper__v5.html#a8c88c26380e2ae279fff762ff76dcf69", [
       [ "Fast", "classdaisy_1_1_veno_looper__v5.html#a8c88c26380e2ae279fff762ff76dcf69a4ad13f6cd0b1a25e1f325835b7c82c00", null ],
       [ "Slow", "classdaisy_1_1_veno_looper__v5.html#a8c88c26380e2ae279fff762ff76dcf69afc54a5399cdccbebbe8732e3c4cbe6f5", null ]
@@ -129,6 +130,7 @@ var classdaisy_1_1_veno_looper__v5 =
     [ "UpdateDaisyGates", "classdaisy_1_1_veno_looper__v5.html#a42372b4bda6e71ae7727bf7435eb3f52", null ],
     [ "UpdateLEDs", "classdaisy_1_1_veno_looper__v5.html#a6d8c513968089b7d5e1c0f3f0ef2be03", null ],
     [ "UpdatePicoGates", "classdaisy_1_1_veno_looper__v5.html#a6211568da2f8720c4cb1cdff57067e98", null ],
+    [ "calibration", "classdaisy_1_1_veno_looper__v5.html#a71f636c9e4746ae27c7671f871401eb6", null ],
     [ "cv", "classdaisy_1_1_veno_looper__v5.html#a4db928c23c8a2075cc3a6681b40ab5ea", null ],
     [ "CVFreq", "classdaisy_1_1_veno_looper__v5.html#a54d6c39929cac9e6e72c379272b33fa4", null ],
     [ "CVSlew", "classdaisy_1_1_veno_looper__v5.html#ab6bb626663ad19540da7dd5b22400c85", null ],

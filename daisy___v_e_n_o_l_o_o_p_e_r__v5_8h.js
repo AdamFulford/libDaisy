@@ -1,6 +1,7 @@
 var daisy___v_e_n_o_l_o_o_p_e_r__v5_8h =
 [
     [ "daisy::VenoLooper_v5", "classdaisy_1_1_veno_looper__v5.html", "classdaisy_1_1_veno_looper__v5" ],
+    [ "daisy::VenoLooper_v5::CV_Calibration", "structdaisy_1_1_veno_looper__v5_1_1_c_v___calibration.html", "structdaisy_1_1_veno_looper__v5_1_1_c_v___calibration" ],
     [ "BANK_START", "daisy___v_e_n_o_l_o_o_p_e_r__v5_8h.html#a6c3847eccd44f1021c0868e77225b937", null ],
     [ "BAUD_RATE", "daisy___v_e_n_o_l_o_o_p_e_r__v5_8h.html#ad4455691936f92fdd6c37566fc58ba1f", null ],
     [ "BLOCK_SIZE", "daisy___v_e_n_o_l_o_o_p_e_r__v5_8h.html#ad51ded0bbd705f02f73fc60c0b721ced", null ],

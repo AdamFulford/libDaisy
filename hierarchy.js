@@ -80,6 +80,7 @@ var hierarchy =
     [ "daisy::ControlChangeEvent", "structdaisy_1_1_control_change_event.html", null ],
     [ "daisy::CpuLoadMeter", "classdaisy_1_1_cpu_load_meter.html", null ],
     [ "daisy::AbstractMenu::CustomItem", "classdaisy_1_1_abstract_menu_1_1_custom_item.html", null ],
+    [ "daisy::VenoLooper_v5::CV_Calibration", "structdaisy_1_1_veno_looper__v5_1_1_c_v___calibration.html", null ],
     [ "daisy::DacHandle", "classdaisy_1_1_dac_handle.html", null ],
     [ "daisy::DaisyField", "classdaisy_1_1_daisy_field.html", null ],
     [ "daisy::DaisyLegio", "classdaisy_1_1_daisy_legio.html", null ],

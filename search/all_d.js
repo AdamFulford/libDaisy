@@ -143,6 +143,8 @@ var searchData=
   ['mux_5fsel_5f2_140',['MUX_SEL_2',['../structdaisy_1_1_adc_channel_config.html#af601e66da7eb60721792861fc91f2c83a9d3735b815879adb97ce0a48f528f39a',1,'daisy::AdcChannelConfig']]],
   ['mux_5fsel_5flast_141',['MUX_SEL_LAST',['../structdaisy_1_1_adc_channel_config.html#af601e66da7eb60721792861fc91f2c83a00a6235ac198f2fdd9ccae951c908da2',1,'daisy::AdcChannelConfig']]],
   ['muxfreq_142',['MuxFreq',['../classdaisy_1_1_veno_looper__v5.html#a410edfcfc336e1c79d8b78b35120cb24',1,'daisy::VenoLooper_v5']]],
-  ['muxpin_143',['MuxPin',['../structdaisy_1_1_adc_channel_config.html#af601e66da7eb60721792861fc91f2c83',1,'daisy::AdcChannelConfig']]],
-  ['muxslew_144',['MuxSlew',['../classdaisy_1_1_veno_looper__v5.html#ad0c11713b8238fcd4c40c5bed5683540',1,'daisy::VenoLooper_v5']]]
+  ['muxoffsets_143',['MuxOffsets',['../structdaisy_1_1_veno_looper__v5_1_1_c_v___calibration.html#af014e0ca013a360d7d2f19204848f403',1,'daisy::VenoLooper_v5::CV_Calibration']]],
+  ['muxpin_144',['MuxPin',['../structdaisy_1_1_adc_channel_config.html#af601e66da7eb60721792861fc91f2c83',1,'daisy::AdcChannelConfig']]],
+  ['muxscale_145',['MuxScale',['../structdaisy_1_1_veno_looper__v5_1_1_c_v___calibration.html#af8c1ac495f5c57e65c79bc82c1610678',1,'daisy::VenoLooper_v5::CV_Calibration']]],
+  ['muxslew_146',['MuxSlew',['../classdaisy_1_1_veno_looper__v5.html#ad0c11713b8238fcd4c40c5bed5683540',1,'daisy::VenoLooper_v5']]]
 ];

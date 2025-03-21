@@ -16,5 +16,7 @@ var searchData=
   ['mux_5finput_13',['MUX_Input',['../classdaisy_1_1_veno_looper__v5.html#a56c676b910f01ffd9aa1024ee03125aa',1,'daisy::VenoLooper_v5']]],
   ['mux_5fpin_5f_14',['mux_pin_',['../structdaisy_1_1_adc_channel_config.html#a74a240e46beecb9797d39768e70b5607',1,'daisy::AdcChannelConfig']]],
   ['muxfreq_15',['MuxFreq',['../classdaisy_1_1_veno_looper__v5.html#a410edfcfc336e1c79d8b78b35120cb24',1,'daisy::VenoLooper_v5']]],
-  ['muxslew_16',['MuxSlew',['../classdaisy_1_1_veno_looper__v5.html#ad0c11713b8238fcd4c40c5bed5683540',1,'daisy::VenoLooper_v5']]]
+  ['muxoffsets_16',['MuxOffsets',['../structdaisy_1_1_veno_looper__v5_1_1_c_v___calibration.html#af014e0ca013a360d7d2f19204848f403',1,'daisy::VenoLooper_v5::CV_Calibration']]],
+  ['muxscale_17',['MuxScale',['../structdaisy_1_1_veno_looper__v5_1_1_c_v___calibration.html#af8c1ac495f5c57e65c79bc82c1610678',1,'daisy::VenoLooper_v5::CV_Calibration']]],
+  ['muxslew_18',['MuxSlew',['../classdaisy_1_1_veno_looper__v5.html#ad0c11713b8238fcd4c40c5bed5683540',1,'daisy::VenoLooper_v5']]]
 ];

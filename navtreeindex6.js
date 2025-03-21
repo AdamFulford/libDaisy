@@ -1,5 +1,6 @@
 var NAVTREEINDEX6 =
 {
+"globals_defs_s.html":[16,1,3,15],
 "globals_defs_t.html":[16,1,3,16],
 "globals_defs_u.html":[16,1,3,17],
 "globals_defs_v.html":[16,1,3,18],
@@ -248,6 +249,5 @@ var NAVTREEINDEX6 =
 "md_doc_2md_2__a7___getting-_started-_daisy-_bootloader.html#autotoc_md49":[9,0],
 "md_doc_2md_2__a7___getting-_started-_daisy-_bootloader.html#autotoc_md50":[9,1],
 "md_doc_2md_2__a7___getting-_started-_daisy-_bootloader.html#autotoc_md51":[9,2],
-"md_doc_2md_2__a7___getting-_started-_daisy-_bootloader.html#autotoc_md52":[9,3],
-"md_doc_2md_2__a7___getting-_started-_daisy-_bootloader.html#autotoc_md53":[9,3,0]
+"md_doc_2md_2__a7___getting-_started-_daisy-_bootloader.html#autotoc_md52":[9,3]
 };
