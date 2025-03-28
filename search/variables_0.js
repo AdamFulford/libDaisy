@@ -29,5 +29,6 @@ var searchData=
   ['asopenuipageitem_26',['asOpenUiPageItem',['../structdaisy_1_1_abstract_menu_1_1_item_config.html#a46f35f4ccf5780f8fc56a03f0018661a',1,'daisy::AbstractMenu::ItemConfig']]],
   ['audio_27',['audio',['../classdaisy_1_1patch__sm_1_1_daisy_patch_s_m.html#a23da2ac32901a74d22a7f68fa07ab879',1,'daisy::patch_sm::DaisyPatchSM']]],
   ['audio_5fhandle_28',['audio_handle',['../classdaisy_1_1_daisy_seed.html#a5ac99b65a49c695171b965b8cd2349d5',1,'daisy::DaisySeed']]],
-  ['audioformat_29',['AudioFormat',['../structdaisy_1_1_w_a_v___format_type_def.html#aeb09ec4e4df16bd903f5d31af5a18681',1,'daisy::WAV_FormatTypeDef']]]
+  ['audioformat_29',['AudioFormat',['../structdaisy_1_1_w_a_v___format_type_def.html#aeb09ec4e4df16bd903f5d31af5a18681',1,'daisy::WAV_FormatTypeDef']]],
+  ['audiooffsets_30',['AudioOffsets',['../structdaisy_1_1_veno_looper__v5_1_1_c_v___calibration.html#a3465e10fb04fdc0eb7ca9530f0af32b4',1,'daisy::VenoLooper_v5::CV_Calibration']]]
 ];
