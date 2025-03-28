@@ -1,5 +1,9 @@
 var NAVTREEINDEX5 =
 {
+"daisy__seed_8h.html#acf9c91ed685050ef7bb3464a28e6599d":[16,0,1,14,10],
+"daisy__seed_8h.html#ad514d429d98e44439b5ff76fc96ce941":[16,0,1,14,8],
+"daisy__seed_8h.html#ad5800732540cd079453d037caf5d8b31":[16,0,1,14,21],
+"daisy__seed_8h.html#ad5deacb1add30001704418d4948c4987":[16,0,1,14,6],
 "daisy__seed_8h.html#ad9e0f6aa0502a292968278a7a66a93c1":[16,0,1,14,43],
 "daisy__seed_8h.html#ada80d7a4c5e5f10f5badbd61be83fa18":[16,0,1,14,1],
 "daisy__seed_8h.html#ae017c1d18e61fa1242e8fc6e2e3f4a9c":[16,0,1,14,23],
@@ -245,9 +249,5 @@ var NAVTREEINDEX5 =
 "globals_defs_e.html":[16,1,3,5],
 "globals_defs_f.html":[16,1,3,6],
 "globals_defs_i.html":[16,1,3,7],
-"globals_defs_l.html":[16,1,3,8],
-"globals_defs_m.html":[16,1,3,9],
-"globals_defs_n.html":[16,1,3,10],
-"globals_defs_o.html":[16,1,3,11],
-"globals_defs_p.html":[16,1,3,12]
+"globals_defs_l.html":[16,1,3,8]
 };

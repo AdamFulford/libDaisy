@@ -320,8 +320,16 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a063970be3b8f610324267ba5d484c1df"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8843829f95992f3846fe7ec65a8c6135" id="r_a8843829f95992f3846fe7ec65a8c6135"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8843829f95992f3846fe7ec65a8c6135">SetButtonLED</a> (<a class="el" href="#af666ae1a4cfcc3c1f7716adc6951b2a7">PICO_Button_LEDs</a> id, bool state)</td></tr>
 <tr class="separator:a8843829f95992f3846fe7ec65a8c6135"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a80906dd56a95ba7ab799e3e599fd3610" id="r_a80906dd56a95ba7ab799e3e599fd3610"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a80906dd56a95ba7ab799e3e599fd3610">CalibrateCVs</a> ()</td></tr>
-<tr class="separator:a80906dd56a95ba7ab799e3e599fd3610"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a960157db4a2d94e457b3b7edb33ad7ee" id="r_a960157db4a2d94e457b3b7edb33ad7ee"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a960157db4a2d94e457b3b7edb33ad7ee">CalibrateCVs</a> ()</td></tr>
+<tr class="separator:a960157db4a2d94e457b3b7edb33ad7ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a756035be1035cb6267b0624aed9960c3" id="r_a756035be1035cb6267b0624aed9960c3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a756035be1035cb6267b0624aed9960c3">IncrementAudioOffset</a> (size_t channel, float increment)</td></tr>
+<tr class="separator:a756035be1035cb6267b0624aed9960c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9dfdfeefe23e95831f53e4802a065630" id="r_a9dfdfeefe23e95831f53e4802a065630"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9dfdfeefe23e95831f53e4802a065630">CalibrateVoct_1V</a> (size_t channel)</td></tr>
+<tr class="separator:a9dfdfeefe23e95831f53e4802a065630"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad4fb189a3d06cfc50cce383e34812ad2" id="r_ad4fb189a3d06cfc50cce383e34812ad2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad4fb189a3d06cfc50cce383e34812ad2">CalibrateVoct_3V</a> (size_t channel)</td></tr>
+<tr class="separator:ad4fb189a3d06cfc50cce383e34812ad2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a42ae6b25e6e684d28f74a77fb915983e" id="r_a42ae6b25e6e684d28f74a77fb915983e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a42ae6b25e6e684d28f74a77fb915983e">SaveCalibration</a> ()</td></tr>
+<tr class="separator:a42ae6b25e6e684d28f74a77fb915983e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3efc49e5c73784c388123a58d2907160" id="r_a3efc49e5c73784c388123a58d2907160"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3efc49e5c73784c388123a58d2907160">RestoreCalibration</a> ()</td></tr>
 <tr class="separator:a3efc49e5c73784c388123a58d2907160"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -719,19 +727,69 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a80906dd56a95ba7ab799e3e599fd3610" name="a80906dd56a95ba7ab799e3e599fd3610"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a80906dd56a95ba7ab799e3e599fd3610">&#9670;&#160;</a></span>CalibrateCVs()</h2>
+<a id="a960157db4a2d94e457b3b7edb33ad7ee" name="a960157db4a2d94e457b3b7edb33ad7ee"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a960157db4a2d94e457b3b7edb33ad7ee">&#9670;&#160;</a></span>CalibrateCVs()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">bool daisy::VenoLooper_v5::CalibrateCVs </td>
+          <td class="memname">void daisy::VenoLooper_v5::CalibrateCVs </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a9dfdfeefe23e95831f53e4802a065630" name="a9dfdfeefe23e95831f53e4802a065630"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9dfdfeefe23e95831f53e4802a065630">&#9670;&#160;</a></span>CalibrateVoct_1V()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void daisy::VenoLooper_v5::CalibrateVoct_1V </td>
+          <td>(</td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>channel</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad4fb189a3d06cfc50cce383e34812ad2" name="ad4fb189a3d06cfc50cce383e34812ad2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad4fb189a3d06cfc50cce383e34812ad2">&#9670;&#160;</a></span>CalibrateVoct_3V()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void daisy::VenoLooper_v5::CalibrateVoct_3V </td>
+          <td>(</td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>channel</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 </div>
@@ -948,6 +1006,27 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
+<a id="a756035be1035cb6267b0624aed9960c3" name="a756035be1035cb6267b0624aed9960c3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a756035be1035cb6267b0624aed9960c3">&#9670;&#160;</a></span>IncrementAudioOffset()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void daisy::VenoLooper_v5::IncrementAudioOffset </td>
+          <td>(</td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>channel</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>increment</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="ae17d8bc6187be42c6e1c165c65aa7e2e" name="ae17d8bc6187be42c6e1c165c65aa7e2e"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ae17d8bc6187be42c6e1c165c65aa7e2e">&#9670;&#160;</a></span>Init()</h2>
 
@@ -1121,6 +1200,31 @@ template&lt;typename... VA&gt; </div>
           <td></td>
         </tr>
       </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a42ae6b25e6e684d28f74a77fb915983e" name="a42ae6b25e6e684d28f74a77fb915983e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a42ae6b25e6e684d28f74a77fb915983e">&#9670;&#160;</a></span>SaveCalibration()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool daisy::VenoLooper_v5::SaveCalibration </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 </div>
