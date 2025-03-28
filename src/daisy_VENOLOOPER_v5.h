@@ -324,12 +324,21 @@ struct CV_Calibration
 CV_Calibration calibration1
 
 //CV offset
-{{  0.020568f,    //VOct2_CV 0
-    0.026275f,    //VOct1_CV 1
-    0.010223f,    //LAYER1_CV 2
-    0.016174f,    //LAYER2_CV 3
-    0.026702f,    //START1_CV 4
-    0.022521f,    //START2_CV 5
+{
+// {  0.020568f,    //VOct2_CV 0
+//     0.026275f,    //VOct1_CV 1
+//     0.010223f,    //LAYER1_CV 2
+//     0.016174f,    //LAYER2_CV 3
+//     0.026702f,    //START1_CV 4
+//     0.022521f,    //START2_CV 5
+// },
+{
+    0.0f,
+    0.0f,
+    0.0f,
+    0.0f,
+    0.0f,
+    0.0f
 },
 
 //CV scale
@@ -693,7 +702,14 @@ void Init(bool boost = false);
         Log::StartLog(wait_for_pc);
     }
 
-    bool CalibrateCVs();
+    void CalibrateCVs();
+
+    void IncrementAudioOffset(size_t channel, float increment);
+
+    void CalibrateVoct_1V(size_t channel) {};
+    void CalibrateVoct_3V(size_t channel) {};
+
+    bool SaveCalibration() {return true;};
 
     bool RestoreCalibration();
 
@@ -725,6 +741,8 @@ void Init(bool boost = false);
     /** Local shorthand for debug log destination
     */
     using Log = Logger<LOGGER_INTERNAL>;
+
+    CV_Calibration calibrateLoaded{};
     //void InitMidi();
 
     // PersistentStorage<CV_Calibration> SavedCalibration(seed.qspi);

@@ -460,7 +460,7 @@ void VenoLooper_v5::SetButtonLED(PICO_Button_LEDs id, bool state)
 //Call in main, after ADC configured. All CV inputs must be unpatched.
 //returns true when calibration complete. Returns 0 if error.
 
-bool VenoLooper_v5::CalibrateCVs()
+void VenoLooper_v5::CalibrateCVs()
 {
     //loop through CV inputs
     //read input, put correction in Calibration array
@@ -484,14 +484,23 @@ bool VenoLooper_v5::CalibrateCVs()
        calibration1.MuxOffsets[Index] = -1.0f * Reading;
     }
 
-    //save array to QSPI
-
-    
-
-    return true;
 }
 
-bool RestoreCalibration()
+void VenoLooper_v5::IncrementAudioOffset(size_t channel, float increment)
+{
+    if(channel >= 2)
+    {
+        //do nothing, out of range
+    }
+
+    else //increment value
+    {
+        calibration1.AudioOffsets[channel] += increment;
+    }
+}
+
+
+bool VenoLooper_v5::RestoreCalibration()
 {
     //load values from QSPI
 
