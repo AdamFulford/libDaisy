@@ -10,6 +10,8 @@ using namespace daisy;
 
 void VenoLooper_v5::Init(bool boost)
 {
+
+
     seed.Init(boost);
     seed.SetAudioBlockSize(BLOCK_SIZE);
     seed.SetAudioSampleRate(SaiHandle::Config::SampleRate::SAI_48KHZ);
@@ -174,10 +176,7 @@ void VenoLooper_v5::Init(bool boost)
     //Encoder
     encoder.Init(seed::PIN_ENC_UP, seed::PIN_ENC_DOWN);
 
-
-
     //SD Card
-
 }
 
 void VenoLooper_v5::InitPicoUart(uint8_t* rx_buff)
@@ -328,16 +327,16 @@ void VenoLooper_v5::UpdateDaisyGates()
 
 float VenoLooper_v5::GetMuxValue(MUX_IDs idx)
 {
-        return (MUX_Input[idx < LAST_MUX ? idx : 0].Value() 
-                * calibration.MuxScale[idx]) 
-                + calibration.MuxOffsets[idx];
+        return (MUX_Input[idx < LAST_MUX ? idx : 0].Value()
+                 * calibration1.MuxScale[idx]) 
+                 + calibration1.MuxOffsets[idx];
 }
 
 float VenoLooper_v5::GetCvValue(CV_IDs idx)
 {
-    return (cv[idx < LAST_CV ? idx : 0].Value() 
-            * calibration.CV_Scale[idx]) 
-            + calibration.CV_Offsets[idx];
+    return (cv[idx < LAST_CV ? idx : 0].Value()
+             * calibration1.CV_Scale[idx]) 
+             + calibration1.CV_Offsets[idx];;
 }
 
 AnalogControl* VenoLooper_v5::GetKnob(size_t idx)
@@ -456,4 +455,45 @@ void VenoLooper_v5::SetButtonLED(PICO_Button_LEDs id, bool state)
     {
         ButtonLED_State[id] = state;
     }
+}
+
+//Call in main, after ADC configured. All CV inputs must be unpatched.
+//returns true when calibration complete. Returns 0 if error.
+
+bool VenoLooper_v5::CalibrateCVs()
+{
+    //loop through CV inputs
+    //read input, put correction in Calibration array
+    //Save to QSPI library
+
+    for (size_t CVInput=0; CVInput<LAST_CV; CVInput++)
+    {
+       CV_IDs Index{static_cast<CV_IDs>(CVInput)};
+       float Reading{GetCvValue(Index)};
+
+       calibration1.CV_Offsets[Index] = -1.0f * Reading;
+    }
+
+    //Just run through Mux3 inputs (CVs)
+    for (size_t Mux3Input=16; Mux3Input<LAST_MUX - 1; Mux3Input++)
+    {
+       MUX_IDs Index{static_cast<MUX_IDs>(Mux3Input)};
+
+       float Reading{GetMuxValue(Index)};
+
+       calibration1.MuxOffsets[Index] = -1.0f * Reading;
+    }
+
+    //save array to QSPI
+
+    
+
+    return true;
+}
+
+bool RestoreCalibration()
+{
+    //load values from QSPI
+
+    return true;
 }

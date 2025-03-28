@@ -36,10 +36,12 @@ const uint8_t kMrstBitMask   = 0x80;
 const uint8_t kSrstBitMask   = 0x40;
 const uint8_t kAdcPsvBitMask = 0x20;
 const uint8_t kDacPsvBitMask = 0x10;
+const uint8_t kBypHpfBitMask = 0x08;
 
 // DacCtrl1 Masks
 // This can be used for FMT1[1:0] and FMT2[1:0]
-const uint8_t kFmtBitMask = 0x03;
+//const uint8_t kFmtBitMask = 0x03;
+const uint8_t kFmtBitMask = 0x01;
 
 
 namespace daisy
@@ -77,20 +79,31 @@ Pcm3060::Result Pcm3060::Init(I2CHandle i2c)
         return Result::ERR;
     if(ReadRegister(kAddrRegAdcCtrl1, &adc_ctrl) != Result::OK)
         return Result::ERR;
-    dac_ctrl |= (kFmtBitMask & 1);
-    adc_ctrl |= (kFmtBitMask & 1);
+    dac_ctrl |= (kFmtBitMask);
+    adc_ctrl |= (kFmtBitMask);
     if(WriteRegister(kAddrRegDacCtrl1, dac_ctrl) != Result::OK)
         return Result::ERR;
     if(WriteRegister(kAddrRegAdcCtrl1, adc_ctrl) != Result::OK)
         return Result::ERR;
 
-    // Disable Powersave for ADC/DAC
-    if(ReadRegister(kAddrRegSysCtrl, &sysreg) != Result::OK)
-        return Result::ERR;
-    sysreg &= ~(kAdcPsvBitMask);
-    sysreg &= ~(kDacPsvBitMask);
-    if(WriteRegister(kAddrRegSysCtrl, sysreg) != Result::OK)
-        return Result::ERR;
+    // //bypass HPF:
+    // uint8_t adc_ctrl2;
+    // // Read current value of Register 73 (0x49)
+    // if(ReadRegister(kAddrRegAdcCtrl2, &adc_ctrl2) != Result::OK)
+    //     return Result::ERR;
+    // // Set Bit 3 (BYP) to 1
+    // adc_ctrl2 |= kBypHpfBitMask;
+    // // Write back modified value
+    // if(WriteRegister(kAddrRegAdcCtrl2, adc_ctrl2) != Result::OK)
+    //     return Result::ERR;
+
+    // // Disable Powersave for ADC/DAC
+    // if(ReadRegister(kAddrRegSysCtrl, &sysreg) != Result::OK)
+    //     return Result::ERR;
+    // sysreg &= ~(kAdcPsvBitMask);
+    // sysreg &= ~(kDacPsvBitMask);
+    // if(WriteRegister(kAddrRegSysCtrl, sysreg) != Result::OK)
+    //     return Result::ERR;
 
     // Success
     return Result::OK;

@@ -43,7 +43,7 @@
 #define PIN_SDMMC_D3 D1
 
 #define BAUD_RATE 921600 
-#define BLOCK_SIZE 256 //256
+#define BLOCK_SIZE 128 //256
 #define NUM_BUTTON_LEDS 6
 
 #define NUM_NEOPIXELS 60
@@ -302,6 +302,8 @@ struct CV_Calibration
     std::array<float, LAST_MUX> MuxOffsets {};
     std::array<float, LAST_MUX> MuxScale {};
 
+    std::array<float, 2> AudioOffsets{};
+
     //VOct2_CV 0
     //VOct1_CV 1
     //LAYER1_CV 2
@@ -319,7 +321,7 @@ struct CV_Calibration
     // CRUSH_POT,
 };
 
-CV_Calibration calibration
+CV_Calibration calibration1
 
 //CV offset
 {{  0.020568f,    //VOct2_CV 0
@@ -331,8 +333,8 @@ CV_Calibration calibration
 },
 
 //CV scale
-{   1.0f,    //VOct2_CV 0
-    1.0f,    //VOct1_CV 1
+{   0.983526f,    //VOct2_CV 0
+    0.975134f,    //VOct1_CV 1
     1.0f,    //LAYER1_CV 2
     1.0f,    //LAYER2_CV 3
     1.0f,    //START1_CV 4
@@ -400,10 +402,19 @@ CV_Calibration calibration
     1.0f, // MUX3_5,
     1.0f, // MUX3_6,
     1.0f // CRUSH_POT,
+},
+
+//Audio Offsets
+{
+    0.00648115f, //audio output 1
+    0.008065646f //audio output 2
 }
+
+
 
 };    
 
+//test results 1
 // MUX Inputs:
 // MUX_1:  0.206539	MUX_2:  0.457402	MUX_3:  0.000000	MUX_4:  0.967815
 // MUX_5:  0.435149	MUX_6:  0.000011	MUX_7:  0.498974	MUX_8:  0.000009
@@ -415,6 +426,112 @@ CV_Calibration calibration
 // Direct CV Inputs:
 // CV_1: -0.020568	CV_2: -0.026275	CV_3: -0.010223
 // CV_4: -0.016174	CV_5: -0.026702	CV_6: -0.022521
+
+CV_Calibration calibration2
+
+//CV offset
+{{  -0.028441f,    //VOct2_CV 0
+    -0.026611f,    //VOct1_CV 1
+    -0.020721f,    //LAYER1_CV 2
+    -0.031860f,    //LAYER2_CV 3
+    -0.020812f,    //START1_CV 4
+    -0.023498f,    //START2_CV 5
+},
+
+//CV scale
+{   1.0f,    //VOct2_CV 0
+    1.0f,    //VOct1_CV 1
+    1.0f,    //LAYER1_CV 2
+    1.0f,    //LAYER2_CV 3
+    1.0f,    //START1_CV 4
+    1.0f,    //START2_CV 5
+},
+//MUX offset
+{
+0.0f,    // LENGTH1_POT,   //000
+0.0f,    // SPEED2_POT, //001
+0.0f,    // START1_POT, // 010
+0.0f,    // LENGTH2_POT,  //011
+0.0f,    // XFADE_POT, //100
+0.0f,    // PLAY_TOGGLE2_POT, //101
+0.0f,    // DECAY_POT, //110
+0.0f,    // PLAY_TOGGLE1_POT, //111
+
+//mux2
+0.0f,    // ATTACK1_POT,
+0.0f,    // START2_POT,
+0.0f,    // SPEED1_POT,
+0.0f,    // ATTACK2_POT,
+0.0f,    // LAYER1_POT,
+0.0f,    // RELEASE2_POT,
+0.0f,    // LAYER2_POT,
+0.0f,    // RELEASE1_POT,
+
+//mux3
+-0.026123f, // INPUT1_CV,
+-0.018890f, // LENGTH1_CV,
+-0.026654f, // LENGTH2_CV,
+0.0f, // MUX3_3,
+-0.032287f, // INPUT2_CV,
+0.0f, // MUX3_5,
+0.0f, // MUX3_6,
+0.0f // CRUSH_POT,
+},
+
+//MUX scale
+{
+    1.033058f,    // LENGTH1_POT,   //000
+    1.033058f,    // SPEED2_POT, //001
+    1.033058f,    // START1_POT, // 010
+    1.033058f,    // LENGTH2_POT,  //011
+    1.033058f,    // XFADE_POT, //100
+    1.033058f,    // PLAY_TOGGLE2_POT, //101
+    1.033058f,    // DECAY_POT, //110
+    1.033058f,    // PLAY_TOGGLE1_POT, //111
+    
+    //mux2
+    1.033058f,    // ATTACK1_POT,
+    1.033058f,    // START2_POT,
+    1.033058f,    // SPEED1_POT,
+    1.033058f,    // ATTACK2_POT,
+    1.033058f,    // LAYER1_POT,
+    1.033058f,    // RELEASE2_POT,
+    1.033058f,    // LAYER2_POT,
+    1.033058f,    // RELEASE1_POT,
+    
+    //mux3
+    1.0f, // INPUT1_CV,
+    1.0f, // LENGTH1_CV,
+    1.0f, // LENGTH2_CV,
+    1.0f, // MUX3_3,
+    1.0f, // INPUT2_CV,
+    1.0f, // MUX3_5,
+    1.0f, // MUX3_6,
+    1.0f // CRUSH_POT,
+},
+
+//Audio Offsets
+{
+    0.0484344f, //audio output 1
+    0.0604635f //audio output 2
+}
+
+};    
+
+//test results 2
+// MUX Inputs:
+// MUX_1:  0.121813	MUX_2:  0.968175	MUX_3:  0.968104	MUX_4:  0.968175
+// MUX_5:  0.968143	MUX_6:  0.000114	MUX_7:  0.968093	MUX_8:  0.000102
+// MUX_9:  0.967985	MUX_10:  0.968000	MUX_11:  0.967984	MUX_12:  0.967996
+// MUX_13:  0.967910	MUX_14:  0.968005	MUX_15:  0.967926	MUX_16:  0.967954
+// MUX_17:  0.026123	MUX_18:  0.018890	MUX_19:  0.026654	MUX_20:  0.000000
+// MUX_21:  0.032287	MUX_22:  0.000000	MUX_23:  0.000000	MUX_24:  0.967965
+// ######################
+// Direct CV Inputs:
+// CV_1:  0.028473	CV_2:  0.026733	CV_3:  0.021026
+// CV_4:  0.032135	CV_5:  0.020935	CV_6:  0.023712
+
+
 
 VenoLooper_v5() {}
 ~VenoLooper_v5() {}
@@ -576,6 +693,10 @@ void Init(bool boost = false);
         Log::StartLog(wait_for_pc);
     }
 
+    bool CalibrateCVs();
+
+    bool RestoreCalibration();
+
     DaisySeed                     seed;
     MidiUartHandler               midi;
     PicoUartTXRX                  PicoUart;
@@ -584,8 +705,6 @@ void Init(bool boost = false);
     GateIn                        gates[LAST_GATE];
     GPIO                          gateOut[LAST_GATE_OUT];
     Encoder                       encoder;
-
-    float Length1_Value{};
                
     private:
 
@@ -607,6 +726,8 @@ void Init(bool boost = false);
     */
     using Log = Logger<LOGGER_INTERNAL>;
     //void InitMidi();
+
+    // PersistentStorage<CV_Calibration> SavedCalibration(seed.qspi);
     
 };
 
