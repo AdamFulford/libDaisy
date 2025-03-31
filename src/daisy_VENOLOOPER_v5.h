@@ -62,6 +62,8 @@
 #define NUM_RING_PIXELS 22
 #define NUM_BANK_PIXELS 8
 
+using namespace daisy;
+
 namespace daisy
 {
 
@@ -295,34 +297,21 @@ CntrlFreq CVFreq[LAST_CV]
 
 struct CV_Calibration
 {
+    public: 
+    
     std::array<float,LAST_CV> CV_Offsets {};
     std::array<float,LAST_CV> CV_Scale {};
-
 
     std::array<float, LAST_MUX> MuxOffsets {};
     std::array<float, LAST_MUX> MuxScale {};
 
     std::array<float, 2> AudioOffsets{};
 
-    //VOct2_CV 0
-    //VOct1_CV 1
-    //LAYER1_CV 2
-    //LAYER2_CV 3
-    //START1_CV 4
-    //START2_CV 5
-
-    // INPUT1_CV,
-    // LENGTH1_CV,
-    // LENGTH2_CV,
-    // MUX3_3,
-    // INPUT2_CV,
-    // MUX3_5,
-    // MUX3_6,
-    // CRUSH_POT,
+    friend bool operator!= (const CV_Calibration& c1, const CV_Calibration& c2);
 };
 
-CV_Calibration calibration1
 
+CV_Calibration calibration1
 //CV offset
 {
 // {  0.020568f,    //VOct2_CV 0
@@ -650,6 +639,10 @@ void Init(bool boost = false);
     */
     AnalogControl* GetCv(size_t idx);
 
+    float GetAudioOffset(size_t channel);
+
+    CV_Calibration GetCalibration(){return calibration_;}
+
     //fills active buffer
     //swaps active and ready buffers
     //for transmission to Pico. Call in audiocallback
@@ -702,16 +695,14 @@ void Init(bool boost = false);
         Log::StartLog(wait_for_pc);
     }
 
-    void CalibrateCVs();
+    // bool SaveCalibration() {return true;};
+    // bool RestoreCalibration();
 
-    void IncrementAudioOffset(size_t channel, float increment);
+    //takes external calibration and saves it for use when calling 
+    //GetMuxValue and GetCvValue etc.
+    void SetCalibration(CV_Calibration& calibration);
 
-    void CalibrateVoct_1V(size_t channel) {};
-    void CalibrateVoct_3V(size_t channel) {};
-
-    bool SaveCalibration() {return true;};
-
-    bool RestoreCalibration();
+    bool ValidateQSPI(bool quick = true);
 
     DaisySeed                     seed;
     MidiUartHandler               midi;
@@ -742,14 +733,22 @@ void Init(bool boost = false);
     */
     using Log = Logger<LOGGER_INTERNAL>;
 
-    CV_Calibration calibrateLoaded{};
-    //void InitMidi();
+    CV_Calibration calibration_{};
 
-    // PersistentStorage<CV_Calibration> SavedCalibration(seed.qspi);
-    
+    //void InitMidi();
+ 
 };
 
-                     
-} // namespace daisy
+//operator for VenoLooper_v5::CV_Calibration
+inline bool operator!= (const VenoLooper_v5::CV_Calibration& c1, const VenoLooper_v5::CV_Calibration& c2)
+{
+    return (c1.CV_Offsets != c2.CV_Offsets ||
+        c1.MuxOffsets != c2.MuxOffsets ||
+        c1.CV_Scale != c2.CV_Scale ||
+        c1.MuxScale != c2.MuxScale ||
+        c1.AudioOffsets != c2.AudioOffsets);
+}
+                  
+} // namespace daisy 
 
 #endif

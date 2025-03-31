@@ -4,14 +4,13 @@
 #endif
 
 #include <array>
+#include <vector>
 
 using namespace daisy;
 
 
 void VenoLooper_v5::Init(bool boost)
 {
-
-
     seed.Init(boost);
     seed.SetAudioBlockSize(BLOCK_SIZE);
     seed.SetAudioSampleRate(SaiHandle::Config::SampleRate::SAI_48KHZ);
@@ -177,6 +176,8 @@ void VenoLooper_v5::Init(bool boost)
     encoder.Init(seed::PIN_ENC_UP, seed::PIN_ENC_DOWN);
 
     //SD Card
+
+
 }
 
 void VenoLooper_v5::InitPicoUart(uint8_t* rx_buff)
@@ -328,15 +329,15 @@ void VenoLooper_v5::UpdateDaisyGates()
 float VenoLooper_v5::GetMuxValue(MUX_IDs idx)
 {
         return (MUX_Input[idx < LAST_MUX ? idx : 0].Value()
-                 * calibration1.MuxScale[idx]) 
-                 + calibration1.MuxOffsets[idx];
+                 * calibration_.MuxScale[idx]) 
+                 + calibration_.MuxOffsets[idx];
 }
 
 float VenoLooper_v5::GetCvValue(CV_IDs idx)
 {
     return (cv[idx < LAST_CV ? idx : 0].Value()
-             * calibration1.CV_Scale[idx]) 
-             + calibration1.CV_Offsets[idx];;
+             * calibration_.CV_Scale[idx]) 
+             + calibration_.CV_Offsets[idx];;
 }
 
 AnalogControl* VenoLooper_v5::GetKnob(size_t idx)
@@ -457,52 +458,48 @@ void VenoLooper_v5::SetButtonLED(PICO_Button_LEDs id, bool state)
     }
 }
 
-//Call in main, after ADC configured. All CV inputs must be unpatched.
-//returns true when calibration complete. Returns 0 if error.
-
-void VenoLooper_v5::CalibrateCVs()
+void VenoLooper_v5::SetCalibration(CV_Calibration& calibration)
 {
-    //loop through CV inputs
-    //read input, put correction in Calibration array
-    //Save to QSPI library
-
-    for (size_t CVInput=0; CVInput<LAST_CV; CVInput++)
-    {
-       CV_IDs Index{static_cast<CV_IDs>(CVInput)};
-       float Reading{GetCvValue(Index)};
-
-       calibration1.CV_Offsets[Index] = -1.0f * Reading;
-    }
-
-    //Just run through Mux3 inputs (CVs)
-    for (size_t Mux3Input=16; Mux3Input<LAST_MUX - 1; Mux3Input++)
-    {
-       MUX_IDs Index{static_cast<MUX_IDs>(Mux3Input)};
-
-       float Reading{GetMuxValue(Index)};
-
-       calibration1.MuxOffsets[Index] = -1.0f * Reading;
-    }
-
+    calibration_ = calibration;
 }
 
-void VenoLooper_v5::IncrementAudioOffset(size_t channel, float increment)
+float VenoLooper_v5::GetAudioOffset(size_t channel)
 {
-    if(channel >= 2)
-    {
-        //do nothing, out of range
-    }
+    if(channel >= 2) {return 0.0f;}
 
-    else //increment value
-    {
-        calibration1.AudioOffsets[channel] += increment;
-    }
+    return(calibration_.AudioOffsets[channel]);
 }
 
-
-bool VenoLooper_v5::RestoreCalibration()
-{
-    //load values from QSPI
-
-    return true;
-}
+bool VenoLooper_v5::ValidateQSPI(bool quick)
+    {
+        uint32_t start;
+        uint32_t size;
+        if(quick)
+        {
+            start = 0x400000;
+            size  = 0x4000;
+        }
+        else
+        {
+            start = 0;
+            size  = 0x800000;
+        }
+        // Erase the section to be tested
+        seed.qspi.Erase(start, start + size);
+        // Create some test data
+        std::vector<uint8_t> test;
+        test.resize(size);
+        uint8_t *testmem = test.data();
+        for(size_t i = 0; i < size; i++)
+            testmem[i] = (uint8_t)(i & 0xff);
+        // Write the test data to the device
+        seed.qspi.Write(start, size, testmem);
+        // Read it all back and count any/all errors
+        // I supppose any byte where ((data & 0xff) == data)
+        // would be able to false-pass..
+        size_t fail_cnt = 0;
+        for(size_t i = 0; i < size; i++)
+            if(testmem[i] != (uint8_t)(i & 0xff))
+                fail_cnt++;
+        return fail_cnt == 0;
+    }

@@ -83,7 +83,10 @@ class AnalogControl
     inline uint16_t GetRawValue() { return *raw_; }
 
     /** Returns a normalized float value representing the current ADC value. */
-    inline float GetRawFloat() { return (float)(*raw_) / 65535.f; }
+    inline float GetRawFloat() 
+    { 
+      return ((float)(*raw_) / 65535.f - offset_ ) * scale_ * (invert_ ? -1.0f : 1.0f);
+    }
 
     /** Set a new sample rate after the ctrl has been initialized
      *  \param sample_rate New update rate for the switch in hz
