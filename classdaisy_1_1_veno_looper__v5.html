@@ -302,6 +302,10 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:ad6af08fa1e9915ffd809ab1cad58294b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a35f33d5ab466ef95f7c799acd7035511" id="r_a35f33d5ab466ef95f7c799acd7035511"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classdaisy_1_1_analog_control.html">AnalogControl</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a35f33d5ab466ef95f7c799acd7035511">GetCv</a> (size_t idx)</td></tr>
 <tr class="separator:a35f33d5ab466ef95f7c799acd7035511"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa612207087b50ae1e35499e4325e4b1a" id="r_aa612207087b50ae1e35499e4325e4b1a"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa612207087b50ae1e35499e4325e4b1a">GetAudioOffset</a> (size_t channel)</td></tr>
+<tr class="separator:aa612207087b50ae1e35499e4325e4b1a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abe52a5676db3855c18f380639655f0a8" id="r_abe52a5676db3855c18f380639655f0a8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structdaisy_1_1_veno_looper__v5_1_1_c_v___calibration.html">CV_Calibration</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abe52a5676db3855c18f380639655f0a8">GetCalibration</a> ()</td></tr>
+<tr class="separator:abe52a5676db3855c18f380639655f0a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6d8c513968089b7d5e1c0f3f0ef2be03" id="r_a6d8c513968089b7d5e1c0f3f0ef2be03"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6d8c513968089b7d5e1c0f3f0ef2be03">UpdateLEDs</a> ()</td></tr>
 <tr class="separator:a6d8c513968089b7d5e1c0f3f0ef2be03"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae7c1053d3709a523d04f56c71d639722" id="r_ae7c1053d3709a523d04f56c71d639722"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae7c1053d3709a523d04f56c71d639722">TransmitLED_States</a> ()</td></tr>
@@ -320,18 +324,10 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a063970be3b8f610324267ba5d484c1df"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8843829f95992f3846fe7ec65a8c6135" id="r_a8843829f95992f3846fe7ec65a8c6135"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8843829f95992f3846fe7ec65a8c6135">SetButtonLED</a> (<a class="el" href="#af666ae1a4cfcc3c1f7716adc6951b2a7">PICO_Button_LEDs</a> id, bool state)</td></tr>
 <tr class="separator:a8843829f95992f3846fe7ec65a8c6135"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a960157db4a2d94e457b3b7edb33ad7ee" id="r_a960157db4a2d94e457b3b7edb33ad7ee"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a960157db4a2d94e457b3b7edb33ad7ee">CalibrateCVs</a> ()</td></tr>
-<tr class="separator:a960157db4a2d94e457b3b7edb33ad7ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a756035be1035cb6267b0624aed9960c3" id="r_a756035be1035cb6267b0624aed9960c3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a756035be1035cb6267b0624aed9960c3">IncrementAudioOffset</a> (size_t channel, float increment)</td></tr>
-<tr class="separator:a756035be1035cb6267b0624aed9960c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9dfdfeefe23e95831f53e4802a065630" id="r_a9dfdfeefe23e95831f53e4802a065630"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9dfdfeefe23e95831f53e4802a065630">CalibrateVoct_1V</a> (size_t channel)</td></tr>
-<tr class="separator:a9dfdfeefe23e95831f53e4802a065630"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad4fb189a3d06cfc50cce383e34812ad2" id="r_ad4fb189a3d06cfc50cce383e34812ad2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad4fb189a3d06cfc50cce383e34812ad2">CalibrateVoct_3V</a> (size_t channel)</td></tr>
-<tr class="separator:ad4fb189a3d06cfc50cce383e34812ad2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a42ae6b25e6e684d28f74a77fb915983e" id="r_a42ae6b25e6e684d28f74a77fb915983e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a42ae6b25e6e684d28f74a77fb915983e">SaveCalibration</a> ()</td></tr>
-<tr class="separator:a42ae6b25e6e684d28f74a77fb915983e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3efc49e5c73784c388123a58d2907160" id="r_a3efc49e5c73784c388123a58d2907160"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3efc49e5c73784c388123a58d2907160">RestoreCalibration</a> ()</td></tr>
-<tr class="separator:a3efc49e5c73784c388123a58d2907160"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adaaaa46dc9b8c9fd7eb3473ad12bc9f9" id="r_adaaaa46dc9b8c9fd7eb3473ad12bc9f9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adaaaa46dc9b8c9fd7eb3473ad12bc9f9">SetCalibration</a> (<a class="el" href="structdaisy_1_1_veno_looper__v5_1_1_c_v___calibration.html">CV_Calibration</a> &amp;calibration)</td></tr>
+<tr class="separator:adaaaa46dc9b8c9fd7eb3473ad12bc9f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1eb72087c34bb20b1ddf6415d9988d07" id="r_a1eb72087c34bb20b1ddf6415d9988d07"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1eb72087c34bb20b1ddf6415d9988d07">ValidateQSPI</a> (bool quick=true)</td></tr>
+<tr class="separator:a1eb72087c34bb20b1ddf6415d9988d07"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
@@ -727,73 +723,6 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a960157db4a2d94e457b3b7edb33ad7ee" name="a960157db4a2d94e457b3b7edb33ad7ee"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a960157db4a2d94e457b3b7edb33ad7ee">&#9670;&#160;</a></span>CalibrateCVs()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void daisy::VenoLooper_v5::CalibrateCVs </td>
-          <td>(</td>
-          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a9dfdfeefe23e95831f53e4802a065630" name="a9dfdfeefe23e95831f53e4802a065630"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9dfdfeefe23e95831f53e4802a065630">&#9670;&#160;</a></span>CalibrateVoct_1V()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void daisy::VenoLooper_v5::CalibrateVoct_1V </td>
-          <td>(</td>
-          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>channel</em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="ad4fb189a3d06cfc50cce383e34812ad2" name="ad4fb189a3d06cfc50cce383e34812ad2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad4fb189a3d06cfc50cce383e34812ad2">&#9670;&#160;</a></span>CalibrateVoct_3V()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void daisy::VenoLooper_v5::CalibrateVoct_3V </td>
-          <td>(</td>
-          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>channel</em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <a id="a2e89ec214441aa05e7f96cc5aa296d39" name="a2e89ec214441aa05e7f96cc5aa296d39"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a2e89ec214441aa05e7f96cc5aa296d39">&#9670;&#160;</a></span>ChangeAudioCallback() <span class="overload">[1/2]</span></h2>
 
@@ -914,6 +843,48 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
+<a id="aa612207087b50ae1e35499e4325e4b1a" name="aa612207087b50ae1e35499e4325e4b1a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa612207087b50ae1e35499e4325e4b1a">&#9670;&#160;</a></span>GetAudioOffset()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float daisy::VenoLooper_v5::GetAudioOffset </td>
+          <td>(</td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>channel</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="abe52a5676db3855c18f380639655f0a8" name="abe52a5676db3855c18f380639655f0a8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abe52a5676db3855c18f380639655f0a8">&#9670;&#160;</a></span>GetCalibration()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structdaisy_1_1_veno_looper__v5_1_1_c_v___calibration.html">CV_Calibration</a> daisy::VenoLooper_v5::GetCalibration </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a35f33d5ab466ef95f7c799acd7035511" name="a35f33d5ab466ef95f7c799acd7035511"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a35f33d5ab466ef95f7c799acd7035511">&#9670;&#160;</a></span>GetCv()</h2>
 
@@ -1003,27 +974,6 @@ Public Attributes</h2></td></tr>
   </table>
   </dd>
 </dl>
-
-</div>
-</div>
-<a id="a756035be1035cb6267b0624aed9960c3" name="a756035be1035cb6267b0624aed9960c3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a756035be1035cb6267b0624aed9960c3">&#9670;&#160;</a></span>IncrementAudioOffset()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void daisy::VenoLooper_v5::IncrementAudioOffset </td>
-          <td>(</td>
-          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>channel</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>increment</em></span>&#160;)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
 
 </div>
 </div>
@@ -1187,48 +1137,6 @@ template&lt;typename... VA&gt; </div>
 
 </div>
 </div>
-<a id="a3efc49e5c73784c388123a58d2907160" name="a3efc49e5c73784c388123a58d2907160"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3efc49e5c73784c388123a58d2907160">&#9670;&#160;</a></span>RestoreCalibration()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool daisy::VenoLooper_v5::RestoreCalibration </td>
-          <td>(</td>
-          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a42ae6b25e6e684d28f74a77fb915983e" name="a42ae6b25e6e684d28f74a77fb915983e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a42ae6b25e6e684d28f74a77fb915983e">&#9670;&#160;</a></span>SaveCalibration()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool daisy::VenoLooper_v5::SaveCalibration </td>
-          <td>(</td>
-          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <a id="ab31421cdf37f427291017aeac9568e42" name="ab31421cdf37f427291017aeac9568e42"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ab31421cdf37f427291017aeac9568e42">&#9670;&#160;</a></span>SetAudioBlockSize()</h2>
 
@@ -1311,6 +1219,23 @@ template&lt;typename... VA&gt; </div>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>state</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="adaaaa46dc9b8c9fd7eb3473ad12bc9f9" name="adaaaa46dc9b8c9fd7eb3473ad12bc9f9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adaaaa46dc9b8c9fd7eb3473ad12bc9f9">&#9670;&#160;</a></span>SetCalibration()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void daisy::VenoLooper_v5::SetCalibration </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structdaisy_1_1_veno_looper__v5_1_1_c_v___calibration.html">CV_Calibration</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>calibration</em></span></td><td>)</td>
+          <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -1614,6 +1539,23 @@ template&lt;typename... VA&gt; </div>
 
 </div>
 </div>
+<a id="a1eb72087c34bb20b1ddf6415d9988d07" name="a1eb72087c34bb20b1ddf6415d9988d07"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1eb72087c34bb20b1ddf6415d9988d07">&#9670;&#160;</a></span>ValidateQSPI()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool daisy::VenoLooper_v5::ValidateQSPI </td>
+          <td>(</td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>quick</em></span><span class="paramdefsep"> = </span><span class="paramdefval">true</span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <h2 class="groupheader">Member Data Documentation</h2>
 <a id="a7691e6d470219d744c6169ffc0b4647b" name="a7691e6d470219d744c6169ffc0b4647b"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a7691e6d470219d744c6169ffc0b4647b">&#9670;&#160;</a></span>calibration1</h2>
@@ -1676,8 +1618,8 @@ template&lt;typename... VA&gt; </div>
 <div class="line">    <a class="code hl_enumvalue" href="#a8c88c26380e2ae279fff762ff76dcf69afc54a5399cdccbebbe8732e3c4cbe6f5">Slow</a>, </div>
 <div class="line">    <a class="code hl_enumvalue" href="#a8c88c26380e2ae279fff762ff76dcf69afc54a5399cdccbebbe8732e3c4cbe6f5">Slow</a> </div>
 <div class="line">}</div>
-<div class="ttc" id="aclassdaisy_1_1_veno_looper__v5_html_a8c88c26380e2ae279fff762ff76dcf69a4ad13f6cd0b1a25e1f325835b7c82c00"><div class="ttname"><a href="#a8c88c26380e2ae279fff762ff76dcf69a4ad13f6cd0b1a25e1f325835b7c82c00">daisy::VenoLooper_v5::Fast</a></div><div class="ttdeci">@ Fast</div><div class="ttdef"><b>Definition</b> daisy_VENOLOOPER_v5.h:199</div></div>
-<div class="ttc" id="aclassdaisy_1_1_veno_looper__v5_html_a8c88c26380e2ae279fff762ff76dcf69afc54a5399cdccbebbe8732e3c4cbe6f5"><div class="ttname"><a href="#a8c88c26380e2ae279fff762ff76dcf69afc54a5399cdccbebbe8732e3c4cbe6f5">daisy::VenoLooper_v5::Slow</a></div><div class="ttdeci">@ Slow</div><div class="ttdef"><b>Definition</b> daisy_VENOLOOPER_v5.h:199</div></div>
+<div class="ttc" id="aclassdaisy_1_1_veno_looper__v5_html_a8c88c26380e2ae279fff762ff76dcf69a4ad13f6cd0b1a25e1f325835b7c82c00"><div class="ttname"><a href="#a8c88c26380e2ae279fff762ff76dcf69a4ad13f6cd0b1a25e1f325835b7c82c00">daisy::VenoLooper_v5::Fast</a></div><div class="ttdeci">@ Fast</div><div class="ttdef"><b>Definition</b> daisy_VENOLOOPER_v5.h:201</div></div>
+<div class="ttc" id="aclassdaisy_1_1_veno_looper__v5_html_a8c88c26380e2ae279fff762ff76dcf69afc54a5399cdccbebbe8732e3c4cbe6f5"><div class="ttname"><a href="#a8c88c26380e2ae279fff762ff76dcf69afc54a5399cdccbebbe8732e3c4cbe6f5">daisy::VenoLooper_v5::Slow</a></div><div class="ttdeci">@ Slow</div><div class="ttdef"><b>Definition</b> daisy_VENOLOOPER_v5.h:201</div></div>
 </div><!-- fragment -->
 </div>
 </div>

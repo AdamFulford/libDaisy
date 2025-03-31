@@ -1,6 +1,5 @@
 var NAVTREEINDEX6 =
 {
-"globals_defs_m.html":[16,1,3,9],
 "globals_defs_n.html":[16,1,3,10],
 "globals_defs_o.html":[16,1,3,11],
 "globals_defs_p.html":[16,1,3,12],
@@ -249,5 +248,6 @@ var NAVTREEINDEX6 =
 "md_doc_2md_2__a6___getting-_started-_external-_s_d_r_a_m.html#autotoc_md43":[8,0],
 "md_doc_2md_2__a6___getting-_started-_external-_s_d_r_a_m.html#autotoc_md44":[8,1],
 "md_doc_2md_2__a6___getting-_started-_external-_s_d_r_a_m.html#autotoc_md45":[8,2],
-"md_doc_2md_2__a6___getting-_started-_external-_s_d_r_a_m.html#autotoc_md46":[8,3]
+"md_doc_2md_2__a6___getting-_started-_external-_s_d_r_a_m.html#autotoc_md46":[8,3],
+"md_doc_2md_2__a6___getting-_started-_external-_s_d_r_a_m.html#autotoc_md47":[8,4]
 };

@@ -46,5 +46,6 @@ var daisy___v_e_n_o_l_o_o_p_e_r__v5_8h =
     [ "RING1_START", "daisy___v_e_n_o_l_o_o_p_e_r__v5_8h.html#afadcfbf47df6d23a2b9286b1a60323ec", null ],
     [ "RING2_END", "daisy___v_e_n_o_l_o_o_p_e_r__v5_8h.html#a6fbb2e6537bb1159b9e4ae2e7b63bcbd", null ],
     [ "RING2_START", "daisy___v_e_n_o_l_o_o_p_e_r__v5_8h.html#a8f148f9b53d597e8837b9dfb63ee90bc", null ],
-    [ "VENO_LOOPER_V5_BOARD_H", "daisy___v_e_n_o_l_o_o_p_e_r__v5_8h.html#aa05ee62da0db6f82e8d4b36ee8dbfd56", null ]
+    [ "VENO_LOOPER_V5_BOARD_H", "daisy___v_e_n_o_l_o_o_p_e_r__v5_8h.html#aa05ee62da0db6f82e8d4b36ee8dbfd56", null ],
+    [ "operator!=", "daisy___v_e_n_o_l_o_o_p_e_r__v5_8h.html#a2e2fd8abd0cf7a96b26ba92026f5e814", null ]
 ];

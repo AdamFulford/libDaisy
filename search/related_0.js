@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['ui_0',['UI',['../classdaisy_1_1_ui_page.html#aef008c3dadcd60243e199b4b59b40303',1,'daisy::UiPage']]]
+  ['operator_21_3d_0',['operator!=',['../structdaisy_1_1_veno_looper__v5_1_1_c_v___calibration.html#a6a4cd70843a5145c3870bd46d58ebe97',1,'daisy::VenoLooper_v5::CV_Calibration']]]
 ];

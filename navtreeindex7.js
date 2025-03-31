@@ -1,6 +1,5 @@
 var NAVTREEINDEX7 =
 {
-"md_doc_2md_2__a6___getting-_started-_external-_s_d_r_a_m.html#autotoc_md47":[8,4],
 "md_doc_2md_2__a7___getting-_started-_daisy-_bootloader.html":[9],
 "md_doc_2md_2__a7___getting-_started-_daisy-_bootloader.html#autotoc_md49":[9,0],
 "md_doc_2md_2__a7___getting-_started-_daisy-_bootloader.html#autotoc_md50":[9,1],
@@ -249,5 +248,6 @@ var NAVTREEINDEX7 =
 "structdaisy_1_1_s_s_d130x4_wire_soft_spi_transport_1_1_config.html#a0e59a703a862b53bfb19cd022ade99e2":[15,0,0,113,0,1],
 "structdaisy_1_1_s_s_d130x4_wire_soft_spi_transport_1_1_config.html#a0e6385a90de1a3e4ffaa4023b3d9a83b":[15,0,0,113,0,0],
 "structdaisy_1_1_s_s_d130x4_wire_soft_spi_transport_1_1_config.html#a21662ebfa665bc9c4e8e8c73278de342":[15,0,0,113,0,7],
-"structdaisy_1_1_s_s_d130x4_wire_soft_spi_transport_1_1_config.html#a2447cac8ef4e7ffb4fce3d2b709c52ae":[15,0,0,113,0,5]
+"structdaisy_1_1_s_s_d130x4_wire_soft_spi_transport_1_1_config.html#a2447cac8ef4e7ffb4fce3d2b709c52ae":[15,0,0,113,0,5],
+"structdaisy_1_1_s_s_d130x4_wire_soft_spi_transport_1_1_config.html#a3a0ae07a0bd46ba85ddfa37fae85f157":[15,0,0,113,0,3]
 };
