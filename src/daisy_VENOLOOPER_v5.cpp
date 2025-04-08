@@ -1,10 +1,12 @@
 #include "daisy_VENOLOOPER_v5.h"
+
 #ifndef SAMPLE_RATE
 #define SAMPLE_RATE DSY_AUDIO_SAMPLE_RATE /**< & */
 #endif
 
 #include <array>
 #include <vector>
+#include <algorithm>
 
 using namespace daisy;
 
@@ -328,16 +330,23 @@ void VenoLooper_v5::UpdateDaisyGates()
 
 float VenoLooper_v5::GetMuxValue(MUX_IDs idx)
 {
-        return (MUX_Input[idx < LAST_MUX ? idx : 0].Value()
-                 * calibration_.MuxScale[idx]) 
-                 + calibration_.MuxOffsets[idx];
+    float retVal{(MUX_Input[idx < LAST_MUX ? idx : 0].Value()
+        * calibration_.MuxScale[idx]) 
+        + calibration_.MuxOffsets[idx]};
+
+        //return std::min(std::max(retVal,0.0f),1.0f);
+
+        return std::min(retVal,1.0f);
 }
 
 float VenoLooper_v5::GetCvValue(CV_IDs idx)
 {
-    return (cv[idx < LAST_CV ? idx : 0].Value()
-             * calibration_.CV_Scale[idx]) 
-             + calibration_.CV_Offsets[idx];;
+    float retVal{(cv[idx < LAST_CV ? idx : 0].Value()
+        * calibration_.CV_Scale[idx]) 
+        + calibration_.CV_Offsets[idx]};
+
+    // return std::min(std::max(retVal,0.0f),1.0f);
+    return std::min(retVal,1.0f);
 }
 
 AnalogControl* VenoLooper_v5::GetKnob(size_t idx)
