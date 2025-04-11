@@ -169,6 +169,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a47f395c1ae6530b8b497c8fd76cb6d59"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ada2266b23e77dde305b229b7814604fe" id="r_ada2266b23e77dde305b229b7814604fe"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ada2266b23e77dde305b229b7814604fe">CheckError</a> ()</td></tr>
 <tr class="separator:ada2266b23e77dde305b229b7814604fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6599868408c7c64b05ac24d7731f2899" id="r_a6599868408c7c64b05ac24d7731f2899"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6599868408c7c64b05ac24d7731f2899">GetOverrunCount</a> () const</td></tr>
+<tr class="separator:a6599868408c7c64b05ac24d7731f2899"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9641f3808cf70559d3d988f5ae8e254c" id="r_a9641f3808cf70559d3d988f5ae8e254c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9641f3808cf70559d3d988f5ae8e254c">PollReceive</a> (uint8_t *buff, size_t size, uint32_t timeout)</td></tr>
 <tr class="separator:a9641f3808cf70559d3d988f5ae8e254c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9505926532bf44f70216b52d45db549a" id="r_a9505926532bf44f70216b52d45db549a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#ac45c7ac82e6f0328b4e7b03fd12e7237">Result</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9505926532bf44f70216b52d45db549a">PollTx</a> (uint8_t *buff, size_t size)</td></tr>
@@ -598,6 +600,24 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <p>Returns the current config. </p>
+
+</div>
+</div>
+<a id="a6599868408c7c64b05ac24d7731f2899" name="a6599868408c7c64b05ac24d7731f2899"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6599868408c7c64b05ac24d7731f2899">&#9670;&#160;</a></span>GetOverrunCount()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t daisy::UartHandler::GetOverrunCount </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Gets the number of overrun errors detected since init or last reset. </p>
 
 </div>
 </div>

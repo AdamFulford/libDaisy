@@ -3,6 +3,7 @@ var classdaisy_1_1_midi_handler =
     [ "Config", "structdaisy_1_1_midi_handler_1_1_config.html", "structdaisy_1_1_midi_handler_1_1_config" ],
     [ "MidiHandler", "classdaisy_1_1_midi_handler.html#a7194c67c1ac71934581b37ebafb0fc0a", null ],
     [ "~MidiHandler", "classdaisy_1_1_midi_handler.html#afd52da947947fdce95e725209aae5831", null ],
+    [ "GetOverrunCount", "classdaisy_1_1_midi_handler.html#a2208a3f6381ff772dfa120f9df0cc2db", null ],
     [ "HasEvents", "classdaisy_1_1_midi_handler.html#a96d78e2e460ba9dc17a9ad5be71e99bb", null ],
     [ "Init", "classdaisy_1_1_midi_handler.html#ae449f82ffeae9ef7f71d725349fdffef", null ],
     [ "Listen", "classdaisy_1_1_midi_handler.html#a5aa3eaac93ee7d2856ece8ab0bdc8813", null ],

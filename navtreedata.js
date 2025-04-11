@@ -152,14 +152,14 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "_abstract_menu_8h.html",
-"classdaisy_1_1_dot_star_spi_transport.html#a0e87480f91b4a2ed819406bc80ba4dc8",
-"classdaisy_1_1_persistent_storage.html#ad48f55bcb2a8b6959c0f4cf7822b0efaa54d700a7a4d725116036a3e443b8a4df",
-"classdaisy_1_1_veno_looper.html#a48763f041276fe73aaecd40154fdc470a2f38c7d9be33196a5e02d8d99e408e05",
-"classdaisy_1_1_veno_looper__v5.html#af0d2a28c62f982a2f9c024218646d60aa3177f20722dac66065b424d32dd141bf",
-"daisy__seed_8h.html#ad514d429d98e44439b5ff76fc96ce941",
-"globals_defs_n.html",
-"md_doc_2md_2__a7___getting-_started-_daisy-_bootloader.html",
-"structdaisy_1_1_s_s_d130x4_wire_soft_spi_transport_1_1_config.html#a407208ebf6efb96a495b7ffb0dca7934"
+"classdaisy_1_1_dot_star_spi_transport.html",
+"classdaisy_1_1_persistent_storage.html#ad48f55bcb2a8b6959c0f4cf7822b0efaa2e40ad879e955201df4dedbf8d479a12",
+"classdaisy_1_1_veno_looper.html#a48763f041276fe73aaecd40154fdc470a2b441b7b3edcf17f028a6062f789c6ed",
+"classdaisy_1_1_veno_looper__v5.html#af0d2a28c62f982a2f9c024218646d60aa317300d748e2d4288272fc5e984b9564",
+"daisy__seed_8h.html#acf9c91ed685050ef7bb3464a28e6599d",
+"globals_defs_m.html",
+"md_doc_2md_2__a6___getting-_started-_external-_s_d_r_a_m.html#autotoc_md47",
+"structdaisy_1_1_s_s_d130x4_wire_soft_spi_transport_1_1_config.html#a3a0ae07a0bd46ba85ddfa37fae85f157"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

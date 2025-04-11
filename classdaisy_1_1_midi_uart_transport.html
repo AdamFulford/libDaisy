@@ -154,6 +154,8 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a45d636631d6d47eb38b4919ab5d2089b" id="r_a45d636631d6d47eb38b4919ab5d2089b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a45d636631d6d47eb38b4919ab5d2089b">Tx</a> (uint8_t *buff, size_t size)</td></tr>
 <tr class="memdesc:a45d636631d6d47eb38b4919ab5d2089b"><td class="mdescLeft">&#160;</td><td class="mdescRight">sends the buffer of bytes out of the UART peripheral  <br /></td></tr>
 <tr class="separator:a45d636631d6d47eb38b4919ab5d2089b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1ce9f16d2a512c2d8c7e3971241e5cce" id="r_a1ce9f16d2a512c2d8c7e3971241e5cce"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1ce9f16d2a512c2d8c7e3971241e5cce">GetOverrunCount</a> () const</td></tr>
+<tr class="separator:a1ce9f16d2a512c2d8c7e3971241e5cce"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Typedef Documentation</h2>
 <a id="a8ef01e5e6a37a47e60df5b010dc07a4b" name="a8ef01e5e6a37a47e60df5b010dc07a4b"></a>
@@ -246,6 +248,32 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>This is a no-op for UART transport - Rx is via DMA callback with circular buffer. </p>
+
+</div>
+</div>
+<a id="a1ce9f16d2a512c2d8c7e3971241e5cce" name="a1ce9f16d2a512c2d8c7e3971241e5cce"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1ce9f16d2a512c2d8c7e3971241e5cce">&#9670;&#160;</a></span>GetOverrunCount()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t daisy::MidiUartTransport::GetOverrunCount </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Gets the number of overrun errors detected on the underlying UART. </p>
 
 </div>
 </div>

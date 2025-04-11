@@ -22,6 +22,7 @@ var classdaisy_1_1_uart_handler =
     [ "DmaReceive", "classdaisy_1_1_uart_handler.html#afd959cfbc7efbc2a0357185da61a4ba6", null ],
     [ "DmaTransmit", "classdaisy_1_1_uart_handler.html#a4565d3868c0d92e6955da3416c309cad", null ],
     [ "GetConfig", "classdaisy_1_1_uart_handler.html#a62a56c23285f8c6106a45ae2547e423d", null ],
+    [ "GetOverrunCount", "classdaisy_1_1_uart_handler.html#a6599868408c7c64b05ac24d7731f2899", null ],
     [ "Init", "classdaisy_1_1_uart_handler.html#aa25c871d2fb9d382ef779ba92b4d2ada", null ],
     [ "IsListening", "classdaisy_1_1_uart_handler.html#a47f395c1ae6530b8b497c8fd76cb6d59", null ],
     [ "operator=", "classdaisy_1_1_uart_handler.html#ae66075f4115e163b12fffae1b9896f42", null ],

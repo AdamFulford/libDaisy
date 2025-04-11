@@ -152,6 +152,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a4460bf8f45842bc2e2f74b9afad31cef"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5c15df4ad7996a8c3fff22a5e679cc54" id="r_a5c15df4ad7996a8c3fff22a5e679cc54"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5c15df4ad7996a8c3fff22a5e679cc54">SendMessage</a> (uint8_t *bytes, size_t size)</td></tr>
 <tr class="separator:a5c15df4ad7996a8c3fff22a5e679cc54"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2208a3f6381ff772dfa120f9df0cc2db" id="r_a2208a3f6381ff772dfa120f9df0cc2db"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2208a3f6381ff772dfa120f9df0cc2db">GetOverrunCount</a> () const</td></tr>
+<tr class="separator:a2208a3f6381ff772dfa120f9df0cc2db"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8dbf957100cc91a0c28c04340b218e32" id="r_a8dbf957100cc91a0c28c04340b218e32"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8dbf957100cc91a0c28c04340b218e32">Parse</a> (uint8_t byte)</td></tr>
 <tr class="separator:a8dbf957100cc91a0c28c04340b218e32"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
@@ -211,6 +213,34 @@ template&lt;typename Transport &gt; </div>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="a2208a3f6381ff772dfa120f9df0cc2db" name="a2208a3f6381ff772dfa120f9df0cc2db"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2208a3f6381ff772dfa120f9df0cc2db">&#9670;&#160;</a></span>GetOverrunCount()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Transport &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t <a class="el" href="classdaisy_1_1_midi_handler.html">daisy::MidiHandler</a>&lt; Transport &gt;::GetOverrunCount </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Gets the overrun count from the underlying transport layer (if supported). </p>
+
+</div>
+</div>
 <a id="a96d78e2e460ba9dc17a9ad5be71e99bb" name="a96d78e2e460ba9dc17a9ad5be71e99bb"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a96d78e2e460ba9dc17a9ad5be71e99bb">&#9670;&#160;</a></span>HasEvents()</h2>
 

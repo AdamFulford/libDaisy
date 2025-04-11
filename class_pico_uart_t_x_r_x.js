@@ -24,6 +24,7 @@ var class_pico_uart_t_x_r_x =
     [ "GateUpdate", "class_pico_uart_t_x_r_x.html#a026dd17335a78077ad0d9f5b0bcd4973", null ],
     [ "GetData", "class_pico_uart_t_x_r_x.html#aba91b334384c8e8fec1863dd923106ab", null ],
     [ "GetNumBytesReceived", "class_pico_uart_t_x_r_x.html#af393212820602005be65a3ba2da267e2", null ],
+    [ "GetOverrunCount", "class_pico_uart_t_x_r_x.html#ac715b5395e7aeee92c90b4434ce5bbd3", null ],
     [ "GetPin", "class_pico_uart_t_x_r_x.html#a71f78464dc4d968a76c05e427e8223d8", null ],
     [ "Init", "class_pico_uart_t_x_r_x.html#a13d9fdc3840ddfd24939cea156724818", null ],
     [ "Pressed", "class_pico_uart_t_x_r_x.html#a11426e925941d23df7995f9dc6935be6", null ],
