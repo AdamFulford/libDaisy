@@ -1199,7 +1199,7 @@ extern "C" void HAL_UART_ErrorCallback(UART_HandleTypeDef* huart)
             __HAL_UART_CLEAR_FLAG(huart, UART_FLAG_ORE);
 
             // // Increment the counter
-            handle->overrun_count_++; // <-- ADD THIS LINE
+            handle->overrun_count_++;
         }
          // Handle other errors...
     } else if (handle != nullptr) {
