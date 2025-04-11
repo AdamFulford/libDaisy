@@ -215,6 +215,9 @@ class UartHandler
     /** \return the result of HAL_UART_GetError() to the user. */
     int CheckError();
 
+    /** Gets the number of overrun errors detected since init or last reset. */
+    uint32_t GetOverrunCount() const;    
+
     /** Will be deprecated soon! Wrapper for BlockingTransmit */
     int PollReceive(uint8_t* buff, size_t size, uint32_t timeout);
 

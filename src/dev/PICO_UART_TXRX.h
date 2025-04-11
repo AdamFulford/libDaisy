@@ -97,6 +97,8 @@ bool GateTrig(uint8_t id);
 
 bool GateReleased(uint8_t id);
 
+uint32_t GetOverrunCount() const {return uart.GetOverrunCount();}
+
 private:
 
 
@@ -122,6 +124,8 @@ uint8_t* tx_buffer_;
  
 UartHandler uart;
 uint8_t rx_payload_[2];
+
+uint8_t RX_[RX_BUFF_SIZE];
 
 bool dataReceived_;
 uint32_t NumBytesReceived_;

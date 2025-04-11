@@ -17,6 +17,7 @@ void PicoUartTXRX::Init(Config config, uint8_t* rx_buffer)
     uart.Init(UartConfig);
 
     memset(rx_buffer_,0x00,RX_BUFF_SIZE);
+    memset(RX_,0x00,RX_BUFF_SIZE);
     //memset(tx_buffer_,0x00,BUFF_SIZE);
 
     NumBytesReceived_ = 0;
@@ -370,3 +371,19 @@ bool PicoUartTXRX::GateReleased(uint8_t id)
     return !gate_state_[id] && gate_prev_state_[id];  
 }
 
+
+daisy::UartHandler::Result PicoUartTXRX::BlockingReceive()
+{
+   if(uart.BlockingReceive(RX_, RX_BUFF_SIZE, 100) != UartHandler::Result::ERR)
+   {
+        for(size_t i=0; i<RX_BUFF_SIZE; ++i)
+        {
+            ParseByte(RX_[i]);
+        }
+        
+        return UartHandler::Result::OK;
+   }
+
+   return UartHandler::Result::ERR;
+
+}

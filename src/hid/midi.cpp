@@ -2,7 +2,7 @@
 
 namespace daisy
 {
-static constexpr size_t kDefaultMidiRxBufferSize = 8192;//used to be 256
+static constexpr size_t kDefaultMidiRxBufferSize = 256;//used to be 8192
 
 static uint8_t DMA_BUFFER_MEM_SECTION
     default_midi_rx_buffer[kDefaultMidiRxBufferSize];

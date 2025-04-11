@@ -232,7 +232,7 @@ float MuxSlew[LAST_MUX] =
     0.000001f,    // INPUT2_CV,
     0.05f,    // MUX3_5,
     0.05f,    // MUX3_6,
-    0.05f    // CRUSH_POT,
+    0.000001f    // CRUSH_POT,
 
     // LAST_MUX
 };

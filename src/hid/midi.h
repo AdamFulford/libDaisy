@@ -105,6 +105,12 @@ class MidiUartTransport
     /** @brief sends the buffer of bytes out of the UART peripheral */
     inline void Tx(uint8_t* buff, size_t size) { uart_.PollTx(buff, size); }
 
+    /** Gets the number of overrun errors detected on the underlying UART. */
+    inline uint32_t GetOverrunCount() const // <-- ADD THIS METHOD
+    { 
+        return uart_.GetOverrunCount(); 
+    }
+
   private:
     UartHandler         uart_;
     uint8_t*            rx_buffer;
@@ -129,6 +135,7 @@ class MidiUartTransport
         /** Read context as transport type */
         MidiUartTransport* transport
             = reinterpret_cast<MidiUartTransport*>(context);
+            
         if(res == UartHandler::Result::OK)
         {
             if(transport->parse_callback_)
@@ -209,6 +216,12 @@ class MidiHandler
     void SendMessage(uint8_t* bytes, size_t size)
     {
         transport_.Tx(bytes, size);
+    }
+
+    /** Gets the overrun count from the underlying transport layer (if supported). */
+    uint32_t GetOverrunCount() const // <-- ADD THIS METHOD
+    {
+        return transport_.GetOverrunCount(); 
     }
 
     /** Feed in bytes to parser state machine from an external source.

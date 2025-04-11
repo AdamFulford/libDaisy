@@ -144,6 +144,8 @@ class UartHandler::Impl
     size_t                        circular_rx_last_pos_;
     bool                          listener_mode_;
 
+    volatile uint32_t overrun_count_ = 0;
+
     Config             config_;
     UART_HandleTypeDef huart_;
     DMA_HandleTypeDef  hdma_rx_;
@@ -335,9 +337,11 @@ UartHandler::Result UartHandler::Impl::InitDma(bool rx, bool tx)
     {
         case UartHandler::Config::Peripheral::UART_4:
            hdma_rx_.Instance = DMA2_Stream6; 
+           hdma_rx_.Init.Priority = DMA_PRIORITY_LOW;
            break;
         default: 
             hdma_rx_.Instance = DMA1_Stream5; 
+            hdma_rx_.Init.Priority = DMA_PRIORITY_VERY_HIGH;
             break;
     }
 
@@ -346,7 +350,7 @@ UartHandler::Result UartHandler::Impl::InitDma(bool rx, bool tx)
     hdma_rx_.Init.PeriphDataAlignment = DMA_PDATAALIGN_BYTE;
     hdma_rx_.Init.MemDataAlignment    = DMA_MDATAALIGN_BYTE;
     hdma_rx_.Init.Mode                = DMA_NORMAL;
-    hdma_rx_.Init.Priority            = DMA_PRIORITY_VERY_HIGH;
+    // hdma_rx_.Init.Priority            = DMA_PRIORITY_VERY_HIGH;
     hdma_rx_.Init.FIFOMode            = DMA_FIFOMODE_DISABLE;
     hdma_rx_.Init.Direction           = DMA_PERIPH_TO_MEMORY;
 
@@ -524,10 +528,12 @@ UartHandler::Impl::DmaListenStart(uint8_t* buff,
         case UartHandler::Config::Peripheral::UART_4:
            hdma_rx_.Instance = DMA2_Stream6; 
            dma_active_peripheral2_ = int(config_.periph);
+           hdma_rx_.Init.Priority            = DMA_PRIORITY_LOW;
            break;
         default: 
             hdma_rx_.Instance = DMA1_Stream5; 
             dma_active_peripheral_ = int(config_.periph);
+            hdma_rx_.Init.Priority            = DMA_PRIORITY_VERY_HIGH;
             break;
     }
 
@@ -538,7 +544,7 @@ UartHandler::Impl::DmaListenStart(uint8_t* buff,
     hdma_rx_.Init.PeriphDataAlignment = DMA_PDATAALIGN_BYTE;
     hdma_rx_.Init.MemDataAlignment    = DMA_MDATAALIGN_BYTE;
     hdma_rx_.Init.Mode                = DMA_CIRCULAR;
-    hdma_rx_.Init.Priority            = DMA_PRIORITY_VERY_HIGH;
+    // hdma_rx_.Init.Priority            = DMA_PRIORITY_VERY_HIGH;
     hdma_rx_.Init.FIFOMode            = DMA_FIFOMODE_DISABLE;
     hdma_rx_.Init.Direction           = DMA_PERIPH_TO_MEMORY;
     SetDmaPeripheral();
@@ -1174,13 +1180,32 @@ extern "C" void HAL_UART_RxHalfCpltCallback(UART_HandleTypeDef* huart)
     }
 }
 
+// extern "C" void HAL_UART_ErrorCallback(UART_HandleTypeDef* huart)
+// {
+//     /** TODO: This hooks into the "Normal" DMA completion, 
+//      *  might want to change this to have a different fallthrough
+//      *  for "listener_mode_"
+//      */
+//     UartHandler::Impl::DmaTransferFinished(huart, UartHandler::Result::ERR);
+// }
+
 extern "C" void HAL_UART_ErrorCallback(UART_HandleTypeDef* huart)
 {
-    /** TODO: This hooks into the "Normal" DMA completion, 
-     *  might want to change this to have a different fallthrough
-     *  for "listener_mode_"
-     */
-    UartHandler::Impl::DmaTransferFinished(huart, UartHandler::Result::ERR);
+    auto* handle = MapInstanceToHandle(huart->Instance);
+    if (handle != nullptr && handle->listener_mode_) {
+        uint32_t error_code = HAL_UART_GetError(huart);
+        if (error_code & HAL_UART_ERROR_ORE) {
+            // Overrun occurred: Clear the flag
+            __HAL_UART_CLEAR_FLAG(huart, UART_FLAG_ORE);
+
+            // // Increment the counter
+            handle->overrun_count_++; // <-- ADD THIS LINE
+        }
+         // Handle other errors...
+    } else if (handle != nullptr) {
+        // Default behavior for non-listener mode
+        UartHandler::Impl::DmaTransferFinished(huart, UartHandler::Result::ERR);
+    }
 }
 
 extern "C" void HAL_UART_AbortCpltCallback(UART_HandleTypeDef* huart)
@@ -1284,3 +1309,17 @@ UartHandler::Result UartHandler::PollTx(uint8_t* buff, size_t size)
 {
     return pimpl_->BlockingTransmit(buff, size, 10);
 }
+
+/** Gets the number of overrun errors detected since init or last reset. */
+uint32_t UartHandler::GetOverrunCount() const // <-- ADD THIS FUNCTION
+{
+    // Reading a volatile uint32_t is generally safe enough on Cortex-M
+    // regarding atomicity for simple increments.
+    // If absolute certainty is required across different architectures or
+    // complex scenarios, consider using atomic types or disabling interrupts.
+    if (pimpl_) {
+        return pimpl_->overrun_count_;
+    }
+    return 0; // Or handle error appropriately
+}
+
