@@ -292,12 +292,7 @@ void VenoLooper_v5::ProcessAnalogControls(VenoLooper_v5::CntrlFreq freq)
 
 void VenoLooper_v5::ProcessGates()
 {
-    for (size_t i = 0; i < LAST_GATE; i++)
-    {
-        gates[i].Update();
-    }
-
-
+    UpdateDaisyGates();
     UpdatePicoGates();
     
 }
