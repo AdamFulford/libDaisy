@@ -317,10 +317,15 @@ void VenoLooper_v5::UpdatePicoGates()
 
 void VenoLooper_v5::UpdateDaisyGates()
 {
-    for(size_t i=0; i<LAST_GATE; ++i)
+    for(size_t i=0; i<(LAST_GATE - 1); ++i)
     {
         gates[i].Update();
     }
+}
+
+void VenoLooper_v5::UpdateClock()
+{
+    gates[CLOCK_GATE].Update();
 }
 
 float VenoLooper_v5::GetMuxValue(MUX_IDs idx)

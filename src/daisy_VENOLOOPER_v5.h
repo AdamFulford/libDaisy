@@ -43,7 +43,7 @@
 #define PIN_SDMMC_D3 D1
 
 #define BAUD_RATE 921600 
-#define BLOCK_SIZE 128 //256
+#define BLOCK_SIZE 128
 #define NUM_BUTTON_LEDS 6
 
 #define NUM_NEOPIXELS 60
@@ -606,6 +606,7 @@ void Init(bool boost = false);
     void DebouncePicoButtons();
     void UpdatePicoGates();
     void UpdateDaisyGates();
+    void UpdateClock();
 
     /** Process Analog and Digital Controls */
     inline void ProcessAllControls()
