@@ -30,6 +30,7 @@ daisy_legio \
 daisy_patch_sm \
 daisy_VENOLOOPER \
 daisy_VENOLOOPER_v5 \
+daisy_VENO-ORBIT_v1_0 \
 sys/fatfs \
 sys/system \
 dev/sr_595 \

@@ -45,6 +45,7 @@ add_library(daisy STATIC
     ${MODULE_DIR}/daisy_patch_sm.cpp
     ${MODULE_DIR}/daisy_VENOLOOPER.cpp
     ${MODULE_DIR}/daisy_VENOLOOPER_v5.cpp
+    ${MODULE_DIR}/daisy_VENO-ORBIT_v1_0.cpp
     ${MODULE_DIR}/daisy_patch.cpp
     ${MODULE_DIR}/daisy_petal.cpp
     ${MODULE_DIR}/daisy_pod.cpp
