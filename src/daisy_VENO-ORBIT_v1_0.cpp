@@ -406,14 +406,14 @@ void VenoOrbit_v1_0::SetLayerLED(uint8_t channel, uint8_t layer, uint8_t Red, ui
 
     if(channel == 0)
     {
-        SetNeoPixel(LAYER1_START - layer,
+        SetNeoPixel(LAYER1_START + layer,
                     red_dim,
                     green_dim,
                     blue_dim);
     }
     if(channel == 1)
     {
-        SetNeoPixel(LAYER2_START + layer,
+        SetNeoPixel(LAYER2_START - layer,
                     red_dim,
                     green_dim,
                     blue_dim);

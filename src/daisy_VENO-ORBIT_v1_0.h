@@ -57,8 +57,8 @@
 #define RING2_START 25
 #define RING2_END 4
 
-#define LAYER1_START 59
-#define LAYER2_START 0
+#define LAYER1_START 56
+#define LAYER2_START 3
 
 #define BANK_START 33
 
