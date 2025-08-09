@@ -400,19 +400,23 @@ void VenoOrbit_v1_0::SetNeoPixel(uint8_t id, uint8_t Red, uint8_t Green, uint8_t
 
 void VenoOrbit_v1_0::SetLayerLED(uint8_t channel, uint8_t layer, uint8_t Red, uint8_t Green, uint8_t Blue)
 {
+    uint8_t red_dim{static_cast<uint8_t>(BANK_LAYER_BRIGHTNESS * Red)};
+    uint8_t green_dim{static_cast<uint8_t>(BANK_LAYER_BRIGHTNESS * Green)};
+    uint8_t blue_dim{static_cast<uint8_t>(BANK_LAYER_BRIGHTNESS * Blue)};
+
     if(channel == 0)
     {
         SetNeoPixel(LAYER1_START - layer,
-                    Red,
-                    Green,
-                    Blue);
+                    red_dim,
+                    green_dim,
+                    blue_dim);
     }
     if(channel == 1)
     {
         SetNeoPixel(LAYER2_START + layer,
-                    Red,
-                    Green,
-                    Blue);
+                    red_dim,
+                    green_dim,
+                    blue_dim);
     }
     
 }
@@ -445,7 +449,12 @@ void VenoOrbit_v1_0::SetLayerLED(uint8_t channel, uint8_t layer, uint8_t Red, ui
     }
     else
     {
-        SetNeoPixel(BANK_START - slot,Red,Green,Blue);
+        uint8_t red_dim{static_cast<uint8_t>(BANK_LAYER_BRIGHTNESS * Red)};
+        uint8_t green_dim{static_cast<uint8_t>(BANK_LAYER_BRIGHTNESS * Green)};
+        uint8_t blue_dim{static_cast<uint8_t>(BANK_LAYER_BRIGHTNESS * Blue)};
+
+
+        SetNeoPixel(BANK_START - slot,red_dim,green_dim,blue_dim);
     }
  }
 
