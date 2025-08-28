@@ -70,7 +70,7 @@ void VenoOrbit_v1_0::Init(bool boost)
                                     AudioCallbackRate() : 
                                     AudioCallbackRate() * AudioBlockSize();
 
-        cv[i].InitBipolarCv(seed.adc.GetPtr(i+3), CVUpdateFreq,CVSlew[i]);
+        cv[i].InitBipolarCv(seed.adc.GetPtr(i+3), CVUpdateFreq,CVSlew[i], CV_Invert[i]);
     }
 
     uint8_t muxIndex{};

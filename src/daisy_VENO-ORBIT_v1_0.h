@@ -272,6 +272,18 @@ float CVSlew[LAST_CV] =
     0.000001f, //MOD2_CV
 };
 
+bool CV_Invert[LAST_CV]
+{
+    true, //VOct2_CV
+    true, //VOct1_CV
+    true, //LAYER1_CV
+    true, //LAYER2_CV
+    true, //START1_CV
+    true, //START2_CV
+    false, //MOD1_CV
+    false, //MOD2_CV
+};
+
 CntrlFreq MuxFreq[LAST_MUX]
 {
     //mux1
