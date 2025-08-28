@@ -181,6 +181,8 @@ class VenoOrbit_v1_0
         LAYER2_CV,
         START1_CV,
         START2_CV,
+        MOD1_CV,
+        MOD2_CV,
         LAST_CV
     };
 
@@ -212,33 +214,33 @@ float MuxSlew[LAST_MUX] =
 {
     //mux1
     0.05f,    // LENGTH1_POT,   //000
-    0.05f,    // SPEED2_POT, //001
+    0.05f,    // LAYER1_POT, //001
     0.05f,    // START1_POT, // 010
-    0.05f,    // LENGTH2_POT,  //011
-    0.05f,    // XFADE_POT, //100
-    0.05f,    // PLAY_TOGGLE2_POT, //101
-    0.05f,    // DECAY_POT, //110
-    0.05f,    // PLAY_TOGGLE1_POT, //111
+    0.05f,    // SPEED1_POT,  //011
+    0.05f,    // SPEED2_POT, //100
+    0.05f,    // LAYER2_POT, //101
+    0.05f,    // LENGTH2_POT, //110
+    0.05f,    // START2_POT, //111
 
     //mux2
     0.05f,    // ATTACK1_POT,
-    0.05f,    // START2_POT,
-    0.05f,    // SPEED1_POT,
     0.05f,    // ATTACK2_POT,
-    0.000001f,    // LAYER1_POT,
+    0.05f,    // PLAY_TOGGLE2,
+    0.05f,    // PLAY_TOGGLE1,
     0.05f,    // RELEASE2_POT,
-    0.000001f,    // LAYER2_POT,
     0.05f,    // RELEASE1_POT,
+    0.05f,    // MUX2_6,
+    0.05f,    // MUX2_7,
 
     //mux3
-    0.000001f,    // INPUT1_CV,
-    0.05f,    // LENGTH1_CV,
+    0.05f,    // MUX3_0,
     0.05f,    // LENGTH2_CV,
-    0.05f,    // MUX3_3,
-    0.000001f,    // INPUT2_CV,
-    0.05f,    // MUX3_5,
-    0.05f,    // MUX3_6,
-    0.000001f    // CRUSH_POT,
+    0.05f,    // INPUT_TYPE_TOGGLE,
+    0.05f,    // LENGTH1_CV,
+    0.000001f,   // IN_LEVEL_POT,
+    0.05f,    // XFADE_POT,
+    0.05f,    // DECAY_POT,
+    0.05f    // CLOCK_DETECT,
 
     // LAST_MUX
 };
@@ -251,40 +253,42 @@ float CVSlew[LAST_CV] =
     0.000001f, //LAYER1_CV
     0.000001f, //LAYER2_CV
     0.002f, //START1_CV
-    0.002f //START2_CV
+    0.002f, //START2_CV
+    0.000001f, //MOD1_CV
+    0.000001f, //MOD2_CV
 };
 
 CntrlFreq MuxFreq[LAST_MUX]
 {
     //mux1
     Slow,// LENGTH1_POT,   //000
-    Slow,// SPEED2_POT, //001
+    Slow,// LAYER1_POT, //001
     Slow,// START1_POT, // 010
-    Slow,// LENGTH2_POT,  //011
-    Slow,// XFADE_POT, //100
-    Slow,// PLAY_TOGGLE2_POT, //101
-    Slow,// DECAY_POT, //110
-    Slow,// PLAY_TOGGLE1_POT, //111
+    Slow,// SPEED1_POT,  //011
+    Slow,// SPEED2_POT, //100
+    Slow,// LAYER2_POT, //101
+    Slow,// LENGTH2_POT, //110
+    Slow,// START2_POT, //111
 
     //mux2
     Slow,// ATTACK1_POT,
-    Slow,// START2_POT,
-    Slow,// SPEED1_POT,
     Slow,// ATTACK2_POT,
-    Slow,// LAYER1_POT,
+    Slow,// PLAY_TOGGLE2,
+    Slow,// PLAY_TOGGLE1,
     Slow,// RELEASE2_POT,
-    Slow,// LAYER2_POT,
     Slow,// RELEASE1_POT,
+    Slow,// MUX2_6,
+    Slow,// MUX2_7,
 
     // //mux3
-    Fast,// INPUT1_CV,
-    Slow,// LENGTH1_CV,
+    Slow,// MUX3_0,
     Slow,// LENGTH2_CV,
-    Slow,// MUX3_3,
-    Fast,// INPUT2_CV,
-    Slow,// MUX3_5,
-    Slow,// MUX3_6,
-    Slow,// CRUSH_POT,
+    Slow,// INPUT_TYPE_TOGGLE,
+    Slow,// LENGTH1_CV,
+    Fast,// IN_LEVEL_POT,
+    Slow,// XFADE_POT,
+    Slow,// DECAY_POT,
+    Slow,// CLOCK_DETECT,
 
     // LAST_MUX
 
@@ -298,7 +302,9 @@ CntrlFreq CVFreq[LAST_CV]
     Slow, //LAYER1_CV
     Slow, //LAYER2_CV
     Slow, //START1_CV
-    Slow //START2_CV
+    Slow, //START2_CV
+    Fast, //MOD1_CV
+    Fast //MOD2_CV
 };
 
 struct CV_Calibration
@@ -311,7 +317,8 @@ struct CV_Calibration
     std::array<float, LAST_MUX> MuxOffsets {};
     std::array<float, LAST_MUX> MuxScale {};
 
-    std::array<float, 2> AudioOffsets{};
+    //0 = L Audio, 1 = R Audio, 2 = L MOD, 3 = R MOD 
+    std::array<float, 4> OutputOffsets{}; 
 
     friend bool operator!= (const CV_Calibration& c1, const CV_Calibration& c2);
 };
@@ -426,7 +433,7 @@ void Init(bool boost = false);
     */
     AnalogControl* GetCv(size_t idx);
 
-    float GetAudioOffset(size_t channel);
+    float GetOutputOffset(size_t channel);
 
     CV_Calibration GetCalibration(){return calibration_;}
 
@@ -533,7 +540,7 @@ inline bool operator!= (const VenoOrbit_v1_0::CV_Calibration& c1, const VenoOrbi
         c1.MuxOffsets != c2.MuxOffsets ||
         c1.CV_Scale != c2.CV_Scale ||
         c1.MuxScale != c2.MuxScale ||
-        c1.AudioOffsets != c2.AudioOffsets);
+        c1.OutputOffsets != c2.OutputOffsets);
 }
                   
 } // namespace daisy 

@@ -481,11 +481,11 @@ void VenoOrbit_v1_0::SetCalibration(CV_Calibration& calibration)
     calibration_ = calibration;
 }
 
-float VenoOrbit_v1_0::GetAudioOffset(size_t channel)
+float VenoOrbit_v1_0::GetOutputOffset(size_t channel)
 {
-    if(channel >= 2) {return 0.0f;}
+    if(channel >= 4) {return 0.0f;}
 
-    return(calibration_.AudioOffsets[channel]);
+    return(calibration_.OutputOffsets[channel]);
 }
 
 bool VenoOrbit_v1_0::ValidateQSPI(bool quick)
