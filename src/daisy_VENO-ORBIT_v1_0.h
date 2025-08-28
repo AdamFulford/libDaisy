@@ -208,7 +208,17 @@ class VenoOrbit_v1_0
     enum CntrlFreq
     {Fast,Slow};
 
- 
+    
+    enum Outputs
+    {
+        AUDIO_L_OUT,
+        AUDIO_R_OUT,
+        MOD_L_OUT,
+        MOD_R_OUT,
+
+        LAST_OUT
+    };
+
 //mux input slew coeffs
 float MuxSlew[LAST_MUX] =
 {
@@ -318,7 +328,10 @@ struct CV_Calibration
     std::array<float, LAST_MUX> MuxScale {};
 
     //0 = L Audio, 1 = R Audio, 2 = L MOD, 3 = R MOD 
-    std::array<float, 4> OutputOffsets{}; 
+    std::array<float, LAST_OUT> OutputOffsets{}; 
+    
+    ///0 = L Audio, 1 = R Audio, 2 = L MOD, 3 = R MOD 
+    std::array<float, LAST_OUT> OutputScale{}; 
 
     friend bool operator!= (const CV_Calibration& c1, const CV_Calibration& c2);
 };
@@ -434,6 +447,7 @@ void Init(bool boost = false);
     AnalogControl* GetCv(size_t idx);
 
     float GetOutputOffset(size_t channel);
+    float GetOutputScale(size_t channel);
 
     CV_Calibration GetCalibration(){return calibration_;}
 

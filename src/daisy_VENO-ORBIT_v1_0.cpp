@@ -483,9 +483,16 @@ void VenoOrbit_v1_0::SetCalibration(CV_Calibration& calibration)
 
 float VenoOrbit_v1_0::GetOutputOffset(size_t channel)
 {
-    if(channel >= 4) {return 0.0f;}
+    if(channel >= calibration_.OutputOffsets.size()) {return 0.0f;}
 
     return(calibration_.OutputOffsets[channel]);
+}
+
+float VenoOrbit_v1_0::GetOutputScale(size_t channel)
+{
+    if(channel >= calibration_.OutputScale.size()) {return 0.0f;}
+
+    return(calibration_.OutputScale[channel]);
 }
 
 bool VenoOrbit_v1_0::ValidateQSPI(bool quick)
