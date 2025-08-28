@@ -215,6 +215,10 @@ class VenoOrbit_v1_0
         AUDIO_R_OUT,
         MOD_L_OUT,
         MOD_R_OUT,
+        MOD_L_0V_OUT,
+        MOD_R_0V_OUT,
+        MOD_L_3V_OUT,
+        MOD_R_3V_OUT,
 
         LAST_OUT
     };
