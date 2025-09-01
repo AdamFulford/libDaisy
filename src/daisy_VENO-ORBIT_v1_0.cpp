@@ -68,7 +68,7 @@ void VenoOrbit_v1_0::Init(bool boost)
     {
         CVUpdateFreq = CVFreq[i] == Slow ? 
                                     AudioCallbackRate() : 
-                                    AudioCallbackRate() * AudioBlockSize();
+                                    AudioCallbackRate() * AudioBlockSize() * 8;
 
         cv[i].InitBipolarCv(seed.adc.GetPtr(i+3), CVUpdateFreq,CVSlew[i], CV_Invert[i]);
     }
