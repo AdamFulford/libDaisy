@@ -118,7 +118,7 @@ namespace patch_sm
         void StopAdc();
 
         /** Reads and filters all of the analog control inputs */
-        //void ProcessAnalogControls();
+        void ProcessAnalogControls();
 
         /** Reads and debounces any of the digital control inputs 
          *  This does nothing on this board at this time.
@@ -126,18 +126,14 @@ namespace patch_sm
         void ProcessDigitalControls();
 
         /** Does both of the above */
-        //void ProcessAllControls()
-        //{
-        //    ProcessAnalogControls();
-        //    ProcessDigitalControls();
-       // }
+        void ProcessAllControls()
+        {
+            ProcessAnalogControls();
+            ProcessDigitalControls();
+        }
 
         /** Returns the current value for one of the ADCs */
-        //float GetAdcValue(int idx);
-
-        float GetADCRawFloatValue(int idx);
-
-        float GetADCRawMuxFloatValue(int idx, int ch);
+        float GetAdcValue(int idx);
 
         /** Returns the STM32 port/pin combo for the desired pin (or an invalid pin for HW only pins)
          *
@@ -248,7 +244,6 @@ namespace patch_sm
         System      system;
         SdramHandle sdram;
         QSPIHandle  qspi;
-        QSPIHandle::Config qspi_config;
         AudioHandle audio;
         AdcHandle   adc;
         UsbHandle   usb;
@@ -309,12 +304,6 @@ namespace patch_sm
         constexpr static Pin D9  = Pin(PORTC, 3);  /**< D9  - SPI2 MOSI */
         constexpr static Pin D10 = Pin(PORTD, 3);  /**< D10 - SPI2 SCK  */
         class Impl;
-
-//qspi extra functions:
-void qspi_init();
-void qspi_deinit();
-void Set_QSPI_INDIRECT_POLLING();
-void Set_QSPI_MAPPED_MEMORY();
 
       private:
         using Log = Logger<LOGGER_INTERNAL>;

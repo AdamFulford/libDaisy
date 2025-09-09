@@ -176,31 +176,31 @@ namespace patch_sm
 
     void DaisyPatchSM::Impl::InitDac()
     {
-        // DacHandle::Config dac_config;
-        // dac_config.mode     = DacHandle::Mode::DMA;
-        // dac_config.bitdepth = DacHandle::BitDepth::
-        //     BITS_12; /**< Sets the output value to 0-4095 */
-        // dac_config.chn               = DacHandle::Channel::BOTH;
-        // dac_config.buff_state        = DacHandle::BufferState::ENABLED;
-        // dac_config.target_samplerate = 48000;
-        // dac_.Init(dac_config);
+        DacHandle::Config dac_config;
+        dac_config.mode     = DacHandle::Mode::DMA;
+        dac_config.bitdepth = DacHandle::BitDepth::
+            BITS_12; /**< Sets the output value to 0-4095 */
+        dac_config.chn               = DacHandle::Channel::BOTH;
+        dac_config.buff_state        = DacHandle::BufferState::ENABLED;
+        dac_config.target_samplerate = 48000;
+        dac_.Init(dac_config);
     }
 
     void DaisyPatchSM::Impl::StartDac(DacHandle::DacCallback callback)
     {
-        // if(dac_running_)
-        //     dac_.Stop();
-        // dac_.Start(internal_dac_buffer_[0],
-        //            internal_dac_buffer_[1],
-        //            dac_buffer_size_,
-        //            callback == nullptr ? InternalDacCallback : callback);
-        // dac_running_ = true;
+        if(dac_running_)
+            dac_.Stop();
+        dac_.Start(internal_dac_buffer_[0],
+                   internal_dac_buffer_[1],
+                   dac_buffer_size_,
+                   callback == nullptr ? InternalDacCallback : callback);
+        dac_running_ = true;
     }
 
     void DaisyPatchSM::Impl::StopDac()
     {
-        // dac_.Stop();
-        // dac_running_ = false;
+        dac_.Stop();
+        dac_running_ = false;
     }
 
 
@@ -209,11 +209,11 @@ namespace patch_sm
         /** We could add some smoothing, interp, or something to make this a bit less waste-y */
         // std::fill(&output[0][0], &output[0][size], patch_sm_hw.dac_output_[0]);
         // std::fill(&output[1][1], &output[1][size], patch_sm_hw.dac_output_[1]);
-       // for(size_t i = 0; i < size; i++)
-        //{
-        //    output[0][i] = patch_sm_hw.dac_output_[0];
-        //    output[1][i] = patch_sm_hw.dac_output_[1];
-       // }
+        for(size_t i = 0; i < size; i++)
+        {
+            output[0][i] = patch_sm_hw.dac_output_[0];
+            output[1][i] = patch_sm_hw.dac_output_[1];
+        }
     }
 
     /** Actual DaisyPatchSM implementation
@@ -224,7 +224,7 @@ namespace patch_sm
     void DaisyPatchSM::Init()
     {
         /** Assign pimpl pointer */
-        //pimpl_ = &patch_sm_hw;
+        pimpl_ = &patch_sm_hw;
         /** Initialize the MCU and clock tree */
         System::Config syscfg;
         syscfg.Boost();
@@ -252,7 +252,7 @@ namespace patch_sm
         if(memory != System::MemoryRegion::QSPI)
         {
             /** QUADSPI FLASH */
-            //QSPIHandle::Config qspi_config;
+            QSPIHandle::Config qspi_config;
             qspi_config.device = QSPIHandle::Config::Device::IS25LP064A;
             qspi_config.mode   = QSPIHandle::Config::Mode::MEMORY_MAPPED;
             qspi_config.pin_config.io0 = Pin(PORTF, 8);
@@ -315,16 +315,19 @@ namespace patch_sm
             PIN_ADC_CTRL_12,
         };
 
-    adcConfig[0].InitSingle(C5); //time L CV
-    adcConfig[1].InitSingle(C4); //time R CV
-    adcConfig[2].InitSingle(C3); //FB_L CV
-    adcConfig[3].InitSingle(C2); //FB_R CV
-    adcConfig[4].InitSingle(PIN_ADC_CTRL_8); //Wet Dry CV
-    adcConfig[5].InitSingle(PIN_ADC_CTRL_5); //width CV
-    adcConfig[6].InitSingle(PIN_ADC_CTRL_7); //Mod CV
-    adcConfig[7].InitMux(A2,8,D1,D2,B7); //pots
-
-    adc.Init(adcConfig, 8,daisy::AdcHandle::OVS_128);
+        for(int i = 0; i < ADC_LAST; i++)
+        {
+            adc_config[i].InitSingle(adc_pins[i]);
+        }
+        adc.Init(adc_config, ADC_LAST);
+        /** Control Init */
+        for(size_t i = 0; i < ADC_LAST; i++)
+        {
+            if(i < ADC_9)
+                controls[i].InitBipolarCv(adc.GetPtr(i), callback_rate_);
+            else
+                controls[i].Init(adc.GetPtr(i), callback_rate_);
+        }
 
         /** Fixed-function Digital I/O */
         user_led.Init(PIN_USER_LED, GPIO::Mode::OUTPUT);
@@ -335,11 +338,11 @@ namespace patch_sm
         gate_out_2.Init(B6, GPIO::Mode::OUTPUT);
 
         /** DAC init */
-        //pimpl_->InitDac();
+        pimpl_->InitDac();
 
         /** Start any background stuff */
         StartAdc();
-        //StartDac();
+        StartDac();
     }
 
     void DaisyPatchSM::StartAudio(AudioHandle::AudioCallback cb)
@@ -427,17 +430,17 @@ namespace patch_sm
 
     void DaisyPatchSM::StopAdc() { adc.Stop(); }
 
-    // void DaisyPatchSM::ProcessAnalogControls()
-    // {
-    //     for(int i = 0; i < ADC_LAST; i++)
-    //     {
-    //         controls[i].Process();
-    //     }
-    // }
+    void DaisyPatchSM::ProcessAnalogControls()
+    {
+        for(int i = 0; i < ADC_LAST; i++)
+        {
+            controls[i].Process();
+        }
+    }
 
     void DaisyPatchSM::ProcessDigitalControls() {}
 
-   // float DaisyPatchSM::GetAdcValue(int idx) { return controls[idx].Value(); }
+    float DaisyPatchSM::GetAdcValue(int idx) { return controls[idx].Value(); }
 
     Pin DaisyPatchSM::GetPin(const PinBank bank, const int idx)
     {
@@ -529,30 +532,6 @@ namespace patch_sm
                 fail_cnt++;
         return fail_cnt == 0;
     }
-
-void DaisyPatchSM::qspi_init()
-{
-    auto memory = System::GetProgramMemoryRegion();
-    if(memory != System::MemoryRegion::QSPI)
-        qspi.Init(qspi_config);
-}
-
-
-void DaisyPatchSM::qspi_deinit()
-{
-    qspi.DeInit();
-}
-
-void DaisyPatchSM::Set_QSPI_INDIRECT_POLLING()
-{
-    qspi_config.mode   = QSPIHandle::Config::Mode::INDIRECT_POLLING;
-}
-
-void DaisyPatchSM::Set_QSPI_MAPPED_MEMORY()
-{
-    qspi_config.mode   = QSPIHandle::Config::Mode::MEMORY_MAPPED;
-}
-
 
 } // namespace patch_sm
 
