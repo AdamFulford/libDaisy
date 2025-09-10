@@ -28,6 +28,7 @@ daisy_field \
 daisy_versio \
 daisy_legio \
 daisy_patch_sm \
+daisy_Veno-Echo_II \
 sys/fatfs \
 sys/system \
 dev/sr_595 \

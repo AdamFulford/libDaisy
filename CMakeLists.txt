@@ -43,6 +43,7 @@ add_library(daisy STATIC
     ${MODULE_DIR}/daisy_field.cpp
     ${MODULE_DIR}/daisy_legio.cpp
     ${MODULE_DIR}/daisy_patch_sm.cpp
+    ${MODULE_DIR}/daisy_VEno-Echo_II.cpp
     ${MODULE_DIR}/daisy_patch.cpp
     ${MODULE_DIR}/daisy_petal.cpp
     ${MODULE_DIR}/daisy_pod.cpp
