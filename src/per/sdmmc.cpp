@@ -27,6 +27,15 @@ SdmmcHandler::Result SdmmcHandler::Init(const Config& cfg)
     return Result::OK;
 }
 
+void SdmmcHandler::DeInit()
+{
+    // First, abort any ongoing transfers to ensure a clean state
+    HAL_SD_Abort(&hsd1);
+
+    // This is the main HAL function that will trigger the MspDeInit
+    HAL_SD_DeInit(&hsd1);
+}
+
 
 // HAL MSP Functions
 

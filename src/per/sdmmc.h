@@ -82,6 +82,7 @@ class SdmmcHandler
      * filesystem (i.e. FatFS).
      */
     Result Init(const Config& cfg);
+    void DeInit();
 
   private:
 };
