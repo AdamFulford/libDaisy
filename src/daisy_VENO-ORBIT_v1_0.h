@@ -65,7 +65,7 @@
 #define NUM_RING_PIXELS 22
 #define NUM_BANK_PIXELS 8
 
-#define LED_BRIGHTNESS 0.5
+#define LED_BRIGHTNESS 0.35
 #define BANK_LAYER_BRIGHTNESS 0.25
 
 using namespace daisy;
