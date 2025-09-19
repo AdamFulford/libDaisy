@@ -262,8 +262,8 @@ float MuxSlew[LAST_MUX] =
 //CV (Direct ADC) slew coeffs
 float CVSlew[LAST_CV] =
 {
-    0.002f, //VOct2_CV
-    0.002f, //VOct1_CV
+    0.000001f, //VOct2_CV
+    0.000001f, //VOct1_CV
     0.000001f, //LAYER1_CV
     0.000001f, //LAYER2_CV
     0.002f, //START1_CV
