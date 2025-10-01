@@ -7,6 +7,7 @@
 #include <array>
 #include <vector>
 #include <algorithm>
+#include <cmath>
 
 using namespace daisy;
 
@@ -179,6 +180,8 @@ void VenoOrbit_v1_0::Init(bool boost)
 
     //SD Card
 
+    //gamma correction
+    // generateGammaTable();
 
 }
 
@@ -389,11 +392,15 @@ void VenoOrbit_v1_0::TransmitLED_States()
 
 void VenoOrbit_v1_0::SetNeoPixel(uint8_t id, uint8_t Red, uint8_t Green, uint8_t Blue)
 {
+    // uint8_t Red_Corrected{getGammaCorrected(static_cast<uint8_t>(Red))};
+    // uint8_t Green_Corrected{getGammaCorrected(static_cast<uint8_t>(Green))};
+    // uint8_t Blue_Corrected{getGammaCorrected(static_cast<uint8_t>(Blue))};
+
     if(id < NUM_NEOPIXELS)
     {
-        NeoPixelState[id * 3] = static_cast<uint8_t>(LED_BRIGHTNESS * Red);
-        NeoPixelState[(id * 3) + 1] = static_cast<uint8_t>(LED_BRIGHTNESS * Green);
-        NeoPixelState[(id*3) + 2] = static_cast<uint8_t>(LED_BRIGHTNESS * Blue);
+        NeoPixelState[id * 3] = static_cast<uint8_t>(Red * LED_BRIGHTNESS);
+        NeoPixelState[(id * 3) + 1] = static_cast<uint8_t>(Green * LED_BRIGHTNESS);
+        NeoPixelState[(id*3) + 2] = static_cast<uint8_t>(Blue * LED_BRIGHTNESS);
     }
         //set relevant bytes in active buffer (first 180 relate to neopixels)
 }
@@ -528,3 +535,15 @@ bool VenoOrbit_v1_0::ValidateQSPI(bool quick)
                 fail_cnt++;
         return fail_cnt == 0;
     }
+
+void VenoOrbit_v1_0::generateGammaTable(float gamma) {
+    for (int i = 0; i < 256; ++i) {
+        // Calculate the corrected value and store it in the array
+        gamma_lut[i] = static_cast<uint8_t>(std::pow(i / 255.0f, gamma) * 255.0f);
+    }
+}
+
+uint8_t VenoOrbit_v1_0::getGammaCorrected(uint8_t value) {
+    return gamma_lut[value];
+}
+

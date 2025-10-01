@@ -528,6 +528,10 @@ void Init(bool boost = false);
 
     bool ValidateQSPI(bool quick = true);
 
+    void generateGammaTable(float gamma=2.2f);
+
+    uint8_t getGammaCorrected(uint8_t value);
+
     DaisySeed                     seed;
     MidiUartHandler               midi;
     PicoUartTXRX                  PicoUart;
@@ -558,6 +562,8 @@ void Init(bool boost = false);
     using Log = Logger<LOGGER_INTERNAL>;
 
     CV_Calibration calibration_{};
+
+    std::array<uint8_t, 256> gamma_lut;
 
     //void InitMidi();
  
