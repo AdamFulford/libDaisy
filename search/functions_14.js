@@ -20,7 +20,7 @@ var searchData=
   ['transmitdma_17',['TransmitDma',['../classdaisy_1_1_m_a_x11300_multi_slave_spi_transport.html#a568ce0085d272b4ccf041eb3f73c1941',1,'daisy::MAX11300MultiSlaveSpiTransport::TransmitDma()'],['../classdaisy_1_1_i2_c_handle.html#a2def35901e936c7c7c88aef8e1633f14',1,'daisy::I2CHandle::TransmitDma()']]],
   ['transmitexternal_18',['TransmitExternal',['../class_usb_handle.html#a4658cfe98d883c621e2c6353de515ad2',1,'UsbHandle::TransmitExternal(uint8_t *buff, size_t size)'],['../class_usb_handle.html#a4658cfe98d883c621e2c6353de515ad2',1,'UsbHandle::TransmitExternal(uint8_t *buff, size_t size)']]],
   ['transmitinternal_19',['TransmitInternal',['../class_usb_handle.html#ac167e061b8619e82666f67e13020ba6e',1,'UsbHandle::TransmitInternal(uint8_t *buff, size_t size)'],['../class_usb_handle.html#ac167e061b8619e82666f67e13020ba6e',1,'UsbHandle::TransmitInternal(uint8_t *buff, size_t size)']]],
-  ['transmitled_5fstates_20',['TransmitLED_States',['../classdaisy_1_1_veno_looper__v5.html#ae7c1053d3709a523d04f56c71d639722',1,'daisy::VenoLooper_v5']]],
+  ['transmitled_5fstates_20',['TransmitLED_States',['../classdaisy_1_1_veno_orbit__v1__0.html#a51123560db040619fbc211a9bcf7bd11',1,'daisy::VenoOrbit_v1_0::TransmitLED_States()'],['../classdaisy_1_1_veno_looper__v5.html#ae7c1053d3709a523d04f56c71d639722',1,'daisy::VenoLooper_v5::TransmitLED_States()']]],
   ['transmitsync_21',['TransmitSync',['../classdaisy_1_1_logger.html#aef8c51265ad22308928509d2bd491015',1,'daisy::Logger']]],
   ['trig_22',['Trig',['../classdaisy_1_1_gate_in.html#a6a9bac9fe44985baa7097bd47a90a40f',1,'daisy::GateIn']]],
   ['twelvebituinttovolts_23',['TwelveBitUintToVolts',['../classdaisy_1_1_m_a_x11300_driver.html#affe342321382e7fb24f7dcd497ebda66',1,'daisy::MAX11300Driver']]],

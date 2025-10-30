@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['layer1leds_0',['Layer1Leds',['../classdaisy_1_1_veno_looper__v5.html#aa426ee6b9e8170f0af9bdf47369447e8',1,'daisy::VenoLooper_v5']]],
-  ['layer2leds_1',['Layer2Leds',['../classdaisy_1_1_veno_looper__v5.html#a90b752e54710a555c722b62d48b48fa1',1,'daisy::VenoLooper_v5']]],
+  ['layer1leds_0',['Layer1Leds',['../classdaisy_1_1_veno_orbit__v1__0.html#a4d60759365622a9d6997f2e38dc8cb6c',1,'daisy::VenoOrbit_v1_0::Layer1Leds'],['../classdaisy_1_1_veno_looper__v5.html#aa426ee6b9e8170f0af9bdf47369447e8',1,'daisy::VenoLooper_v5::Layer1Leds']]],
+  ['layer2leds_1',['Layer2Leds',['../classdaisy_1_1_veno_orbit__v1__0.html#a15c16a5b58d89e162aa7cf4b951b1db6',1,'daisy::VenoOrbit_v1_0::Layer2Leds'],['../classdaisy_1_1_veno_looper__v5.html#a90b752e54710a555c722b62d48b48fa1',1,'daisy::VenoLooper_v5::Layer2Leds']]],
   ['leds_2',['LEDs',['../classdaisy_1_1_veno_looper.html#a48763f041276fe73aaecd40154fdc470',1,'daisy::VenoLooper']]],
   ['legio_5fcontrols_3',['LEGIO_CONTROLS',['../classdaisy_1_1_daisy_legio.html#a1884bab39dcc854aaca65d18e9cecf24',1,'daisy::DaisyLegio']]],
   ['legio_5fleds_4',['LEGIO_LEDS',['../classdaisy_1_1_daisy_legio.html#a036eecb81cc6dddfeda22578df8abd5b',1,'daisy::DaisyLegio']]],

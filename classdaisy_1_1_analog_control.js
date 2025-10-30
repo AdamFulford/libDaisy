@@ -5,7 +5,7 @@ var classdaisy_1_1_analog_control =
     [ "GetRawFloat", "classdaisy_1_1_analog_control.html#a33c39b4db77b62c46fb5093cc19b8380", null ],
     [ "GetRawValue", "classdaisy_1_1_analog_control.html#a76ae5fabf5f3345ced9a6f9c5280d721", null ],
     [ "Init", "classdaisy_1_1_analog_control.html#a516499f0788d7405024eff550386a59e", null ],
-    [ "InitBipolarCv", "classdaisy_1_1_analog_control.html#a0199915fcaa1d18a2ee4dc1bde6aa86c", null ],
+    [ "InitBipolarCv", "classdaisy_1_1_analog_control.html#a06b2faf5f3287404482e4b0f06f0a644", null ],
     [ "Process", "classdaisy_1_1_analog_control.html#a7109593bfc106dd8ef35aba4434b8321", null ],
     [ "SetCoeff", "classdaisy_1_1_analog_control.html#a2ace581abd8f0c5e35c0013e01f37f1c", null ],
     [ "SetOffset", "classdaisy_1_1_analog_control.html#ae0058bed8b38717be0007eb3a4b494da", null ],

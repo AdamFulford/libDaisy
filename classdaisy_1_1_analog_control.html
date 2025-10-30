@@ -135,8 +135,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:af41762796b66f46994bedd364870bc17"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a516499f0788d7405024eff550386a59e" id="r_a516499f0788d7405024eff550386a59e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a516499f0788d7405024eff550386a59e">Init</a> (uint16_t *adcptr, float sr, bool flip=false, bool invert=false, float slew_seconds=0.002f)</td></tr>
 <tr class="separator:a516499f0788d7405024eff550386a59e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0199915fcaa1d18a2ee4dc1bde6aa86c" id="r_a0199915fcaa1d18a2ee4dc1bde6aa86c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0199915fcaa1d18a2ee4dc1bde6aa86c">InitBipolarCv</a> (uint16_t *adcptr, float sr, float slew_seconds=0.002f)</td></tr>
-<tr class="separator:a0199915fcaa1d18a2ee4dc1bde6aa86c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a06b2faf5f3287404482e4b0f06f0a644" id="r_a06b2faf5f3287404482e4b0f06f0a644"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a06b2faf5f3287404482e4b0f06f0a644">InitBipolarCv</a> (uint16_t *adcptr, float sr, float slew_seconds=0.002f, bool invert=true)</td></tr>
+<tr class="separator:a06b2faf5f3287404482e4b0f06f0a644"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7109593bfc106dd8ef35aba4434b8321" id="r_a7109593bfc106dd8ef35aba4434b8321"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7109593bfc106dd8ef35aba4434b8321">Process</a> ()</td></tr>
 <tr class="separator:a7109593bfc106dd8ef35aba4434b8321"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a099ff147f24ae2220921d22729a66020" id="r_a099ff147f24ae2220921d22729a66020"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a099ff147f24ae2220921d22729a66020">Value</a> () const</td></tr>
@@ -306,8 +306,8 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a0199915fcaa1d18a2ee4dc1bde6aa86c" name="a0199915fcaa1d18a2ee4dc1bde6aa86c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0199915fcaa1d18a2ee4dc1bde6aa86c">&#9670;&#160;</a></span>InitBipolarCv()</h2>
+<a id="a06b2faf5f3287404482e4b0f06f0a644" name="a06b2faf5f3287404482e4b0f06f0a644"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a06b2faf5f3287404482e4b0f06f0a644">&#9670;&#160;</a></span>InitBipolarCv()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -325,7 +325,12 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>slew_seconds</em></span><span class="paramdefsep"> = </span><span class="paramdefval">0.002f</span>&#160;)</td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>slew_seconds</em></span><span class="paramdefsep"> = </span><span class="paramdefval">0.002f</span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>invert</em></span><span class="paramdefsep"> = </span><span class="paramdefval">true</span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">

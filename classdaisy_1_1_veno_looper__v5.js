@@ -130,6 +130,7 @@ var classdaisy_1_1_veno_looper__v5 =
     [ "StopAdc", "classdaisy_1_1_veno_looper__v5.html#a359a2935d1fcc292e152d29bc30c5c8e", null ],
     [ "StopAudio", "classdaisy_1_1_veno_looper__v5.html#a4f611874356a8c4be00cd751be928ec3", null ],
     [ "TransmitLED_States", "classdaisy_1_1_veno_looper__v5.html#ae7c1053d3709a523d04f56c71d639722", null ],
+    [ "UpdateClock", "classdaisy_1_1_veno_looper__v5.html#a7be69b9a6bb4eeae9dfdab40137eed20", null ],
     [ "UpdateDaisyGates", "classdaisy_1_1_veno_looper__v5.html#a42372b4bda6e71ae7727bf7435eb3f52", null ],
     [ "UpdateLEDs", "classdaisy_1_1_veno_looper__v5.html#a6d8c513968089b7d5e1c0f3f0ef2be03", null ],
     [ "UpdatePicoGates", "classdaisy_1_1_veno_looper__v5.html#a6211568da2f8720c4cb1cdff57067e98", null ],

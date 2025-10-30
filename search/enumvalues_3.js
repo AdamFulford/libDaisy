@@ -7,7 +7,7 @@ var searchData=
   ['daisy_5fseed_5f1_5f1_4',['DAISY_SEED_1_1',['../classdaisy_1_1_daisy_seed.html#a59363a85e54eebb334d8663a215e5f12a361e807a05cc81f75a417932d23ea9ea',1,'daisy::DaisySeed']]],
   ['daisy_5fseed_5f2_5fdfm_5',['DAISY_SEED_2_DFM',['../classdaisy_1_1_daisy_seed.html#a59363a85e54eebb334d8663a215e5f12a9eaa506a9def7d174cd1e7e197c5a68a',1,'daisy::DaisySeed']]],
   ['daisy_5fskip_5ftimeout_6',['DAISY_SKIP_TIMEOUT',['../classdaisy_1_1_system.html#a4905063c9bf8da1453620ba435549437a943877ce80394807f6c6b6ffe4aeeee1',1,'daisy::System']]],
-  ['decay_5fpot_7',['DECAY_POT',['../classdaisy_1_1_veno_looper__v5.html#aeab421cd94acae39cd4c845ff613d7c7ac64800b5e91ca96d948b61eb933744d1',1,'daisy::VenoLooper_v5']]],
+  ['decay_5fpot_7',['DECAY_POT',['../classdaisy_1_1_veno_orbit__v1__0.html#a6fd8f53deeebd69081c43de1f5129dd5a71c44580678e8f6b1d3175c35324ee30',1,'daisy::VenoOrbit_v1_0::DECAY_POT'],['../classdaisy_1_1_veno_looper__v5.html#aeab421cd94acae39cd4c845ff613d7c7ac64800b5e91ca96d948b61eb933744d1',1,'daisy::VenoLooper_v5::DECAY_POT']]],
   ['defval_5fa_8',['DEFVAL_A',['../namespacedaisy.html#a8f8fe174eb9db8e8a38e8c08155f1f46a07f06e85d30cfe159f61f6a4df5e8bf1',1,'daisy']]],
   ['defval_5fb_9',['DEFVAL_B',['../namespacedaisy.html#a8f8fe174eb9db8e8a38e8c08155f1f46a0039abd9aaf6e00d2a6838d9a6f7ae20',1,'daisy']]],
   ['device_5flast_10',['DEVICE_LAST',['../structdaisy_1_1_q_s_p_i_handle_1_1_config.html#a0723bf91a7658cc79e54a28a030472e6a6cbb2034856e63698d9c52055b12b4fb',1,'daisy::QSPIHandle::Config']]],

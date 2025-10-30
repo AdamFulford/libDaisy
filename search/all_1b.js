@@ -72,9 +72,10 @@ var searchData=
   ['_7eusbhandle_69',['~UsbHandle',['../class_usb_handle.html#a6ad15406df47137dddf3edcb6c10c9c1',1,'UsbHandle::~UsbHandle()'],['../class_usb_handle.html#a6ad15406df47137dddf3edcb6c10c9c1',1,'UsbHandle::~UsbHandle()']]],
   ['_7evenolooper_70',['~VenoLooper',['../classdaisy_1_1_veno_looper.html#ac9db7ea4387b3d9e99b5ac2f4351eec8',1,'daisy::VenoLooper']]],
   ['_7evenolooper_5fv5_71',['~VenoLooper_v5',['../classdaisy_1_1_veno_looper__v5.html#a86a5f46fca4b54b73887453baeed849c',1,'daisy::VenoLooper_v5']]],
-  ['_7evoctcalibration_72',['~VoctCalibration',['../classdaisy_1_1_voct_calibration.html#a900865bfcc294d80a9ea687e79a149e1',1,'daisy::VoctCalibration']]],
-  ['_7ewavetableloader_73',['~WaveTableLoader',['../classdaisy_1_1_wave_table_loader.html#a5b9d90a405d8b80ce7d186de03e8e768',1,'daisy::WaveTableLoader']]],
-  ['_7ewavplayer_74',['~WavPlayer',['../classdaisy_1_1_wav_player.html#a5aad333a53f985af43a856b252289b8a',1,'daisy::WavPlayer']]],
-  ['_7ewavwriter_75',['~WavWriter',['../classdaisy_1_1_wav_writer.html#ab589ae805cb5d3c59c982687894fbdea',1,'daisy::WavWriter']]],
-  ['_7ewm8731_76',['~Wm8731',['../classdaisy_1_1_wm8731.html#ab71d3f1b08fd45a9d940a2d1a3a4c388',1,'daisy::Wm8731']]]
+  ['_7evenoorbit_5fv1_5f0_72',['~VenoOrbit_v1_0',['../classdaisy_1_1_veno_orbit__v1__0.html#a82599b907acd15106e5fe56c2f1e42ad',1,'daisy::VenoOrbit_v1_0']]],
+  ['_7evoctcalibration_73',['~VoctCalibration',['../classdaisy_1_1_voct_calibration.html#a900865bfcc294d80a9ea687e79a149e1',1,'daisy::VoctCalibration']]],
+  ['_7ewavetableloader_74',['~WaveTableLoader',['../classdaisy_1_1_wave_table_loader.html#a5b9d90a405d8b80ce7d186de03e8e768',1,'daisy::WaveTableLoader']]],
+  ['_7ewavplayer_75',['~WavPlayer',['../classdaisy_1_1_wav_player.html#a5aad333a53f985af43a856b252289b8a',1,'daisy::WavPlayer']]],
+  ['_7ewavwriter_76',['~WavWriter',['../classdaisy_1_1_wav_writer.html#ab589ae805cb5d3c59c982687894fbdea',1,'daisy::WavWriter']]],
+  ['_7ewm8731_77',['~Wm8731',['../classdaisy_1_1_wm8731.html#ab71d3f1b08fd45a9d940a2d1a3a4c388',1,'daisy::Wm8731']]]
 ];

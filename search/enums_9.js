@@ -11,6 +11,6 @@ var searchData=
   ['modbaseadd_8',['ModBaseAdd',['../classdaisy_1_1_neo_pixel.html#a05ba8bfa35fcf36a10dbb06dfb1c3bef',1,'daisy::NeoPixel']]],
   ['mode_9',['Mode',['../classdaisy_1_1_dac_handle.html#af1ab441190983a26ed15a26b77028082',1,'daisy::DacHandle::Mode'],['../classdaisy_1_1_g_p_i_o.html#af853f20a7e4f4d4f337c30fe1d6f1827',1,'daisy::GPIO::Mode'],['../structdaisy_1_1_i2_c_handle_1_1_config.html#a0732725b29fd620342cc5779911faf99',1,'daisy::I2CHandle::Config::Mode'],['../structdaisy_1_1_q_s_p_i_handle_1_1_config.html#a9641ed459b3ef3baca74ad0d49d78a83',1,'daisy::QSPIHandle::Config::Mode'],['../structdaisy_1_1_spi_handle_1_1_config.html#a00488576b0a4c1364cb2fd09164a30f7',1,'daisy::SpiHandle::Config::Mode'],['../structdaisy_1_1_uart_handler_1_1_config.html#ae0a7cc8284cbbe42f1d95797b5862084',1,'daisy::UartHandler::Config::Mode']]],
   ['modulebaseaddress_10',['ModuleBaseAddress',['../classdaisy_1_1_neo_trellis.html#a3b99334c07392818ffcc518aa344cfaf',1,'daisy::NeoTrellis']]],
-  ['mux_5fids_11',['MUX_IDs',['../classdaisy_1_1_veno_looper__v5.html#aeab421cd94acae39cd4c845ff613d7c7',1,'daisy::VenoLooper_v5']]],
+  ['mux_5fids_11',['MUX_IDs',['../classdaisy_1_1_veno_orbit__v1__0.html#a6fd8f53deeebd69081c43de1f5129dd5',1,'daisy::VenoOrbit_v1_0::MUX_IDs'],['../classdaisy_1_1_veno_looper__v5.html#aeab421cd94acae39cd4c845ff613d7c7',1,'daisy::VenoLooper_v5::MUX_IDs']]],
   ['muxpin_12',['MuxPin',['../structdaisy_1_1_adc_channel_config.html#af601e66da7eb60721792861fc91f2c83',1,'daisy::AdcChannelConfig']]]
 ];

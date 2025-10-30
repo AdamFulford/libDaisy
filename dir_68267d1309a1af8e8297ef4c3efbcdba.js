@@ -15,6 +15,7 @@ var dir_68267d1309a1af8e8297ef4c3efbcdba =
     [ "daisy_petal.h", "daisy__petal_8h.html", "daisy__petal_8h" ],
     [ "daisy_pod.h", "daisy__pod_8h.html", "daisy__pod_8h" ],
     [ "daisy_seed.h", "daisy__seed_8h.html", "daisy__seed_8h" ],
+    [ "daisy_VENO-ORBIT_v1_0.h", "daisy___v_e_n_o-_o_r_b_i_t__v1__0_8h.html", "daisy___v_e_n_o-_o_r_b_i_t__v1__0_8h" ],
     [ "daisy_VENOLOOPER.h", "daisy___v_e_n_o_l_o_o_p_e_r_8h.html", "daisy___v_e_n_o_l_o_o_p_e_r_8h" ],
     [ "daisy_VENOLOOPER_v5.h", "daisy___v_e_n_o_l_o_o_p_e_r__v5_8h.html", "daisy___v_e_n_o_l_o_o_p_e_r__v5_8h" ],
     [ "daisy_versio.h", "daisy__versio_8h.html", null ],

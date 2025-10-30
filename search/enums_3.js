@@ -1,7 +1,7 @@
 var searchData=
 [
   ['dacvoltagerange_0',['DacVoltageRange',['../namespacedaisy_1_1_m_a_x11300_types.html#a2c0fb886b30c1bd5c1d0ec66b3bd4fe3',1,'daisy::MAX11300Types']]],
-  ['daisy_5fgates_1',['Daisy_Gates',['../classdaisy_1_1_veno_looper__v5.html#a3be639054aeaff4f30620192d50271bc',1,'daisy::VenoLooper_v5']]],
+  ['daisy_5fgates_1',['Daisy_Gates',['../classdaisy_1_1_veno_orbit__v1__0.html#a76b5f46693afac4aee52b2093f0a4a68',1,'daisy::VenoOrbit_v1_0::Daisy_Gates'],['../classdaisy_1_1_veno_looper__v5.html#a3be639054aeaff4f30620192d50271bc',1,'daisy::VenoLooper_v5::Daisy_Gates']]],
   ['device_2',['Device',['../structdaisy_1_1_q_s_p_i_handle_1_1_config.html#a0723bf91a7658cc79e54a28a030472e6',1,'daisy::QSPIHandle::Config']]],
   ['digitalinputs_3',['DigitalInputs',['../classdaisy_1_1_veno_looper.html#a7e9463280838559cc57e5d402f945af9',1,'daisy::VenoLooper']]],
   ['direction_4',['Direction',['../classdaisy_1_1_i2_c_handle.html#a8f815f7a77948286f0fa0065a1f7c54c',1,'daisy::I2CHandle::Direction'],['../structdaisy_1_1_sai_handle_1_1_config.html#a80ffb7d40b82652f1550e8cf6ca56f81',1,'daisy::SaiHandle::Config::Direction'],['../structdaisy_1_1_spi_handle_1_1_config.html#a1f417015e7ac05b0a67c1a2d9d9079fc',1,'daisy::SpiHandle::Config::Direction']]],

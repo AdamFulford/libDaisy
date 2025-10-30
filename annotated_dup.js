@@ -143,6 +143,7 @@ var annotated_dup =
       [ "USBHostHandle", "classdaisy_1_1_u_s_b_host_handle.html", "classdaisy_1_1_u_s_b_host_handle" ],
       [ "VenoLooper", "classdaisy_1_1_veno_looper.html", "classdaisy_1_1_veno_looper" ],
       [ "VenoLooper_v5", "classdaisy_1_1_veno_looper__v5.html", "classdaisy_1_1_veno_looper__v5" ],
+      [ "VenoOrbit_v1_0", "classdaisy_1_1_veno_orbit__v1__0.html", "classdaisy_1_1_veno_orbit__v1__0" ],
       [ "VoctCalibration", "classdaisy_1_1_voct_calibration.html", "classdaisy_1_1_voct_calibration" ],
       [ "WAV_FormatTypeDef", "structdaisy_1_1_w_a_v___format_type_def.html", "structdaisy_1_1_w_a_v___format_type_def" ],
       [ "WaveTableLoader", "classdaisy_1_1_wave_table_loader.html", "classdaisy_1_1_wave_table_loader" ],

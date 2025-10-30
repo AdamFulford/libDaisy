@@ -2,7 +2,7 @@ var searchData=
 [
   ['samplerate_0',['SampleRate',['../structdaisy_1_1_sai_handle_1_1_config.html#adace22abaff171f0c459cff4a44026fc',1,'daisy::SaiHandle::Config']]],
   ['speed_1',['Speed',['../classdaisy_1_1_g_p_i_o.html#ab46ae5f22fd6af1e941fa05252a832f3',1,'daisy::GPIO::Speed'],['../structdaisy_1_1_i2_c_handle_1_1_config.html#a744f7d6297a06e87fe2e2014f05d469e',1,'daisy::I2CHandle::Config::Speed'],['../classdaisy_1_1_sdmmc_handler.html#a78a654b5e915c05224fb64f0dfbe6bce',1,'daisy::SdmmcHandler::Speed']]],
-  ['speedcontrols_2',['speedControls',['../classdaisy_1_1_veno_looper.html#a3b1873713e0e58bcfe3d687fd3a8e871',1,'daisy::VenoLooper::speedControls'],['../classdaisy_1_1_veno_looper__v5.html#abb415ff1de4ee4591d14c8d00071c731',1,'daisy::VenoLooper_v5::speedControls']]],
+  ['speedcontrols_2',['speedControls',['../classdaisy_1_1_veno_orbit__v1__0.html#aba0df0514a6e792c84d92c51f93d1b82',1,'daisy::VenoOrbit_v1_0::speedControls'],['../classdaisy_1_1_veno_looper.html#a3b1873713e0e58bcfe3d687fd3a8e871',1,'daisy::VenoLooper::speedControls'],['../classdaisy_1_1_veno_looper__v5.html#abb415ff1de4ee4591d14c8d00071c731',1,'daisy::VenoLooper_v5::speedControls']]],
   ['stataddreg_3',['StatAddReg',['../classdaisy_1_1_neo_pixel.html#ae8c5611d43b53c821488a4e5b762b7d1',1,'daisy::NeoPixel']]],
   ['state_4',['State',['../classdaisy_1_1_persistent_storage.html#ad48f55bcb2a8b6959c0f4cf7822b0efa',1,'daisy::PersistentStorage']]],
   ['status_5',['Status',['../classdaisy_1_1_q_s_p_i_handle.html#a130e764ad0cd53c10c0bc85193e8c133',1,'daisy::QSPIHandle']]],

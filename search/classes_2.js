@@ -10,5 +10,5 @@ var searchData=
   ['controlchangeevent_7',['ControlChangeEvent',['../structdaisy_1_1_control_change_event.html',1,'daisy']]],
   ['cpuloadmeter_8',['CpuLoadMeter',['../classdaisy_1_1_cpu_load_meter.html',1,'daisy']]],
   ['customitem_9',['CustomItem',['../classdaisy_1_1_abstract_menu_1_1_custom_item.html',1,'daisy::AbstractMenu']]],
-  ['cv_5fcalibration_10',['CV_Calibration',['../structdaisy_1_1_veno_looper__v5_1_1_c_v___calibration.html',1,'daisy::VenoLooper_v5']]]
+  ['cv_5fcalibration_10',['CV_Calibration',['../structdaisy_1_1_veno_looper__v5_1_1_c_v___calibration.html',1,'daisy::VenoLooper_v5::CV_Calibration'],['../structdaisy_1_1_veno_orbit__v1__0_1_1_c_v___calibration.html',1,'daisy::VenoOrbit_v1_0::CV_Calibration']]]
 ];

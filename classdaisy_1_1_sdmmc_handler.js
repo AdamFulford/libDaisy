@@ -18,5 +18,6 @@ var classdaisy_1_1_sdmmc_handler =
     ] ],
     [ "SdmmcHandler", "classdaisy_1_1_sdmmc_handler.html#a83efce6a87aadb15744ce8f330038631", null ],
     [ "~SdmmcHandler", "classdaisy_1_1_sdmmc_handler.html#a0e9d9d3b2fdaaa7a26a543383867bfb8", null ],
+    [ "DeInit", "classdaisy_1_1_sdmmc_handler.html#a0b5ef4eb78b92cb2dbb35b793c9a1156", null ],
     [ "Init", "classdaisy_1_1_sdmmc_handler.html#a5df27501002b728908d18bcc279cb6df", null ]
 ];
