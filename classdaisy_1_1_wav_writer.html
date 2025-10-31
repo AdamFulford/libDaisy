@@ -163,10 +163,6 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:ad1808769a4239080fefabebac461c340"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4e55f491f9849a54906acdcad244b39d" id="r_a4e55f491f9849a54906acdcad244b39d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4e55f491f9849a54906acdcad244b39d">SaveFile</a> ()</td></tr>
 <tr class="separator:a4e55f491f9849a54906acdcad244b39d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5935b752b46263a6940ae0c13ded492b" id="r_a5935b752b46263a6940ae0c13ded492b"><td class="memItemLeft" align="right" valign="top">FRESULT&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5935b752b46263a6940ae0c13ded492b">OpenFile</a> (const char *name)</td></tr>
-<tr class="separator:a5935b752b46263a6940ae0c13ded492b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a090f26dcb2db94a89386d87d8a6064a9" id="r_a090f26dcb2db94a89386d87d8a6064a9"><td class="memItemLeft" align="right" valign="top">FRESULT&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a090f26dcb2db94a89386d87d8a6064a9">TestFile</a> ()</td></tr>
-<tr class="separator:a090f26dcb2db94a89386d87d8a6064a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a324a583188aa21652364370ab1e3925a" id="r_a324a583188aa21652364370ab1e3925a"><td class="memItemLeft" align="right" valign="top">FRESULT&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a324a583188aa21652364370ab1e3925a">PrepareWav</a> (FRESULT OpenFileResult)</td></tr>
 <tr class="separator:a324a583188aa21652364370ab1e3925a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a245c0a0bda80385bc3c293f301c468de" id="r_a245c0a0bda80385bc3c293f301c468de"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a245c0a0bda80385bc3c293f301c468de">IsRecording</a> () const</td></tr>
@@ -497,34 +493,6 @@ template&lt;size_t transfer_size&gt; </div>
 
 </div>
 </div>
-<a id="a5935b752b46263a6940ae0c13ded492b" name="a5935b752b46263a6940ae0c13ded492b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5935b752b46263a6940ae0c13ded492b">&#9670;&#160;</a></span>OpenFile()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;size_t transfer_size&gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">FRESULT <a class="el" href="classdaisy_1_1_wav_writer.html">daisy::WavWriter</a>&lt; transfer_size &gt;::OpenFile </td>
-          <td>(</td>
-          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>name</em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>Opens a file for writing. Writes the initial WAV Header, and gets ready for stream-based recording. </p>
-
-</div>
-</div>
 <a id="a324a583188aa21652364370ab1e3925a" name="a324a583188aa21652364370ab1e3925a"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a324a583188aa21652364370ab1e3925a">&#9670;&#160;</a></span>PrepareWav()</h2>
 
@@ -612,33 +580,6 @@ template&lt;size_t transfer_size&gt; </div>
 </table>
 </div><div class="memdoc">
 <p>Finalizes the writing of the WAV file. This overwrites the WAV Header with the correct final size, and closes the fptr. </p>
-
-</div>
-</div>
-<a id="a090f26dcb2db94a89386d87d8a6064a9" name="a090f26dcb2db94a89386d87d8a6064a9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a090f26dcb2db94a89386d87d8a6064a9">&#9670;&#160;</a></span>TestFile()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;size_t transfer_size&gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">FRESULT <a class="el" href="classdaisy_1_1_wav_writer.html">daisy::WavWriter</a>&lt; transfer_size &gt;::TestFile </td>
-          <td>(</td>
-          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
 
 </div>
 </div>

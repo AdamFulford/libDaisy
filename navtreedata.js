@@ -152,15 +152,16 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "_abstract_menu_8h.html",
-"classdaisy_1_1_dot_star_spi_transport.html",
-"classdaisy_1_1_persistent_storage.html#ad48f55bcb2a8b6959c0f4cf7822b0efaa2e40ad879e955201df4dedbf8d479a12",
-"classdaisy_1_1_veno_looper.html#a48763f041276fe73aaecd40154fdc470a2b441b7b3edcf17f028a6062f789c6ed",
-"classdaisy_1_1_veno_looper__v5.html#af0d2a28c62f982a2f9c024218646d60aa297ec2c0e419b6928d6a49958c303921",
-"codec__pcm3060_8h_source.html",
-"dps310_8h.html#ac0151332992d110b8290a196f55c49a7",
-"graphics__common_8h_source.html",
-"neopixel_8h.html#a266a08af576ed4331db48b16bf572d29",
-"structdaisy_1_1_sai_handle_1_1_config.html#a2ec771f070f868f83d7f7d8f3de2462e"
+"classdaisy_1_1_dot_star.html#ac1815ff5de1b798d757270607dad2824",
+"classdaisy_1_1_one_bit_graphics_display.html#ab877f769f2d9b9f70027beccd9173f50",
+"classdaisy_1_1_u_s_b_host_handle.html#a23eacd86f01a56142e60108ba8a381a8",
+"classdaisy_1_1_veno_looper__v5.html#aae8fcb4b9036a5b4258d41c5b66f4a2e",
+"classdaisy_1_1_wav_player.html",
+"daisy__seed_8h.html#a13c747065c95fd8786a4a558228a7412",
+"functions_vars_o.html",
+"md_doc_2md_2__a1___getting-_started-_g_p_i_o.html#autotoc_md9",
+"structdaisy_1_1_i2_c_handle_1_1_config.html#a4ea7f774e5aaf99e868cd341ac8183c3",
+"todo.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';
