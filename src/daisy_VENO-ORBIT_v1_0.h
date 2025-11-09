@@ -206,7 +206,7 @@ class VenoOrbit_v1_0
     };
 
     enum CntrlFreq
-    {Fast,Slow};
+    {VeryFast,Fast,Slow};
 
     
     enum Outputs
@@ -268,8 +268,8 @@ float CVSlew[LAST_CV] =
     0.000001f, //LAYER2_CV
     0.002f, //START1_CV
     0.002f, //START2_CV
-    0.000001f, //MOD1_CV
-    0.000001f, //MOD2_CV
+    0.00001f, //MOD1_CV
+    0.00001f, //MOD2_CV
 };
 
 bool CV_Invert[LAST_CV]
@@ -329,8 +329,8 @@ CntrlFreq CVFreq[LAST_CV]
     Slow, //LAYER2_CV
     Slow, //START1_CV
     Slow, //START2_CV
-    Fast, //MOD1_CV
-    Fast //MOD2_CV
+    VeryFast, //MOD1_CV
+    VeryFast //MOD2_CV
 };
 
 struct CV_Calibration
