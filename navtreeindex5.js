@@ -1,5 +1,6 @@
 var NAVTREEINDEX5 =
 {
+"classdaisy_1_1_wav_parser.html#acd01a7b86e82259e6194796792b433a8":[15,0,0,147,6],
 "classdaisy_1_1_wav_player.html":[15,0,0,148],
 "classdaisy_1_1_wav_player.html#a1f26714adf8f9157ad59d331bec9159c":[15,0,0,148,5],
 "classdaisy_1_1_wav_player.html#a1f4d3178a7b2b44cd3a3fc5e16dff9c7":[15,0,0,148,16],
@@ -248,6 +249,5 @@ var NAVTREEINDEX5 =
 "daisy__pod_8h_source.html":[16,0,1,13],
 "daisy__seed_8h.html":[16,0,1,14],
 "daisy__seed_8h.html#a04f5e37bbf8cd986dbb02b78ed7220ff":[16,0,1,14,47],
-"daisy__seed_8h.html#a0962461b50c3f98c7bce4e244942c285":[16,0,1,14,42],
-"daisy__seed_8h.html#a0fe866a12a44f6817ae91b69453d4ed9":[16,0,1,14,5]
+"daisy__seed_8h.html#a0962461b50c3f98c7bce4e244942c285":[16,0,1,14,42]
 };

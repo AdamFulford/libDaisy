@@ -1,5 +1,6 @@
 var NAVTREEINDEX8 =
 {
+"md_doc_2md_2__a1___getting-_started-_g_p_i_o.html#autotoc_md8":[4,3,2],
 "md_doc_2md_2__a1___getting-_started-_g_p_i_o.html#autotoc_md9":[4,3,3],
 "md_doc_2md_2__a2___getting-_started-_serial-_printing.html":[5],
 "md_doc_2md_2__a2___getting-_started-_serial-_printing.html#autotoc_md13":[5,0],
@@ -248,6 +249,5 @@ var NAVTREEINDEX8 =
 "structdaisy_1_1_i2_c_handle_1_1_config.html":[15,0,0,44,0],
 "structdaisy_1_1_i2_c_handle_1_1_config.html#a0732725b29fd620342cc5779911faf99":[15,0,0,44,0,0],
 "structdaisy_1_1_i2_c_handle_1_1_config.html#a0732725b29fd620342cc5779911faf99a6118787f81e03849080ef6e41361e728":[15,0,0,44,0,0,1],
-"structdaisy_1_1_i2_c_handle_1_1_config.html#a0732725b29fd620342cc5779911faf99ac5d230dd215b4b612943596d0c45c902":[15,0,0,44,0,0,0],
-"structdaisy_1_1_i2_c_handle_1_1_config.html#a28fa3c0553839429f5030a186be255e5":[15,0,0,44,0,6]
+"structdaisy_1_1_i2_c_handle_1_1_config.html#a0732725b29fd620342cc5779911faf99ac5d230dd215b4b612943596d0c45c902":[15,0,0,44,0,0,0]
 };

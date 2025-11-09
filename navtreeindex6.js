@@ -1,5 +1,6 @@
 var NAVTREEINDEX6 =
 {
+"daisy__seed_8h.html#a0fe866a12a44f6817ae91b69453d4ed9":[16,0,1,14,5],
 "daisy__seed_8h.html#a13c747065c95fd8786a4a558228a7412":[16,0,1,14,39],
 "daisy__seed_8h.html#a153ed6f232e004c8732863b71a62e92a":[16,0,1,14,40],
 "daisy__seed_8h.html#a1796c1ab85923482d0278dc7e25cfbf7":[16,0,1,14,15],
@@ -248,6 +249,5 @@ var NAVTREEINDEX6 =
 "functions_vars_i.html":[15,3,2,8],
 "functions_vars_k.html":[15,3,2,9],
 "functions_vars_l.html":[15,3,2,10],
-"functions_vars_m.html":[15,3,2,11],
-"functions_vars_n.html":[15,3,2,12]
+"functions_vars_m.html":[15,3,2,11]
 };

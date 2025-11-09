@@ -2,6 +2,7 @@ var classdaisy_1_1_veno_orbit__v1__0 =
 [
     [ "CV_Calibration", "structdaisy_1_1_veno_orbit__v1__0_1_1_c_v___calibration.html", "structdaisy_1_1_veno_orbit__v1__0_1_1_c_v___calibration" ],
     [ "CntrlFreq", "classdaisy_1_1_veno_orbit__v1__0.html#a78f360fecb341c7adb431d493c679f88", [
+      [ "VeryFast", "classdaisy_1_1_veno_orbit__v1__0.html#a78f360fecb341c7adb431d493c679f88a6c710d99c5269bd64109cb675c6cf219", null ],
       [ "Fast", "classdaisy_1_1_veno_orbit__v1__0.html#a78f360fecb341c7adb431d493c679f88a97fbee917155adacd1ff0b81494e96e9", null ],
       [ "Slow", "classdaisy_1_1_veno_orbit__v1__0.html#a78f360fecb341c7adb431d493c679f88a5dd4845a5b1bf51c965f4edef07e1e33", null ]
     ] ],

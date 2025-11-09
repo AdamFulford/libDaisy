@@ -1,5 +1,6 @@
 var NAVTREEINDEX7 =
 {
+"functions_vars_n.html":[15,3,2,12],
 "functions_vars_o.html":[15,3,2,13],
 "functions_vars_p.html":[15,3,2,14],
 "functions_vars_q.html":[15,3,2,15],
@@ -248,6 +249,5 @@ var NAVTREEINDEX7 =
 "md_doc_2md_2__a1___getting-_started-_g_p_i_o.html#autotoc_md4":[4,2],
 "md_doc_2md_2__a1___getting-_started-_g_p_i_o.html#autotoc_md5":[4,3],
 "md_doc_2md_2__a1___getting-_started-_g_p_i_o.html#autotoc_md6":[4,3,0],
-"md_doc_2md_2__a1___getting-_started-_g_p_i_o.html#autotoc_md7":[4,3,1],
-"md_doc_2md_2__a1___getting-_started-_g_p_i_o.html#autotoc_md8":[4,3,2]
+"md_doc_2md_2__a1___getting-_started-_g_p_i_o.html#autotoc_md7":[4,3,1]
 };
