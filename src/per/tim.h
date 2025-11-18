@@ -48,7 +48,7 @@ class TimerHandle
         enum class Peripheral
         {
             TIM_2 = 0, /**< 32-bit counter */
-            TIM_3,     /**< 16-bit counter */
+            // TIM_3,     /**< 16-bit counter */
             TIM_4,     /**< 16-bit counter */
             TIM_5,     /**< 32-bit counter*/
         };

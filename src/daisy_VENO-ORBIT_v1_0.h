@@ -192,7 +192,7 @@ class VenoOrbit_v1_0
         PLAY2_GATE,
         REC1_GATE,
         REC2_GATE,
-        CLOCK_GATE,
+        // CLOCK_GATE,
 
         LAST_GATE
     };

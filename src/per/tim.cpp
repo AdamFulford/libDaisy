@@ -94,7 +94,7 @@ TimerHandle::Result TimerHandle::Impl::Init(const TimerHandle::Config& config)
     if(tim_idx >= 4)
         return TimerHandle::Result::ERR;
     config_                   = config;
-    TIM_TypeDef* instances[4] = {TIM2, TIM3, TIM4, TIM5};
+    TIM_TypeDef* instances[3] = {TIM2, TIM4, TIM5};
 
     // HAL Initialization
     tim_hal_handle_.Instance = instances[tim_idx];
@@ -266,15 +266,15 @@ extern "C"
                 HAL_NVIC_EnableIRQ(TIM2_IRQn);
             }
         }
-        else if(tim_baseHandle->Instance == TIM3)
-        {
-            __HAL_RCC_TIM3_CLK_ENABLE();
-            if(cfg.enable_irq)
-            {
-                HAL_NVIC_SetPriority(TIM3_IRQn, 0, 0);
-                HAL_NVIC_EnableIRQ(TIM3_IRQn);
-            }
-        }
+        // else if(tim_baseHandle->Instance == TIM3)
+        // {
+        //     __HAL_RCC_TIM3_CLK_ENABLE();
+        //     if(cfg.enable_irq)
+        //     {
+        //         HAL_NVIC_SetPriority(TIM3_IRQn, 0, 0);
+        //         HAL_NVIC_EnableIRQ(TIM3_IRQn);
+        //     }
+        // }
         else if(tim_baseHandle->Instance == TIM4)
         {
             __HAL_RCC_TIM4_CLK_ENABLE();
@@ -311,11 +311,11 @@ extern "C"
             __HAL_RCC_TIM2_CLK_DISABLE();
             HAL_NVIC_DisableIRQ(TIM2_IRQn);
         }
-        else if(tim_baseHandle->Instance == TIM3)
-        {
-            __HAL_RCC_TIM3_CLK_DISABLE();
-            HAL_NVIC_DisableIRQ(TIM3_IRQn);
-        }
+        // else if(tim_baseHandle->Instance == TIM3)
+        // {
+        //     __HAL_RCC_TIM3_CLK_DISABLE();
+        //     HAL_NVIC_DisableIRQ(TIM3_IRQn);
+        // }
         else if(tim_baseHandle->Instance == TIM4)
         {
             __HAL_RCC_TIM4_CLK_DISABLE();
@@ -351,11 +351,11 @@ extern "C" void TIM2_IRQHandler(void)
     HAL_TIM_IRQHandler(&tim_handles[(int)TimerHandle::Config::Peripheral::TIM_2]
                             .tim_hal_handle_);
 }
-extern "C" void TIM3_IRQHandler(void)
-{
-    HAL_TIM_IRQHandler(&tim_handles[(int)TimerHandle::Config::Peripheral::TIM_3]
-                            .tim_hal_handle_);
-}
+// extern "C" void TIM3_IRQHandler(void)
+// {
+//     HAL_TIM_IRQHandler(&tim_handles[(int)TimerHandle::Config::Peripheral::TIM_3]
+//                             .tim_hal_handle_);
+// }
 extern "C" void TIM4_IRQHandler(void)
 {
     HAL_TIM_IRQHandler(&tim_handles[(int)TimerHandle::Config::Peripheral::TIM_4]

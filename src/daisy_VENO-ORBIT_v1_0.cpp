@@ -137,8 +137,8 @@ void VenoOrbit_v1_0::Init(bool boost)
     {seed::PIN_PLAY1_GATE,
      seed::PIN_PLAY2_GATE,
      seed::PIN_REC1_GATE,
-     seed::PIN_REC2_GATE,
-     seed::PIN_CLOCK};
+    seed::PIN_REC2_GATE};
+    //  seed::PIN_CLOCK};
 
     // //pointers to gate pins
     // Pin* GatePinPtrs[LAST_GATE] {};
@@ -148,8 +148,8 @@ void VenoOrbit_v1_0::Init(bool boost)
     //     GatePinPtrs[i] = &Gatepins[i];
     // }
 
-    //gates init
-    for(size_t i=0; i<LAST_GATE; ++i)
+    //gates init: no longer includes clock init
+    for(size_t i=0; i< LAST_GATE; ++i)
     {
         gates[i].Init(Gatepins[i], true);
     }
@@ -320,16 +320,16 @@ void VenoOrbit_v1_0::UpdatePicoGates()
 
 void VenoOrbit_v1_0::UpdateDaisyGates()
 {
-    for(size_t i=0; i<(LAST_GATE - 1); ++i)
+    for(size_t i=0; i<LAST_GATE; ++i)
     {
         gates[i].Update();
     }
 }
 
-void VenoOrbit_v1_0::UpdateClock()
-{
-    gates[CLOCK_GATE].Update();
-}
+// void VenoOrbit_v1_0::UpdateClock()
+// {
+//     gates[CLOCK_GATE].Update();
+// }
 
 float VenoOrbit_v1_0::GetMuxValue(MUX_IDs idx)
 {
