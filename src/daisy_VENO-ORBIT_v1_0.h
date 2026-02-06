@@ -192,7 +192,7 @@ class VenoOrbit_v1_0
         PLAY2_GATE,
         REC1_GATE,
         REC2_GATE,
-        CLOCK_GATE,
+        // CLOCK_GATE,
 
         LAST_GATE
     };
@@ -251,7 +251,7 @@ float MuxSlew[LAST_MUX] =
     0.05f,    // LENGTH2_CV,
     0.05f,    // INPUT_TYPE_TOGGLE,
     0.05f,    // LENGTH1_CV,
-    0.000001f,   // IN_LEVEL_POT,
+    0.000002f,   // IN_LEVEL_POT,
     0.05f,    // XFADE_POT,
     0.05f,    // DECAY_POT,
     0.05f    // CLOCK_DETECT,
@@ -259,7 +259,7 @@ float MuxSlew[LAST_MUX] =
     // LAST_MUX
 };
 
-//CV (Direct ADC) slew coeffs
+//CV (Direct ADC) slew coeffs Bigger is SLOWER
 float CVSlew[LAST_CV] =
 {
     0.000001f, //VOct2_CV

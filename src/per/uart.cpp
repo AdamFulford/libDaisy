@@ -1189,23 +1189,59 @@ extern "C" void HAL_UART_RxHalfCpltCallback(UART_HandleTypeDef* huart)
 //     UartHandler::Impl::DmaTransferFinished(huart, UartHandler::Result::ERR);
 // }
 
+// extern "C" void HAL_UART_ErrorCallback(UART_HandleTypeDef* huart)
+// {
+//     auto* handle = MapInstanceToHandle(huart->Instance);
+//     if (handle != nullptr && handle->listener_mode_) {
+//         uint32_t error_code = HAL_UART_GetError(huart);
+//         if (error_code & HAL_UART_ERROR_ORE) {
+//             // Overrun occurred: Clear the flag
+//             __HAL_UART_CLEAR_FLAG(huart, UART_FLAG_ORE);
+
+//             // // Increment the counter
+//             handle->overrun_count_++;
+
+//             HAL_UART_Receive_DMA(huart,handle->circular_rx_buff_, 
+//                                  handle->circular_rx_total_size_);
+            
+//         }
+//          // Handle other errors...
+//     } else if (handle != nullptr) {
+//         // Default behavior for non-listener mode
+//         UartHandler::Impl::DmaTransferFinished(huart, UartHandler::Result::ERR);
+//     }
+// }
+
 extern "C" void HAL_UART_ErrorCallback(UART_HandleTypeDef* huart)
 {
     auto* handle = MapInstanceToHandle(huart->Instance);
-    if (handle != nullptr && handle->listener_mode_) {
-        uint32_t error_code = HAL_UART_GetError(huart);
-        if (error_code & HAL_UART_ERROR_ORE) {
-            // Overrun occurred: Clear the flag
-            __HAL_UART_CLEAR_FLAG(huart, UART_FLAG_ORE);
+    if (!handle)
+        return;
 
-            // // Increment the counter
-            handle->overrun_count_++;
-        }
-         // Handle other errors...
-    } else if (handle != nullptr) {
-        // Default behavior for non-listener mode
-        UartHandler::Impl::DmaTransferFinished(huart, UartHandler::Result::ERR);
+    uint32_t error_code = HAL_UART_GetError(huart);
+
+    // --- Clear all possible UART error flags ---
+    if (error_code & HAL_UART_ERROR_ORE) {
+        __HAL_UART_CLEAR_OREFLAG(huart);
+        handle->overrun_count_++;
     }
+    if (error_code & HAL_UART_ERROR_NE) {
+        __HAL_UART_CLEAR_NEFLAG(huart);
+    }
+    if (error_code & HAL_UART_ERROR_FE) {
+        __HAL_UART_CLEAR_FEFLAG(huart);
+    }
+    if (error_code & HAL_UART_ERROR_PE) {
+        __HAL_UART_CLEAR_PEFLAG(huart);
+    }
+
+    // --- Abort the existing (broken) DMA receive ---
+    HAL_UART_AbortReceive(huart);
+
+    // --- Restart the DMA circular buffer reception ---
+    HAL_UART_Receive_DMA(huart,
+                         handle->circular_rx_buff_,
+                         handle->circular_rx_total_size_);
 }
 
 extern "C" void HAL_UART_AbortCpltCallback(UART_HandleTypeDef* huart)
