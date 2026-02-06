@@ -22,7 +22,6 @@ var classdaisy_1_1_veno_orbit__v1__0 =
       [ "PLAY2_GATE", "classdaisy_1_1_veno_orbit__v1__0.html#a76b5f46693afac4aee52b2093f0a4a68a12028c8a876115de7343828fb346ad0e", null ],
       [ "REC1_GATE", "classdaisy_1_1_veno_orbit__v1__0.html#a76b5f46693afac4aee52b2093f0a4a68a431036e5f6bdb6b63aef599faa1933cc", null ],
       [ "REC2_GATE", "classdaisy_1_1_veno_orbit__v1__0.html#a76b5f46693afac4aee52b2093f0a4a68aed52817574ecfdab11850694315a2f42", null ],
-      [ "CLOCK_GATE", "classdaisy_1_1_veno_orbit__v1__0.html#a76b5f46693afac4aee52b2093f0a4a68a504080594a9a52e1bd297777032d9c55", null ],
       [ "LAST_GATE", "classdaisy_1_1_veno_orbit__v1__0.html#a76b5f46693afac4aee52b2093f0a4a68a4cf7c696b8f62a49df8da62978d77801", null ]
     ] ],
     [ "GateOuts", "classdaisy_1_1_veno_orbit__v1__0.html#ac5f8af7773f7cf72064589604ad0d656", [

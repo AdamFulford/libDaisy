@@ -169,8 +169,7 @@ var NAVTREEINDEX4 =
 "classdaisy_1_1_veno_orbit__v1__0.html#a76b5f46693afac4aee52b2093f0a4a68":[15,0,0,142,3],
 "classdaisy_1_1_veno_orbit__v1__0.html#a76b5f46693afac4aee52b2093f0a4a68a12028c8a876115de7343828fb346ad0e":[15,0,0,142,3,1],
 "classdaisy_1_1_veno_orbit__v1__0.html#a76b5f46693afac4aee52b2093f0a4a68a431036e5f6bdb6b63aef599faa1933cc":[15,0,0,142,3,2],
-"classdaisy_1_1_veno_orbit__v1__0.html#a76b5f46693afac4aee52b2093f0a4a68a4cf7c696b8f62a49df8da62978d77801":[15,0,0,142,3,5],
-"classdaisy_1_1_veno_orbit__v1__0.html#a76b5f46693afac4aee52b2093f0a4a68a504080594a9a52e1bd297777032d9c55":[15,0,0,142,3,4],
+"classdaisy_1_1_veno_orbit__v1__0.html#a76b5f46693afac4aee52b2093f0a4a68a4cf7c696b8f62a49df8da62978d77801":[15,0,0,142,3,4],
 "classdaisy_1_1_veno_orbit__v1__0.html#a76b5f46693afac4aee52b2093f0a4a68aa6744f8fd9437985443f1c9d58fd25de":[15,0,0,142,3,0],
 "classdaisy_1_1_veno_orbit__v1__0.html#a76b5f46693afac4aee52b2093f0a4a68aed52817574ecfdab11850694315a2f42":[15,0,0,142,3,3],
 "classdaisy_1_1_veno_orbit__v1__0.html#a77bfdb68fcb417f3eb67d5755d547236":[15,0,0,142,48],
@@ -249,5 +248,6 @@ var NAVTREEINDEX4 =
 "classdaisy_1_1_wav_parser.html#a4cde95d232e0a5b9cb252df7026b71cd":[15,0,0,147,0],
 "classdaisy_1_1_wav_parser.html#a5d744f0ade44e45453493f3ced927e7e":[15,0,0,147,5],
 "classdaisy_1_1_wav_parser.html#abf576418bf1a18a2edb513a25777f8a7":[15,0,0,147,1],
-"classdaisy_1_1_wav_parser.html#accdfbe75dd0b8e2184581e00a1861c0e":[15,0,0,147,4]
+"classdaisy_1_1_wav_parser.html#accdfbe75dd0b8e2184581e00a1861c0e":[15,0,0,147,4],
+"classdaisy_1_1_wav_parser.html#acd01a7b86e82259e6194796792b433a8":[15,0,0,147,6]
 };
