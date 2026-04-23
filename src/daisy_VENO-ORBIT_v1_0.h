@@ -229,12 +229,12 @@ float MuxSlew[LAST_MUX] =
     //mux1
     0.05f,    // LENGTH1_POT,   //000
     0.05f,    // LAYER1_POT, //001
-    0.05f,    // START1_POT, // 010
-    0.05f,    // SPEED1_POT,  //011
+    0.2f,    // START1_POT, // 010
+    0.02f,    // SPEED1_POT,  //011
     0.05f,    // SPEED2_POT, //100
     0.05f,    // LAYER2_POT, //101
     0.05f,    // LENGTH2_POT, //110
-    0.05f,    // START2_POT, //111
+    0.2f,    // START2_POT, //111
 
     //mux2
     0.05f,    // ATTACK1_POT,
