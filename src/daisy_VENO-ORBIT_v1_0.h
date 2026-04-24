@@ -259,6 +259,41 @@ float MuxSlew[LAST_MUX] =
     // LAST_MUX
 };
 
+float MuxHysteresis[LAST_MUX] =
+{
+    //mux1
+    0.0f,    // LENGTH1_POT,   //000
+    0.0f,    // LAYER1_POT, //001
+    0.005f,    // START1_POT, // 010
+    0.0f,    // SPEED1_POT,  //011
+    0.0f,    // SPEED2_POT, //100
+    0.0f,    // LAYER2_POT, //101
+    0.0f,    // LENGTH2_POT, //110
+    0.005f,    // START2_POT, //111
+
+    //mux2
+    0.0f,    // ATTACK1_POT,
+    0.0f,    // ATTACK2_POT,
+    0.0f,    // PLAY_TOGGLE2,
+    0.0f,    // PLAY_TOGGLE1,
+    0.0f,    // RELEASE2_POT,
+    0.0f,    // RELEASE1_POT,
+    0.0f,    // MUX2_6,
+    0.0f,    // MUX2_7,
+
+    //mux3
+    0.0f,    // MUX3_0,
+    0.0f,    // LENGTH2_CV,
+    0.0f,    // INPUT_TYPE_TOGGLE,
+    0.0f,    // LENGTH1_CV,
+    0.0f,   // IN_LEVEL_POT,
+    0.0f,    // XFADE_POT,
+    0.0f,    // DECAY_POT,
+    0.0f    // CLOCK_DETECT,
+
+    // LAST_MUX
+};
+
 //CV (Direct ADC) slew coeffs Bigger is SLOWER
 float CVSlew[LAST_CV] =
 {

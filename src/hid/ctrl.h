@@ -34,7 +34,8 @@ class AnalogControl
               float     sr,
               bool      flip         = false,
               bool      invert       = false,
-              float     slew_seconds = 0.002f);
+              float     slew_seconds = 0.002f,
+              float     hysteresis = 0.0f);
 
     /**
     This Initializes the AnalogControl for a -5V to 5V inverted input
@@ -42,7 +43,7 @@ class AnalogControl
     \param *adcptr Pointer to analog digital converter
     \param sr Audio engine sample rate
     */
-    void InitBipolarCv(uint16_t *adcptr, float sr, float slew_seconds = 0.002f, bool invert=true);
+    void InitBipolarCv(uint16_t *adcptr, float sr, float slew_seconds = 0.002f, float hysteresis = 0.0f, bool invert=true);
 
     /**
     Filters, and transforms a raw ADC read into a normalized range.
@@ -65,6 +66,14 @@ class AnalogControl
         val = val < 0.f ? 0.f : val;
 
         coeff_ = val;
+    }
+
+    inline void SetHysteresis(float val)
+    {
+        val = val > 1.f ? 1.f : val;
+        val = val < 0.f ? 0.f : val;
+
+        hysteresis_ = val;
     }
 
     /** Directly set the scaling factor used by the process function
@@ -96,11 +105,13 @@ class AnalogControl
   private:
     uint16_t *raw_;
     float     coeff_, samplerate_, val_;
+    float     last_input_;
     float     scale_, offset_;
     bool      flip_;
     bool      invert_;
     bool      is_bipolar_;
     float     slew_seconds_;
+    float     hysteresis_;
 };
 } // namespace daisy
 #endif

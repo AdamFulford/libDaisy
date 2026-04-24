@@ -1,5 +1,6 @@
 #include "hid/ctrl.h"
 #include <math.h>
+#include <cmath>
 // Temporary amount to prevent bleed on the bottom of the pots/CVs
 #define BOTTOM_THRESH 0.002f
 using namespace daisy;
@@ -8,9 +9,11 @@ void AnalogControl::Init(uint16_t *adcptr,
                          float     sr,
                          bool      flip,
                          bool      invert,
-                         float     slew_seconds)
+                         float     slew_seconds,
+                         float      hysteresis)
 {
     val_        = 0.0f;
+    last_input_ = 0.0f;
     raw_        = adcptr;
     samplerate_ = sr;
     SetCoeff(1.0f / (slew_seconds * samplerate_ * 0.5f));
@@ -20,11 +23,13 @@ void AnalogControl::Init(uint16_t *adcptr,
     invert_       = invert;
     is_bipolar_   = false;
     slew_seconds_ = slew_seconds;
+    SetHysteresis(hysteresis);
 }
 
-void AnalogControl::InitBipolarCv(uint16_t *adcptr, float sr, float slew_seconds, bool invert)
+void AnalogControl::InitBipolarCv(uint16_t *adcptr, float sr, float slew_seconds, float hysteresis, bool invert)
 {
     val_        = 0.0f;
+    last_input_ = 0.0f;
     raw_        = adcptr;
     samplerate_ = sr;
     SetCoeff(1.0f / (slew_seconds * samplerate_ * 0.5f));
@@ -33,6 +38,7 @@ void AnalogControl::InitBipolarCv(uint16_t *adcptr, float sr, float slew_seconds
     flip_       = false;
     invert_     = invert;
     is_bipolar_ = true;
+    SetHysteresis(hysteresis);
 }
 
 float AnalogControl::Process()
@@ -42,6 +48,16 @@ float AnalogControl::Process()
     if(flip_)
         t = 1.f - t;
     t = (t - offset_) * scale_ * (invert_ ? -1.0f : 1.0f);
+    
+    if(std::abs(t - last_input_) < hysteresis_){
+        //if not exceeded hysteresis revert to last input
+        t = last_input_;
+    }
+    else{
+        //else update last input
+        last_input_ = t;
+    }
+
     val_ += coeff_ * (t - val_);
     return val_;
 }

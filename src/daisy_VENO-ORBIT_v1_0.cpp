@@ -71,7 +71,7 @@ void VenoOrbit_v1_0::Init(bool boost)
                                     AudioCallbackRate() : 
                                     AudioCallbackRate() * AudioBlockSize() * 8;
 
-        cv[i].InitBipolarCv(seed.adc.GetPtr(i+3), CVUpdateFreq,CVSlew[i], CV_Invert[i]);
+        cv[i].InitBipolarCv(seed.adc.GetPtr(i+3), CVUpdateFreq,CVSlew[i], 0.0f, CV_Invert[i]);
     }
 
     uint8_t muxIndex{};
@@ -111,7 +111,8 @@ void VenoOrbit_v1_0::Init(bool boost)
         {
             MUX_Input[i].InitBipolarCv(seed.adc.GetMuxPtr(muxChannel,muxIndex),
             UpdateFreq,
-            MuxSlew[i]);
+            MuxSlew[i],
+            MuxHysteresis[i]);
         }
         else
         {
@@ -119,7 +120,8 @@ void VenoOrbit_v1_0::Init(bool boost)
             UpdateFreq,
             false,
             false,
-            MuxSlew[i]);
+            MuxSlew[i],
+            MuxHysteresis[i]);
         }
 
      }
