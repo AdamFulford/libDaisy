@@ -194,6 +194,13 @@ class MidiHandler
         clock_tick_ctx_ = ctx;
     }
 
+    typedef void (*StartCallback)(void* ctx);
+    void SetStartCallback(StartCallback cb, void* ctx) 
+    { 
+        start_cb_ = cb; 
+        start_ctx_ = ctx; 
+    }
+
     /** Start listening */
     void Listen()
     {
@@ -242,6 +249,12 @@ class MidiHandler
     */
     void Parse(uint8_t byte)
     {
+        if(byte == 0xFA)                 // Start — phase anchor (downbeat)
+        {
+            if(start_cb_) start_cb_(start_ctx_);
+            return;
+        }
+
         if(byte == 0xF8) // Timing Clock — handle at parse time, don't queue
         {
             if(clock_tick_cb_)
@@ -264,6 +277,9 @@ class MidiHandler
 
     ClockTickCallback clock_tick_cb_  = nullptr;
     void*             clock_tick_ctx_ = nullptr;
+
+    StartCallback     start_cb_  = nullptr;
+    void*             start_ctx_ = nullptr;
 
     static void ParseCallback(uint8_t* data, size_t size, void* context)
     {
