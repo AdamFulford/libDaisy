@@ -184,6 +184,16 @@ class MidiHandler
         transport_.StartRx(MidiHandler::ParseCallback, this);
     }
 
+    typedef void (*ClockTickCallback)(void* ctx);
+
+    /** Registers a callback fired on each MIDI Timing Clock (0xF8) byte,
+     *  at parse time. Clock bytes are NOT queued as events. */
+    void SetClockTickCallback(ClockTickCallback cb, void* ctx)
+    {
+        clock_tick_cb_  = cb;
+        clock_tick_ctx_ = ctx;
+    }
+
     /** Start listening */
     void Listen()
     {
@@ -232,6 +242,13 @@ class MidiHandler
     */
     void Parse(uint8_t byte)
     {
+        if(byte == 0xF8) // Timing Clock — handle at parse time, don't queue
+        {
+            if(clock_tick_cb_)
+                clock_tick_cb_(clock_tick_ctx_);
+            return; // never enters parser_ or event_q_
+        }
+
         MidiEvent event;
         if(parser_.Parse(byte, &event))
         {
@@ -244,6 +261,9 @@ class MidiHandler
     Transport            transport_;
     MidiParser           parser_;
     FIFO<MidiEvent, 256> event_q_;
+
+    ClockTickCallback clock_tick_cb_  = nullptr;
+    void*             clock_tick_ctx_ = nullptr;
 
     static void ParseCallback(uint8_t* data, size_t size, void* context)
     {
