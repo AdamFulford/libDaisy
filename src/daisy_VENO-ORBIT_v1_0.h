@@ -266,8 +266,8 @@ float CVSlew[LAST_CV] =
     0.000001f, //VOct1_CV
     0.000001f, //LAYER1_CV
     0.000001f, //LAYER2_CV
-    0.05f, //START1_CV - Slow (375 Hz) update: ~25 ms, matches LENGTH CVs (0.002 gave no smoothing)
-    0.05f, //START2_CV
+    0.002f, //START1_CV - effectively unsmoothed at the Slow (375 Hz) rate:
+    0.002f, //START2_CV   smoothed by JumpThroughFilter in Veno-Looper.cpp instead
     0.000008f, //MOD1_CV
     0.000008f, //MOD2_CV
 };
