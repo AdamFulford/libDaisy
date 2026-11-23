@@ -266,10 +266,26 @@ float CVSlew[LAST_CV] =
     0.000001f, //VOct1_CV
     0.000001f, //LAYER1_CV
     0.000001f, //LAYER2_CV
-    0.002f, //START1_CV
-    0.002f, //START2_CV
+    0.05f, //START1_CV - Slow (375 Hz) update: ~25 ms, matches LENGTH CVs (0.002 gave no smoothing)
+    0.05f, //START2_CV
     0.000008f, //MOD1_CV
     0.000008f, //MOD2_CV
+};
+
+//Continuous deadband around 0, applied after calibration in GetCvValue().
+//Removes noise / offset from unpatched jacks. 0 = off.
+//Inside +-width reads 0; outside, the value is shifted towards 0 by width
+//so there's no step at the edge.
+float CVDeadband[LAST_CV] =
+{
+    0.0f,   //VOct2_CV   - off: pitch must stay exact
+    0.0f,   //VOct1_CV
+    0.005f, //LAYER1_CV
+    0.005f, //LAYER2_CV
+    0.005f, //START1_CV
+    0.005f, //START2_CV
+    0.0f,   //MOD1_CV    - off: audio-rate modulation
+    0.0f,   //MOD2_CV
 };
 
 bool CV_Invert[LAST_CV]
@@ -282,6 +298,27 @@ bool CV_Invert[LAST_CV]
     true, //START2_CV
     false, //MOD1_CV
     false, //MOD2_CV
+};
+
+//Continuous deadband for the mux inputs, applied after calibration in GetMuxValue().
+//Only used on the CV inputs that go through the mux. 0 = off.
+float MuxDeadband[LAST_MUX] =
+{
+    //mux1
+    0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f,
+
+    //mux2
+    0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f,
+
+    //mux3
+    0.0f,   // MUX3_0,
+    0.005f, // LENGTH2_CV,
+    0.0f,   // INPUT_TYPE_TOGGLE,
+    0.005f, // LENGTH1_CV,
+    0.0f,   // IN_LEVEL_POT,
+    0.0f,   // XFADE_POT,
+    0.0f,   // DECAY_POT,
+    0.0f    // CLOCK_DETECT,
 };
 
 CntrlFreq MuxFreq[LAST_MUX]
@@ -449,6 +486,11 @@ void Init(bool boost = false);
     */
     float GetCvValue(CV_IDs idx);
 
+    /** Enable/disable the CV deadbands (CVDeadband / MuxDeadband).
+        Disable while calibrating, so offsets are measured on the raw values.
+    */
+    void SetDeadbandsEnabled(bool enabled) { deadbandsEnabled_ = enabled; }
+
     //returns state of digital input pin on MCP23017
     //bool GetRawPinState(PICO_Inputs idx);
 
@@ -562,6 +604,16 @@ void Init(bool boost = false);
     using Log = Logger<LOGGER_INTERNAL>;
 
     CV_Calibration calibration_{};
+
+    bool deadbandsEnabled_{true};
+
+    //zero inside +-width, shifted towards zero outside it (no step at the edge)
+    static inline float ContinuousDeadband(float x, float width)
+    {
+        if(x >  width) return x - width;
+        if(x < -width) return x + width;
+        return 0.0f;
+    }
 
     std::array<uint8_t, 256> gamma_lut;
 

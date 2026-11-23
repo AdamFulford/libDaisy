@@ -334,8 +334,11 @@ void VenoOrbit_v1_0::UpdateDaisyGates()
 float VenoOrbit_v1_0::GetMuxValue(MUX_IDs idx)
 {
     float retVal{(MUX_Input[idx < LAST_MUX ? idx : 0].Value()
-        * calibration_.MuxScale[idx]) 
+        * calibration_.MuxScale[idx])
         + calibration_.MuxOffsets[idx]};
+
+        if(deadbandsEnabled_ && idx < LAST_MUX && MuxDeadband[idx] > 0.0f)
+            retVal = ContinuousDeadband(retVal, MuxDeadband[idx]);
 
         //return std::min(std::max(retVal,0.0f),1.0f);
 
@@ -345,8 +348,11 @@ float VenoOrbit_v1_0::GetMuxValue(MUX_IDs idx)
 float VenoOrbit_v1_0::GetCvValue(CV_IDs idx)
 {
     float retVal{(cv[idx < LAST_CV ? idx : 0].Value()
-        * calibration_.CV_Scale[idx]) 
+        * calibration_.CV_Scale[idx])
         + calibration_.CV_Offsets[idx]};
+
+    if(deadbandsEnabled_ && idx < LAST_CV && CVDeadband[idx] > 0.0f)
+        retVal = ContinuousDeadband(retVal, CVDeadband[idx]);
 
     // return std::min(std::max(retVal,0.0f),1.0f);
     return std::min(retVal,1.0f);
